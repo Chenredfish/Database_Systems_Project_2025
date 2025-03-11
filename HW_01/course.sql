@@ -1,16 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1
--- 產生時間： 2025-03-10 12:44:14
--- 伺服器版本： 5.7.17-log
+-- 主機: localhost
+-- 產生時間： 2025-03-11 01:02:14
+-- 伺服器版本: 5.7.17-log
 -- PHP 版本： 5.6.30
 
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,46 +17,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `20250304`
+-- 資料庫： `course`
 --
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `student`
+-- 資料表結構 `course`
 --
 
-CREATE TABLE `student` (
-  `ID` varchar(5) DEFAULT NULL,
-  `course_id` varchar(8) DEFAULT NULL,
-  `sec_id` varchar(8) DEFAULT NULL,
-  `semester` varchar(6) DEFAULT NULL,
-  `year` decimal(4,0) DEFAULT NULL
+CREATE TABLE `course` (
+  `course_id` varchar(7) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `dept_name` varchar(20) NOT NULL,
+  `credits` decimal(2,0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 資料表的匯出資料 `student`
+-- 資料表的匯出資料 `course`
 --
 
-INSERT INTO `student` (`ID`, `course_id`, `sec_id`, `semester`, `year`) VALUES
-('10101', 'CS-101', '1', 'Fall', 2009),
-('10101', 'CS-101', '1', 'Spring', 2010),
-('10101', 'CS-315', '1', 'Fall', 2009),
-('12121', 'CS-347', '1', 'Spring', 2010),
-('15151', 'FIN-201', '1', 'Spring', 2010),
-('22222', 'MU-199', '1', 'Fall', 2009),
-('32343', 'PHY-101', '1', 'Fall', 2009),
-('45565', 'HIS-351', '1', 'Spring', 2010),
-('45565', 'CS-101', '1', 'Spring', 2010),
-('76766', 'CS-319', '1', 'Spring', 2009),
-('76766', 'BIO-101', '1', 'Summer', 2010),
-('76766', 'BIO-301', '1', 'Spring', 2009),
-('83821', 'CS-190', '1', 'Spring', 2009),
-('83821', 'CS-190', '2', 'Spring', 2009),
-('83821', 'CS-319', '2', 'Spring', 2010),
-('98345', 'EE-181', '1', 'Spring', 2009);
-
-COMMIT;
+INSERT INTO `course` (`course_id`, `title`, `dept_name`, `credits`) VALUES
+('BIO-101', 'Intro. to Biology', 'Biology', '4.00'),
+('BIO-301', 'Genetics', 'Biology', '4.00'),
+('BIO-399', 'Computational Biology', 'Biology', '3.00'),
+('CS-101', 'Intro. to Computer Science', 'Comp. Sci.', '4.00'),
+('CS-190', 'Game Design', 'Comp. Sci.', '4.00'),
+('CS-315', 'Robotics', 'Comp. Sci.', '3.00'),
+('CS-319', 'Image Processing', 'Comp. Sci.', '3.00'),
+('CS-347', 'Database System Concepts', 'Comp. Sci.', '3.00'),
+('EE-181', 'Intro. to Digital Systems', 'Elec. Eng.', '3.00'),
+('FIN-201', 'Investment Banking', 'Finance', '3.00'),
+('HIS-351', 'World History', 'History', '3.00'),
+('MU-199', 'Music Video Production', 'Music', '3.00'),
+('PHY-101', 'Physical Principles', 'Physics', '4.00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
