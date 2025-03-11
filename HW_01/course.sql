@@ -30,7 +30,7 @@ CREATE TABLE `course` (
   `course_id` varchar(7) NOT NULL,
   `title` varchar(50) NOT NULL,
   `dept_name` varchar(20) NOT NULL,
-  `credits` numeric(2,0)
+  `credits` decimal(2,0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
