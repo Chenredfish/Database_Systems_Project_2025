@@ -4,7 +4,7 @@
 
 ### 1. **基本傷害公式**：
 ```
-實際傷害 =((攻擊力 × 招式倍率 × 屬性加成) *（1-物傷減免）
+實際傷害 = ((攻擊力 × 招式倍率 × 屬性加成) × (1 - 物傷減免))
 ```
 
 ---
@@ -45,7 +45,7 @@
 
 使用角色裝備防禦數值，也要考慮狀態：
 ```
-物傷減免 = (物防/(100+物防）)
+物傷減免 = (物防 / (100 + 物防))
 ```
 
 選擇哪種防禦取決於攻擊類型（物理 or 魔法）。
@@ -55,7 +55,7 @@
 ### 四、計算傷害最終公式
 
 ```
-實際傷害 =((攻擊力 × 招式倍率 × 屬性加成) *（1-物傷減免）
+實際傷害 = ((攻擊力 × 招式倍率 × 屬性加成) × (1 - 物傷減免))
 ```
 
 #### 最低傷害保底（選擇性）：
@@ -97,9 +97,71 @@
 | 有效攻擊力          | 100 × (1 + 20%)                          | 120      |
 | 招式初始傷害        | 120 × 1.2                                | 144      |
 | 屬性加成後傷害      | 144 × 1.5                                | 216      |
-| 物傷減免          | ((50 + 30)/(100+50+30) × (1 - 10%)       | 0.4       |
-| 最終傷害            | 216*(1-0.4)                              | **129.6**  |
+| 物傷減免          | ((50 + 30) / (100 + 50 + 30)) × (1 - 10%) | 0.4       |
+| 最終傷害            | 216 × (1 - 0.4)                          | **129.6**  |
 
 ---
 
 ✅ **最終結果：這次攻擊造成 130 點傷害(四捨五入)。**
+
+角色 (玩家選擇) Actor:
+- **角色代號 (主鍵)** `actor.id`  
+  *Actor ID (Primary Key)*
+- **角色名稱 (顯示給玩家)** `actor.name`  
+  *Actor Name (Displayed to Player)*
+- **角色屬性 (火/水/草/雷) (外鍵)** `actor.type`  
+  *Actor Attribute (Fire/Water/Grass/Thunder) (Foreign Key)*
+- **角色血量** `actor.health`  
+  *Actor Health*
+- **角色物理攻擊** `actor.attack_point`  
+  *Actor Physical Attack*
+- **角色魔法攻擊** `actor.magic_point`  
+  *Actor Magical Attack*
+- **角色物理防禦** `actor.attack_defence`  
+  *Actor Physical Defense*
+- **角色魔法防禦** `actor.magic_defence`  
+  *Actor Magical Defense*
+
+招式 (玩家選擇) Skill:
+- **招式代號 (主鍵)** `skill.id`  
+  *Skill ID (Primary Key)*
+- **招式名稱** `skill.name`  
+  *Skill Name*
+- **招式屬性 (火/水/草/雷)** `skill.type`  
+  *Skill Attribute (Fire/Water/Grass/Thunder)*
+- **招式倍率** `skill.power`  
+  *Skill Power Multiplier*
+- **招式冷卻時間** `skill.cooldown`  
+  *Skill Cooldown*
+
+屬性 Type:
+- **屬性名稱 (主鍵)** `type.name`  
+  *Type Name (Primary Key)*
+- **克制屬性** `type.advantage`  
+  *Advantage Attribute*
+- **被克制屬性** `type.disadvantage`  
+  *Disadvantage Attribute*
+
+裝備 (玩家選擇) Equipment:
+- **裝備代號 (主鍵)** `equipment.id`  
+  *Equipment ID (Primary Key)*
+- **裝備名稱** `equipment.name`  
+  *Equipment Name*
+- **物理防禦** `equipment.attack_defence`  
+  *Equipment Physical Defense*
+- **魔法防禦** `equipment.magic_defence`  
+  *Equipment Magical Defense*
+
+狀態 (玩家選擇) Ring:
+- **狀態代號** `ring.id`  
+  *Ring ID*
+- **狀態名稱** `ring.name`  
+  *Ring Name*
+- **物理攻擊加成** `ring.attack_power`  
+  *Physical Attack Bonus*
+- **魔法攻擊加成** `ring.magic_power`  
+  *Magical Attack Bonus*
+- **物理防禦加成** `ring.attack_defence`  
+  *Physical Defense Bonus*
+- **魔法防禦加成** `ring.magic_defence`  
+  *Magical Defense Bonus*
