@@ -105,63 +105,160 @@
 ✅ **最終結果：這次攻擊造成 130 點傷害(四捨五入)。**
 
 角色 (玩家選擇) Actor:
-- **角色代號 (主鍵)** `actor.id`  
-  *Actor ID (Primary Key)*
-- **角色名稱 (顯示給玩家)** `actor.name`  
-  *Actor Name (Displayed to Player)*
-- **角色屬性 (火/水/草/雷) (外鍵)** `actor.type`  
-  *Actor Attribute (Fire/Water/Grass/Thunder) (Foreign Key)*
-- **角色血量** `actor.health`  
-  *Actor Health*
-- **角色物理攻擊** `actor.attack_point`  
-  *Actor Physical Attack*
-- **角色魔法攻擊** `actor.magic_point`  
-  *Actor Magical Attack*
-- **角色物理防禦** `actor.attack_defence`  
-  *Actor Physical Defense*
-- **角色魔法防禦** `actor.magic_defence`  
-  *Actor Magical Defense*
+- **角色代號 (主鍵)** `actor.id`
+  1. INTEGER
+  2. PRIMARY KEY = true
+  3. AUTOINCREMENT = true
+  4. NOT NULL = true
+  - *Actor ID (Primary Key)*
+
+- **角色名稱 (顯示給玩家)** `actor.name`
+  1. TEXT
+  2. NOT NULL = true
+  - *Actor Name (Displayed to Player)*
+
+- **角色屬性 (火/水/草/雷) (外鍵)** `actor.type`
+  1. TEXT
+  2. NOT NULL = true
+  3. REFERENCES type(name)
+  - *Actor Attribute (Fire/Water/Grass/Thunder) (Foreign Key)*
+
+- **角色血量** `actor.health`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 100
+  - *Actor Health*
+
+- **角色物理攻擊** `actor.attack_point`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 10
+  - *Actor Physical Attack*
+
+- **角色魔法攻擊** `actor.magic_point`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 10
+  - *Actor Magical Attack*
+
+- **角色物理防禦** `actor.attack_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 5
+  - *Actor Physical Defense*
+
+- **角色魔法防禦** `actor.magic_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 5
+  - *Actor Magical Defense*
 
 招式 (玩家選擇) Skill:
-- **招式代號 (主鍵)** `skill.id`  
-  *Skill ID (Primary Key)*
-- **招式名稱** `skill.name`  
-  *Skill Name*
-- **招式屬性 (火/水/草/雷)** `skill.type`  
-  *Skill Attribute (Fire/Water/Grass/Thunder)*
-- **招式倍率** `skill.power`  
-  *Skill Power Multiplier*
-- **招式冷卻時間** `skill.cooldown`  
-  *Skill Cooldown*
+- **招式代號 (主鍵)** `skill.id`
+  1. INTEGER
+  2. PRIMARY KEY = true
+  3. AUTOINCREMENT = true
+  4. NOT NULL = true
+  - *Skill ID (Primary Key)*
+
+- **招式名稱** `skill.name`
+  1. TEXT
+  2. NOT NULL = true
+  - *Skill Name*
+
+- **招式屬性 (火/水/草/雷)** `skill.type`
+  1. TEXT
+  2. NOT NULL = true
+  3. REFERENCES type(name)
+  - *Skill Attribute (Fire/Water/Grass/Thunder)*
+
+- **招式倍率** `skill.power`
+  1. REAL
+  2. NOT NULL = true
+  3. DEFAULT = 1.0
+  - *Skill Power Multiplier*
+
+- **招式冷卻時間** `skill.cooldown`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Skill Cooldown (Default: 0)*
 
 屬性 Type:
-- **屬性名稱 (主鍵)** `type.name`  
-  *Type Name (Primary Key)*
-- **克制屬性** `type.advantage`  
-  *Advantage Attribute*
-- **被克制屬性** `type.disadvantage`  
-  *Disadvantage Attribute*
+- **屬性名稱 (主鍵)** `type.name`
+  1. TEXT
+  2. PRIMARY KEY = true
+  3. NOT NULL = true
+  - *Type Name (Primary Key)*
+
+- **克制屬性** `type.advantage`
+  1. TEXT
+  2. REFERENCES type(name)
+  - *Advantage Attribute (Default: NULL)*
+
+- **被克制屬性** `type.disadvantage`
+  1. TEXT
+  2. REFERENCES type(name)
+  - *Disadvantage Attribute (Default: NULL)*
 
 裝備 (玩家選擇) Equipment:
-- **裝備代號 (主鍵)** `equipment.id`  
-  *Equipment ID (Primary Key)*
-- **裝備名稱** `equipment.name`  
-  *Equipment Name*
-- **物理防禦** `equipment.attack_defence`  
-  *Equipment Physical Defense*
-- **魔法防禦** `equipment.magic_defence`  
-  *Equipment Magical Defense*
+- **裝備代號 (主鍵)** `equipment.id`
+  1. INTEGER
+  2. PRIMARY KEY = true
+  3. AUTOINCREMENT = true
+  4. NOT NULL = true
+  - *Equipment ID (Primary Key)*
+
+- **裝備名稱** `equipment.name`
+  1. TEXT
+  2. NOT NULL = true
+  - *Equipment Name*
+
+- **物理防禦** `equipment.attack_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Equipment Physical Defense (Default: 0)*
+
+- **魔法防禦** `equipment.magic_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Equipment Magical Defense (Default: 0)*
 
 狀態 (玩家選擇) Ring:
-- **狀態代號** `ring.id`  
-  *Ring ID*
-- **狀態名稱** `ring.name`  
-  *Ring Name*
-- **物理攻擊加成** `ring.attack_power`  
-  *Physical Attack Bonus*
-- **魔法攻擊加成** `ring.magic_power`  
-  *Magical Attack Bonus*
-- **物理防禦加成** `ring.attack_defence`  
-  *Physical Defense Bonus*
-- **魔法防禦加成** `ring.magic_defence`  
-  *Magical Defense Bonus*
+- **狀態代號** `ring.id`
+  1. INTEGER
+  2. PRIMARY KEY = true
+  3. AUTOINCREMENT = true
+  4. NOT NULL = true
+  - *Ring ID (Primary Key)*
+
+- **狀態名稱** `ring.name`
+  1. TEXT
+  2. NOT NULL = true
+  - *Ring Name*
+
+- **物理攻擊加成** `ring.attack_power`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Physical Attack Bonus (Default: 0)*
+
+- **魔法攻擊加成** `ring.magic_power`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Magical Attack Bonus (Default: 0)*
+
+- **物理防禦加成** `ring.attack_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Physical Defense Bonus (Default: 0)*
+
+- **魔法防禦加成** `ring.magic_defence`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Magical Defense Bonus (Default: 0)*
