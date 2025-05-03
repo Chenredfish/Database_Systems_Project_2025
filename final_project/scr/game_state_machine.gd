@@ -1,7 +1,6 @@
 extends BaseStateMachine
 class_name GameStateMachine
 
-const StateEnum = preload("res://state_enum.gd")
 '''
 func enter(_msg:Dictionary = {}):
 
