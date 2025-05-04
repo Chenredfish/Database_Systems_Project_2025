@@ -3,19 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://de0f4nnhqa6ee" path="res://assets/Menu Buttons/Large Buttons/Large Buttons/螢幕擷取畫面 2025-05-04 155554.png" id="1_ljalb"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_m56eh"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5sso"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljalb"]
 texture = ExtResource("1_ljalb")
 
 [sub_resource type="Theme" id="Theme_7f82l"]
-Button/styles/normal = SubResource("StyleBoxTexture_c5sso")
+Button/styles/normal = SubResource("StyleBoxTexture_ljalb")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2j3j"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
 texture = ExtResource("2_m56eh")
 texture_margin_top = 9.63859
 region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_8afb3"]
-Button/styles/normal = SubResource("StyleBoxTexture_u2j3j")
+Button/styles/normal = SubResource("StyleBoxTexture_m56eh")
 
 [sub_resource type="Theme" id="Theme_qncra"]
 
