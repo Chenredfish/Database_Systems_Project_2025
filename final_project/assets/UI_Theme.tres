@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://clhad2uurm8i7"]
+
+[ext_resource type="Texture2D" uid="uid://de0f4nnhqa6ee" path="res://assets/Menu Buttons/Large Buttons/Large Buttons/螢幕擷取畫面 2025-05-04 155554.png" id="1_gcdp6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcdp6"]
+bg_color = Color(9.14484e-07, 0.398714, 0.187729, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mylh8"]
+texture = ExtResource("1_gcdp6")
+texture_margin_left = 1.0
+texture_margin_right = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_av514"]
+bg_color = Color(0, 0.4, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhrav"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arus8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/styles/hover = SubResource("StyleBoxFlat_gcdp6")
+Button/styles/normal = SubResource("StyleBoxTexture_mylh8")
+Button/styles/pressed = SubResource("StyleBoxFlat_av514")
+Label/font_sizes/font_size = 24
+LineEdit/font_sizes/font_size = 24
+LineEdit/styles/normal = SubResource("StyleBoxFlat_rhrav")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_arus8")
