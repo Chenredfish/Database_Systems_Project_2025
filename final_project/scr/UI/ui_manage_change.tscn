@@ -61,47 +61,47 @@ keep_editing_on_text_submit = true
 expand_to_text_length = true
 script = ExtResource("3_lm8j4")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="item_status" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_status"]
 custom_minimum_size = Vector2(735, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/item_code"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_code"]
 layout_mode = 2
 text = "裝備代號"
 horizontal_alignment = 1
 
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/item_name"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_name"]
 layout_mode = 2
 text = "裝備名稱"
 horizontal_alignment = 1
 
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/item_physics_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_physics_armor"]
 layout_mode = 2
 text = "物理防禦"
 horizontal_alignment = 1
 
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/item_magic_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_magic_armor"]
 layout_mode = 2
 text = "魔法防禦"
 horizontal_alignment = 1

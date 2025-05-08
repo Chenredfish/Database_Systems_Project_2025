@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://m882op0f8k67"]
+[gd_scene load_steps=2 format=3 uid="uid://m882op0f8k67"]
+
+[ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_nir4x"]
 
 [node name="UiShowRing" type="Control"]
 layout_mode = 3
@@ -7,3 +9,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_nir4x")

@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://b2cy87pcluu68"]
+[gd_scene load_steps=5 format=3 uid="uid://b2cy87pcluu68"]
+
+[ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_b8djm"]
+[ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="2_84ty6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_621v3"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlkio"]
+font_size = 18
 
 [node name="UiReady" type="Control"]
 layout_mode = 3
@@ -7,3 +16,701 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_b8djm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="character" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(620, 1080)
+layout_mode = 2
+
+[node name="character_texture" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
+custom_minimum_size = Vector2(470, 504)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character_texture"]
+custom_minimum_size = Vector2(263, 368)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="switch_item_ring" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/switch_item_ring"]
+custom_minimum_size = Vector2(400, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 169
+
+[node name="previous_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/switch_item_ring/HBoxContainer"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/switch_item_ring/HBoxContainer/previous_page"]
+layout_mode = 2
+text = "可選裝備"
+
+[node name="next_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/switch_item_ring/HBoxContainer"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/switch_item_ring/HBoxContainer/next_page"]
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+text = "狀態效果"
+
+[node name="item_status" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
+custom_minimum_size = Vector2(575, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_status"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer/item_code"]
+layout_mode = 2
+text = "裝備代號"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer/item_name"]
+layout_mode = 2
+text = "裝備名稱"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "物理防禦"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_status/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "魔法防禦"
+horizontal_alignment = 1
+
+[node name="item_list" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="item1" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer/item_code"]
+layout_mode = 2
+text = "E000001"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer/item_name"]
+layout_mode = 2
+text = "軍團聖盾"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item1/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item2" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer/item_code"]
+layout_mode = 2
+text = "E000001"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer/item_name"]
+layout_mode = 2
+text = "軍團聖盾"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item2/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item3" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer/item_code"]
+layout_mode = 2
+text = "E000001"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer/item_name"]
+layout_mode = 2
+text = "軍團聖盾"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item3/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item4" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer/item_code"]
+layout_mode = 2
+text = "E000001"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer/item_name"]
+layout_mode = 2
+text = "軍團聖盾"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item4/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item5" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="item_code" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer/item_code"]
+layout_mode = 2
+text = "E000001"
+horizontal_alignment = 1
+
+[node name="item_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer/item_name"]
+layout_mode = 2
+text = "軍團聖盾"
+horizontal_alignment = 1
+
+[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer/item_physics_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer"]
+custom_minimum_size = Vector2(128.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/item_list/VBoxContainer/item5/HBoxContainer/item_magic_armor"]
+layout_mode = 2
+text = "30"
+horizontal_alignment = 1
+
+[node name="switch_pages" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/switch_pages"]
+custom_minimum_size = Vector2(463, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 53
+
+[node name="previous_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer/previous_page"]
+layout_mode = 2
+text = "上一頁"
+
+[node name="item_search" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(220, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer/item_search"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "搜尋裝備名稱"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+script = ExtResource("2_84ty6")
+
+[node name="next_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/switch_pages/HBoxContainer/next_page"]
+layout_mode = 2
+text = "下一頁"
+
+[node name="ring_and_skill" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(902, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
+custom_minimum_size = Vector2(216, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_bottom = 51
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "可選狀態效果"
+horizontal_alignment = 1
+
+[node name="ring_list" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list"]
+custom_minimum_size = Vector2(835, 241)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 127
+
+[node name="ring1" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/ring_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="ring2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/ring_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="ring3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/ring_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
+custom_minimum_size = Vector2(216, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 51
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "下回合新技能"
+horizontal_alignment = 1
+
+[node name="skill_list" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list"]
+custom_minimum_size = Vector2(835, 241)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 127
+
+[node name="skill1" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="skill_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="skill_desc" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/skill_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="skill2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="skill_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="skill_desc" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/skill_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="skill3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer"]
+custom_minimum_size = Vector2(0, 313)
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="skill_name" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_621v3")
+horizontal_alignment = 1
+
+[node name="skill_desc" type="Label" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_mlkio")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/skill_choose"]
+layout_mode = 2
+text = "選擇"
+
+[node name="next_wave" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
+custom_minimum_size = Vector2(193, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/next_wave"]
+layout_mode = 2
+text = "進入下一回合"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(395, 0)
+layout_mode = 2
+
+[node name="character_texture" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 616)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 112
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/character_texture"]
+custom_minimum_size = Vector2(263, 368)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(147, 147)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(216, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "下一回合
+敵人屬性"
+horizontal_alignment = 1
