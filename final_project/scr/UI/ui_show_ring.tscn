@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://m882op0f8k67"]
+[gd_scene load_steps=8 format=3 uid="uid://m882op0f8k67"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_nir4x"]
+[ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="2_xf14j"]
+[ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_ms247"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b4pga"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_gu38d"]
+font_size = 18
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xf14j"]
+texture = ExtResource("3_ms247")
+texture_margin_top = 9.63859
+region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
+
+[sub_resource type="Theme" id="Theme_nd284"]
+Button/styles/normal = SubResource("StyleBoxTexture_xf14j")
 
 [node name="UiShowRing" type="Control"]
 layout_mode = 3
@@ -10,3 +26,305 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_nir4x")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 154
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 71
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "生命值"
+
+[node name="health" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "660"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "屬性"
+horizontal_alignment = 1
+
+[node name="element" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "草"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "物理攻擊"
+horizontal_alignment = 1
+
+[node name="physics_power" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "60"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "魔法攻擊"
+horizontal_alignment = 1
+
+[node name="magic_power" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "60"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "物理防禦"
+horizontal_alignment = 1
+
+[node name="physics_armor" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "60"
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "魔法防禦"
+horizontal_alignment = 1
+
+[node name="magic_armor" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "60"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="ring" type="GridContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 127
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="ring1" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring1"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring1/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring1/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring2" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring2"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring2/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring2/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring3" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring3"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring3/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring3/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring4" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring4"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring4/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring4/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring5" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring5"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring5/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring5/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring6" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring6"]
+layout_mode = 2
+theme_override_constants/separation = 31
+
+[node name="ring_name" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring6/VBoxContainer"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_b4pga")
+horizontal_alignment = 1
+
+[node name="ring_effect" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ring/ring6/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔攻與魔防降至 0，物攻與物防翻倍"
+label_settings = SubResource("LabelSettings_gu38d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="switch_pages" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages"]
+custom_minimum_size = Vector2(463, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 53
+
+[node name="previous_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer/previous_page"]
+layout_mode = 2
+text = "上一頁"
+
+[node name="item_search" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(220, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer/item_search"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "搜尋裝備名稱"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+script = ExtResource("2_xf14j")
+
+[node name="next_page" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/switch_pages/HBoxContainer/next_page"]
+layout_mode = 2
+text = "下一頁"
+
+[node name="Exit" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(162, 142)
+layout_mode = 2
+offset_left = 1758.0
+offset_right = 1920.0
+offset_bottom = 142.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+
+[node name="Exit_Button" type="Button" parent="Exit"]
+layout_mode = 2
+theme = SubResource("Theme_nd284")
+theme_override_font_sizes/font_size = 36

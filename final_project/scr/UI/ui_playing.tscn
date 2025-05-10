@@ -1,4 +1,28 @@
-[gd_scene format=3 uid="uid://6uaf1ebhiwjy"]
+[gd_scene load_steps=10 format=3 uid="uid://6uaf1ebhiwjy"]
+
+[ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_qb54i"]
+[ext_resource type="Texture2D" uid="uid://d10e0lotasb1o" path="res://assets/Menu Buttons/Square Buttons/Square Buttons/Info Square Button.png" id="2_xse5h"]
+[ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_xse5h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s7wuh"]
+texture = ExtResource("2_xse5h")
+
+[sub_resource type="Theme" id="Theme_ec4lx"]
+Button/styles/normal = SubResource("StyleBoxTexture_s7wuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xse5h"]
+texture = ExtResource("3_xse5h")
+region_rect = Rect2(1867.89, 833.199, 200.827, 200.827)
+
+[sub_resource type="Theme" id="Theme_s7wuh"]
+Button/styles/normal = SubResource("StyleBoxTexture_xse5h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ec4lx"]
+texture = ExtResource("3_xse5h")
+region_rect = Rect2(2035.57, 0.355537, 201.653, 200.827)
+
+[sub_resource type="Theme" id="Theme_u5myt"]
+Button/styles/normal = SubResource("StyleBoxTexture_ec4lx")
 
 [node name="UiPlaying" type="Control"]
 layout_mode = 3
@@ -7,3 +31,126 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qb54i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(238, 116)
+layout_mode = 2
+theme_override_constants/margin_left = 493
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="health_Bar" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(238, 29)
+layout_mode = 2
+theme_override_constants/margin_top = 662
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/health_Bar"]
+custom_minimum_size = Vector2(238, 29)
+layout_mode = 2
+max_value = 660.0
+value = 660.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(238, 66)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ec4lx")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(238, 116)
+layout_mode = 2
+theme_override_constants/margin_left = 493
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="health_Bar" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(238, 29)
+layout_mode = 2
+theme_override_constants/margin_top = 662
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/health_Bar"]
+custom_minimum_size = Vector2(238, 29)
+layout_mode = 2
+max_value = 660.0
+value = 660.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(238, 66)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ec4lx")
+
+[node name="Exit" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(162, 142)
+offset_left = 1758.0
+offset_right = 1920.0
+offset_bottom = 142.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+
+[node name="Exit_Button" type="Button" parent="Exit"]
+layout_mode = 2
+theme = SubResource("Theme_s7wuh")
+theme_override_font_sizes/font_size = 36
+
+[node name="Exit2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(162, 142)
+offset_left = 1596.0
+offset_right = 1758.0
+offset_bottom = 142.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+
+[node name="Exit_Button" type="Button" parent="Exit2"]
+layout_mode = 2
+theme = SubResource("Theme_u5myt")
+theme_override_font_sizes/font_size = 36

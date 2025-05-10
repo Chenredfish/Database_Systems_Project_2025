@@ -20,6 +20,7 @@ theme = ExtResource("1_b8djm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -31,7 +32,7 @@ custom_minimum_size = Vector2(620, 1080)
 layout_mode = 2
 
 [node name="character_texture" type="MarginContainer" parent="MarginContainer/HBoxContainer/character"]
-custom_minimum_size = Vector2(470, 504)
+custom_minimum_size = Vector2(470, 524)
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -687,7 +688,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 616)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/margin_bottom = 112
+theme_override_constants/margin_bottom = 92
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/character_texture"]
 custom_minimum_size = Vector2(263, 368)
