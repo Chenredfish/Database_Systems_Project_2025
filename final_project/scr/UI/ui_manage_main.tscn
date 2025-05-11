@@ -105,4 +105,7 @@ theme_override_font_sizes/font_size = 36
 text = "變更狀態效果"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/manage_character/Button" to="." method="_to_manage_actor_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/manage_item/Button" to="." method="_to_manage_equipment_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/manage_skill/Button" to="." method="_to_manage_skill_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_ring/Button" to="." method="_to_manage_ring_button_pressed"]
