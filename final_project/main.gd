@@ -9,3 +9,4 @@ func _ready():
 	
 	ui_layer.show()
 	game_state_machine.launch()
+	

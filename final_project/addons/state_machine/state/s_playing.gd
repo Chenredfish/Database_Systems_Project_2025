@@ -3,11 +3,13 @@ class_name s_Playing
 
 var to_manage_main:bool = false
 
+
 func enter(_msg:Dictionary = {}):
 	print("into state of s_Playing")
 	
 	agent.ui_layer.show_ui_playing()
-	agent.ui_layer.exit_playing.connect(exit_playing)
+	if !agent.ui_layer.exit_playing.is_connected(exit_playing):
+		agent.ui_layer.exit_playing.connect(exit_playing)
 
 func update(delta):
 	

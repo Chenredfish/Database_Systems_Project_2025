@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dscowiyylqavf"]
+[gd_scene load_steps=9 format=3 uid="uid://dscowiyylqavf"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
+[ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="2_jauhl"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
 [ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="3_mylh8"]
 
@@ -26,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4psur")
+script = ExtResource("2_jauhl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -426,3 +428,5 @@ alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 script = ExtResource("3_mylh8")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
