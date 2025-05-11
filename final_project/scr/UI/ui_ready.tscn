@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2cy87pcluu68"]
+[gd_scene load_steps=7 format=3 uid="uid://b2cy87pcluu68"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_b8djm"]
 [ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="2_84ty6"]
+[ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D Pixel Dungeon Asset Pack/Element_icon.png" id="3_84ty6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_621v3"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_mlkio"]
 font_size = 18
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_621v3"]
+atlas = ExtResource("3_84ty6")
+region = Rect2(593, 413.5, 181, 189)
 
 [node name="UiReady" type="Control"]
 layout_mode = 3
@@ -701,6 +706,10 @@ custom_minimum_size = Vector2(147, 147)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_621v3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(216, 44)
