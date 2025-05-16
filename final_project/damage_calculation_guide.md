@@ -153,6 +153,22 @@
   3. DEFAULT = 5
   - *Actor Magical Defense*
 
+- **裝備代號 (外鍵)** `actor.equ_id`
+  1. INTEGER
+  2. REFERENCES equipment(id)
+  - *Equipment ID (Foreign Key)*
+
+- **招式代號 (外鍵)** `actor.skill_id`
+  1. INTEGER
+  2. REFERENCES skill(id)
+  - *Skill ID (Foreign Key)*
+
+- **角色等級** `actor.level`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 1
+  - *Actor Level*
+
 招式 (玩家選擇) Skill:
 - **招式代號 (主鍵)** `skill.id`
   1. INTEGER
@@ -183,6 +199,18 @@
   2. NOT NULL = true
   3. DEFAULT = 0
   - *Skill Cooldown (Default: 0)*
+
+- **招式等級** `skill.level`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 1
+  - *Skill Level*
+
+- **攻擊類型** `skill.is_magic`
+  1. BOOLEAN
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Is Magic Attack (0: Physical, 1: Magic)*
 
 屬性 element:
 - **屬性名稱 (主鍵)** `element.name`
@@ -226,6 +254,12 @@
   3. DEFAULT = 0
   - *Equipment Magical Defense (Default: 0)*
 
+- **裝備等級** `equipment.level`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 1
+  - *Equipment Level*
+
 狀態 (玩家選擇) Ring:
 - **狀態代號** `ring.id`
   1. INTEGER
@@ -262,3 +296,9 @@
   2. NOT NULL = true
   3. DEFAULT = 0
   - *Magical Defense Bonus (Default: 0)*
+
+- **血量加成** `ring.health`
+  1. INTEGER
+  2. NOT NULL = true
+  3. DEFAULT = 0
+  - *Health Bonus (Default: 0)*
