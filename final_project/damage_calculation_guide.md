@@ -117,10 +117,10 @@
   2. NOT NULL = true
   - *Actor Name (Displayed to Player)*
 
-- **角色屬性 (火/水/草/雷) (外鍵)** `actor.type`
+- **角色屬性 (火/水/草/雷) (外鍵)** `actor.element`
   1. TEXT
   2. NOT NULL = true
-  3. REFERENCES type(name)
+  3. REFERENCES element(name)
   - *Actor Attribute (Fire/Water/Grass/Thunder) (Foreign Key)*
 
 - **角色血量** `actor.health`
@@ -166,10 +166,10 @@
   2. NOT NULL = true
   - *Skill Name*
 
-- **招式屬性 (火/水/草/雷)** `skill.type`
+- **招式屬性 (火/水/草/雷)** `skill.element`
   1. TEXT
   2. NOT NULL = true
-  3. REFERENCES type(name)
+  3. REFERENCES element(name)
   - *Skill Attribute (Fire/Water/Grass/Thunder)*
 
 - **招式倍率** `skill.power`
@@ -184,21 +184,21 @@
   3. DEFAULT = 0
   - *Skill Cooldown (Default: 0)*
 
-屬性 Type:
-- **屬性名稱 (主鍵)** `type.name`
+屬性 element:
+- **屬性名稱 (主鍵)** `element.name`
   1. TEXT
   2. PRIMARY KEY = true
   3. NOT NULL = true
-  - *Type Name (Primary Key)*
+  - *element Name (Primary Key)*
 
-- **克制屬性** `type.advantage`
+- **克制屬性** `element.advantage`
   1. TEXT
-  2. REFERENCES type(name)
+  2. REFERENCES element(name)
   - *Advantage Attribute (Default: NULL)*
 
-- **被克制屬性** `type.disadvantage`
+- **被克制屬性** `element.disadvantage`
   1. TEXT
-  2. REFERENCES type(name)
+  2. REFERENCES element(name)
   - *Disadvantage Attribute (Default: NULL)*
 
 裝備 (玩家選擇) Equipment:
