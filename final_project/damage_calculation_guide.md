@@ -151,17 +151,7 @@
   1. INTEGER
   2. NOT NULL = true
   3. DEFAULT = 5
-  - *Actor Magical Defense*
-
-- **裝備代號 (外鍵)** `actor.equ_id`
-  1. INTEGER
-  2. REFERENCES equipment(id)
-  - *Equipment ID (Foreign Key)*
-
-- **招式代號 (外鍵)** `actor.skill_id`
-  1. INTEGER
-  2. REFERENCES skill(id)
-  - *Skill ID (Foreign Key)*
+  - *Actor Magical Defense*	
 
 - **角色等級** `actor.level`
   1. INTEGER
@@ -302,3 +292,6 @@
   2. NOT NULL = true
   3. DEFAULT = 0
   - *Health Bonus (Default: 0)*
+
+**等級** `ring.level`
+1. 同上level
