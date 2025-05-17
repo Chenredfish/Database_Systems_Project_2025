@@ -300,54 +300,61 @@
 ## 角色資料填寫區actor
 
 | id | name | element | health | attack_point | magic_point | attack_defence | magic_defence | level |
-|----|------|---------|--------|--------------|-------------|----------------|---------------|-------|
-| 01 |  "火之冒險者" | "fire" |1000|  100      |    100      |   5            |     5         | 0     |
-| 02 |  "水之冒險者" | "water"|1000|  100      |    100      |   5            |     5         | 0     |
-| 03 |  "草之冒險者" | "grass"|1000|  100      |    100      |   5            |     5         | 0     |
-| 04 |  "光之冒險者" | "light"|1000|  100      |    100      |   5            |     5         | 0     |
-| 05 |  "暗之冒險者" | "dark" |1000|  100      |    100      |   5            |     5         | 0     |
-| 06 |  "哥布林"     | "fire" |800|  80      |    80      |   1            |     1         | 1     |
-| 07 |  "史萊姆"     | "water" |1200|  40      |    40      |   5            |     5         | 1     |
-| 08 |  "精靈"     | "grass" |500|  110      |    110      |   1            |     1         | 1     |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Aiden | "Fire" | 1151 | 147 | 145 | 13 | 7 | 8 |
+| 2 | Liam | "Light" | 1118 | 103 | 123 | 12 | 5 | 4 |
+| 3 | Noah | "Dark" | 1342 | 101 | 150 | 18 | 8 | 4 |
+| 4 | Elijah | "Thunder" | 1307 | 123 | 112 | 5 | 19 | 7 |
+| 5 | Lucas | "Fire" | 1344 | 145 | 136 | 14 | 18 | 7 |
+| 6 | Logan | "Water" | 1143 | 134 | 122 | 18 | 7 | 9 |
+| 7 | Mason | "Water" | 1113 | 111 | 146 | 17 | 17 | 8 |
+| 8 | Ethan | "Fire" | 1101 | 147 | 136 | 11 | 10 | 3 |
 
 ## 招式資料填寫區skill
 
-| id |     name     | element | power | cooldown | level | is_magic |
-|----|--------------|---------|-------|----------|-------|----------|
-| 01 |   "燒斬擊"   | "fire"  |   1   |    1     |   0   |     0    |
-| 02 |   "燒射擊"   | "fire"  |   1   |    1     |   0   |     1    |
-| 03 |   "噴斬擊"   | "water" |   1   |    1     |   0   |     0    |
-| 04 |   "噴射擊"   | "water" |   1   |    1     |   0   |     1    |
-| 05 |   "種斬擊"   | "grass" |   1   |    1     |   0   |     0    |
-| 06 |   "種射擊"   | "grass" |   1   |    1     |   0   |     1    |
-| 07 |   "照斬擊"   | "light" |   1   |    1     |   0   |     0    |
-| 08 |   "照射擊"   | "light" |   1   |    1     |   0   |     1    |
-| 09 |   "遮斬擊"   | "dark"  |   1   |    1     |   0   |     0    |
-| 10 |   "遮射擊"   | "dark"  |   1   |    1     |   0   |     1    |
-
+| id | name | element | power | cooldown | level | is_magic |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Fire Slash | "Light" | 1.37 | 5 | 5 | 0 |
+| 2 | Aqua Burst | "Thunder" | 1.85 | 5 | 1 | 1 |
+| 3 | Leaf Storm | "Thunder" | 1.69 | 1 | 6 | 0 |
+| 4 | Thunder Clap | "Fire" | 1.6 | 5 | 4 | 0 |
+| 5 | Holy Strike | "Grass" | 1.3 | 4 | 5 | 0 |
+| 6 | Shadow Pierce | "Grass" | 1.58 | 0 | 4 | 1 |
+| 7 | Blaze Wheel | "Dark" | 1.71 | 4 | 6 | 0 |
+| 8 | Ice Fang | "Water" | 1.48 | 0 | 6 | 0 |
+| 9 | Nature Bind | "Grass" | 1.79 | 1 | 1 | 1 |
+| 10 | Dark Nova | "Light" | 1.66 | 0 | 10 | 1 |
 
 ## 裝備資料填寫區equipment
 
 | id | name | attack_defence | magic_defence | level |
-|----|------|----------------|---------------|-------|
-|  01  |   木盾   |        5        |       0        |   1    |
-|  02  |   屏障   |        0        |       5        |   1    |
-|  03  |   黏液   |        1        |       1        |   1    |
+| --- | --- | --- | --- | --- |
+| 1 | Iron Armor | 8 | 3 | 1 |
+| 2 | Mystic Cloak | 7 | 15 | 9 |
+| 3 | Steel Shield | 0 | 1 | 7 |
 
 ## 屬性資料填寫區element
 
-|    name    | advantage | disadvantage |
-|------------|-----------|--------------|
-|   "fire"   |  "grass"  |    "water"   |
-|   "water"  |  "fire"   |    "grass"   |
-|   "grass"  |  "water"  |    "fire"    |
-|   "light"  |  "dark"   |    "dark"    |
-|   "dark"   |  "light"  |    "light"   |
-
+| name | advantage | disadvantage |
+| --- | --- | --- |
+| "Fire" | "Grass" | "Water" |
+| "Water" | "Fire" | "Thunder" |
+| "Grass" | "Water" | "Fire" |
+| "Thunder" | "Water" | "Grass" |
+| "Light" | "Dark" | "Dark" |
+| "Dark" | "Light" | "Light" |
 
 ## 狀態資料填寫區ring
 
 | id | name | attack_power | magic_power | attack_defence | magic_defence | health | level |
-|----|------|--------------|-------------|----------------|---------------|--------|-------|
-|    |      |              |             |                |               |        |       |
-|    |      |              |             |                |               |        |       |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Ring of Flame | 5 | 10 | 1 | 0 | 17 | 10 |
+| 2 | Aqua Ring | 10 | 3 | 4 | 0 | 34 | 9 |
+| 3 | Gaia Band | 0 | 5 | 3 | 7 | 15 | 4 |
+| 4 | Storm Loop | 2 | 1 | 2 | 8 | 17 | 5 |
+| 5 | Halo Ring | 8 | 2 | 5 | 10 | 28 | 9 |
+| 6 | Void Circle | 9 | 2 | 9 | 2 | 38 | 9 |
+| 7 | Inferno Gem | 7 | 2 | 5 | 10 | 17 | 8 |
+| 8 | Frost Charm | 10 | 4 | 5 | 3 | 40 | 1 |
+| 9 | Earth Pendant | 3 | 5 | 1 | 8 | 19 | 7 |
+| 10 | Night Seal | 8 | 9 | 6 | 7 | 35 | 7 |
