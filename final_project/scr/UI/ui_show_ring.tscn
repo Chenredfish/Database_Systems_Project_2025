@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://m882op0f8k67"]
+[gd_scene load_steps=9 format=3 uid="uid://m882op0f8k67"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_nir4x"]
+[ext_resource type="Script" uid="uid://dgp6oa7erw88k" path="res://scr/UI/ui_show_ring.gd" id="2_xf14j"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_ms247"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b4pga"]
@@ -27,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_nir4x")
+script = ExtResource("2_xf14j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -341,3 +343,5 @@ theme_override_constants/margin_right = 60
 layout_mode = 2
 theme = SubResource("Theme_nd284")
 theme_override_font_sizes/font_size = 36
+
+[connection signal="pressed" from="Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
