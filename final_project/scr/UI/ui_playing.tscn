@@ -165,9 +165,10 @@ size_flags_vertical = 0
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 60
 
-[node name="Button" type="Button" parent="pause"]
+[node name="pause" type="Button" parent="pause"]
 layout_mode = 2
 theme = SubResource("Theme_u5myt")
 theme_override_font_sizes/font_size = 36
 
 [connection signal="button_down" from="exit/Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="pause/pause" to="." method="_on_pause_pressed"]

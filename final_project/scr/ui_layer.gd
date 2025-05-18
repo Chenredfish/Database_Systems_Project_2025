@@ -10,8 +10,10 @@ extends CanvasLayer
 signal exit_playing
 signal exit_manage_main
 signal exit_manage_change_ring
+signal exit_show_ring
 signal to_manage_ring
 signal to_manage_something(aim:String)
+signal to_show_ring
 
 #開關UI的函式
 func show_ui_manage_change():
@@ -65,3 +67,9 @@ func _on_ui_manage_main_manage_ring_btn_pressed():
 
 func _on_ui_manage_main_to_manage_something(aim):
 	to_manage_something.emit(aim)
+
+func _on_ui_playing_pause_btn_pressed():
+	to_show_ring.emit()
+
+func _on_ui_show_ring_exit_show_ring():
+	exit_show_ring.emit(	)
