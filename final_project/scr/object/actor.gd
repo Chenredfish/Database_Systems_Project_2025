@@ -1,21 +1,24 @@
 # Actor.gd
-extends Resource
+extends Node2D
 class_name Actor
 
 # 宣告屬性
 var id: int
-var name: String
+var _name: String
 var element: float
-var health: int = 100
-var attack_point: int = 10
-var magic_point: int = 10
-var attack_defence: int = 5
-var magic_defence: int = 5
-var level: int = 1
+var health: int 
+var attack_point: int 
+var magic_point: int 
+var attack_defence: int 
+var magic_defence: int 
+var level: int 
 
+var equipment: Equipment
+var skills: Skill
+var rings: Array[Ring] = []
 # 初始化方法
-func _init(_id: int, _name: String, _element: float, _health: int = 100, _attack_point: int = 10,
-			_magic_point: int = 10, _attack_defence: int = 5, _magic_defence: int = 5, _level: int = 1) -> void:
+func _init(_id: int, _name: String, _element: float, _health: int , _attack_point: int ,
+			_magic_point: int , _attack_defence: int , _magic_defence: int , _level: int) -> void:
 	self.id = _id
 	self.name = _name
 	self.element = _element
@@ -26,8 +29,29 @@ func _init(_id: int, _name: String, _element: float, _health: int = 100, _attack
 	self.magic_defence = _magic_defence
 	self.level = _level
 
-# 用來顯示角色資訊
-func describe() -> String:
-	return "Actor(%s): %s | Element: %s | HP: %d, ATK: %d, MP: %d, DEF: %s, MDEF: %d, LVL: %d" % [
-		id, name, element, health, attack_point, magic_point, attack_defence, magic_defence, level
-	]
+func equipment_change():#裝備的變更
+	pass
+
+func skill_change():#技能的變更
+	pass
+
+func new_ring():#增加新的狀態
+	pass
+
+func attack_damege():#物理傷害
+	pass
+
+func magic_damege():#魔法傷害
+	pass
+
+func attack_defense():#物理減傷
+	pass
+
+func magic_defense():#魔法減傷
+	pass
+
+func damege_calculate():#傷害計算包含血量變更
+	pass
+
+func die():
+	pass
