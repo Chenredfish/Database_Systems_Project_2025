@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dscowiyylqavf"]
+[gd_scene load_steps=10 format=3 uid="uid://dscowiyylqavf"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
+[ext_resource type="Script" uid="uid://dwldvquhc0y11" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="4_jauhl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
@@ -335,7 +336,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_top = 10
-script = ExtResource("4_jauhl")
+script = ExtResource("4_6vf1o")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage"]
 layout_mode = 2
@@ -349,7 +350,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="ring_id" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_id"]
@@ -357,10 +358,9 @@ layout_mode = 2
 placeholder_text = "狀態代號"
 alignment = 1
 keep_editing_on_text_submit = true
-expand_to_text_length = true
 
 [node name="ring_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_name"]
@@ -370,8 +370,30 @@ alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
+[node name="ring_level" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_level"]
+layout_mode = 2
+placeholder_text = "等級"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="ring_health" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_health"]
+layout_mode = 2
+placeholder_text = "生命值"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
 [node name="ring_attack_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_power"]
@@ -382,7 +404,7 @@ keep_editing_on_text_submit = true
 expand_to_text_length = true
 
 [node name="ring_magic_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_power"]
@@ -393,7 +415,7 @@ keep_editing_on_text_submit = true
 expand_to_text_length = true
 
 [node name="ring_attack_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_defence"]
@@ -404,7 +426,7 @@ keep_editing_on_text_submit = true
 expand_to_text_length = true
 
 [node name="ring_magic_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_defence"]
@@ -425,7 +447,7 @@ layout_mode = 2
 text = "新增 / 編輯裝備"
 
 [node name="ring_description" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer"]
-custom_minimum_size = Vector2(1100, 105)
+custom_minimum_size = Vector2(1200, 105)
 layout_mode = 2
 size_flags_horizontal = 4
 
