@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_jl0x0"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_k5p3l"]
 [ext_resource type="Script" uid="uid://e5gix08vcf5x" path="res://scr/UI/ui_manage_change.gd" id="2_lm8j4"]
-[ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="3_lm8j4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2j3j"]
 texture = ExtResource("2_k5p3l")
@@ -12,6 +11,8 @@ region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_oui6d"]
 Button/styles/normal = SubResource("StyleBoxTexture_u2j3j")
+
+[sub_resource type="GDScript" id="GDScript_6vf1o"]
 
 [node name="UiManageChange" type="Control"]
 layout_mode = 3
@@ -48,394 +49,143 @@ layout_mode = 2
 theme = SubResource("Theme_oui6d")
 theme_override_font_sizes/font_size = 36
 
-[node name="item_search" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="equipment_search" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(220, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 26
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_search"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_search"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "搜尋裝備名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
-script = ExtResource("3_lm8j4")
+script = SubResource("GDScript_6vf1o")
 
-[node name="item_status" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="equipment_status" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_status"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/equipment_status"]
 custom_minimum_size = Vector2(735, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
+[node name="item_id" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_code"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer/item_id"]
 layout_mode = 2
 text = "裝備代號"
 horizontal_alignment = 1
 
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
+[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_name"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer/item_name"]
 layout_mode = 2
 text = "裝備名稱"
 horizontal_alignment = 1
 
-[node name="item_level" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
+[node name="item_level" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_level"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer/item_level"]
 layout_mode = 2
 text = "裝備等級"
 horizontal_alignment = 1
 
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
+[node name="item_attack_defense" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_physics_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer/item_attack_defense"]
 layout_mode = 2
 text = "物理防禦"
 horizontal_alignment = 1
 
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer"]
+[node name="item_magic_defense" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_status/HBoxContainer/item_magic_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_status/HBoxContainer/item_magic_defense"]
 layout_mode = 2
 text = "魔法防禦"
 horizontal_alignment = 1
 
-[node name="item_list" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="equipment_list" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1115, 285)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/item_list"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/equipment_list"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="item1" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer"]
+[node name="equipment1" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_id" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_code"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_id"]
 layout_mode = 2
 text = "E000001"
 horizontal_alignment = 1
 
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_name"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_name"]
 layout_mode = 2
 text = "軍團聖盾"
 horizontal_alignment = 1
 
-[node name="item_list" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_level" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_list"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_level"]
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
 
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_attack_defence" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_physics_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_attack_defence"]
 layout_mode = 2
 text = "30"
 horizontal_alignment = 1
 
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_magic_defence" type="PanelContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_magic_armor"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_magic_defence"]
 layout_mode = 2
 text = "30"
 horizontal_alignment = 1
 
-[node name="item_delete_btn" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer"]
+[node name="equipment_delete" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item1/HBoxContainer/item_delete_btn"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "刪除"
-
-[node name="item2" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_code"]
-layout_mode = 2
-text = "E000001"
-horizontal_alignment = 1
-
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_name"]
-layout_mode = 2
-text = "軍團聖盾"
-horizontal_alignment = 1
-
-[node name="item_list" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_list"]
-layout_mode = 2
-text = "1"
-horizontal_alignment = 1
-
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_physics_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_magic_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_delete_btn" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item2/HBoxContainer/item_delete_btn"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "刪除"
-
-[node name="item3" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_code"]
-layout_mode = 2
-text = "E000001"
-horizontal_alignment = 1
-
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_name"]
-layout_mode = 2
-text = "軍團聖盾"
-horizontal_alignment = 1
-
-[node name="item_list" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_list"]
-layout_mode = 2
-text = "1"
-horizontal_alignment = 1
-
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_physics_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_magic_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_delete_btn" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item3/HBoxContainer/item_delete_btn"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "刪除"
-
-[node name="item4" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_code"]
-layout_mode = 2
-text = "E000001"
-horizontal_alignment = 1
-
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_name"]
-layout_mode = 2
-text = "軍團聖盾"
-horizontal_alignment = 1
-
-[node name="item_list" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_list"]
-layout_mode = 2
-text = "1"
-horizontal_alignment = 1
-
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_physics_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_magic_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_delete_btn" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item4/HBoxContainer/item_delete_btn"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "刪除"
-
-[node name="item5" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="item_code" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_code"]
-layout_mode = 2
-text = "E000001"
-horizontal_alignment = 1
-
-[node name="item_name" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_name"]
-layout_mode = 2
-text = "軍團聖盾"
-horizontal_alignment = 1
-
-[node name="item_list" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_list"]
-layout_mode = 2
-text = "1"
-horizontal_alignment = 1
-
-[node name="item_physics_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_physics_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_magic_armor" type="PanelContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_magic_armor"]
-layout_mode = 2
-text = "30"
-horizontal_alignment = 1
-
-[node name="item_delete_btn" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_list/VBoxContainer/item5/HBoxContainer/item_delete_btn"]
+[node name="equipment_delete_btn" type="Button" parent="MarginContainer/VBoxContainer/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_delete"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -468,7 +218,7 @@ layout_mode = 2
 layout_mode = 2
 text = "下一頁"
 
-[node name="item_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="equipment_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(735, 49)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -476,71 +226,71 @@ size_flags_vertical = 4
 theme_override_constants/margin_left = 245
 theme_override_constants/margin_top = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_manage"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/equipment_manage"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="item_code" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_id" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_code"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_id"]
 layout_mode = 2
 placeholder_text = "裝備代號"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_name"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_name"]
 layout_mode = 2
 placeholder_text = "裝備名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_level" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_level" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_level"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_level"]
 layout_mode = 2
 placeholder_text = "裝備名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_physics_armor" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_attack_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_physics_armor"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_attack_defence"]
 layout_mode = 2
 placeholder_text = "物理防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_magic_armor" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_magic_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_magic_armor"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_magic_defence"]
 layout_mode = 2
 placeholder_text = "魔法防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="equipment_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer"]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 19
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/MarginContainer"]
+[node name="equipment_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯裝備"

@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dscowiyylqavf"]
+[gd_scene load_steps=10 format=3 uid="uid://dscowiyylqavf"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="2_jauhl"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
-[ext_resource type="Script" uid="uid://qybe2g47ydmb" path="res://scr/UI/line_edit.gd" id="3_mylh8"]
+[ext_resource type="Script" uid="uid://dwldvquhc0y11" path="res://scr/UI/ring_manage.gd" id="4_jauhl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
 texture = ExtResource("2_mylh8")
@@ -18,6 +18,8 @@ font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_jauhl"]
 font_size = 18
+
+[sub_resource type="GDScript" id="GDScript_6vf1o"]
 
 [node name="UiManageChangeRing" type="Control"]
 layout_mode = 3
@@ -51,6 +53,7 @@ theme = SubResource("Theme_lyk4f")
 theme_override_font_sizes/font_size = 36
 
 [node name="Ring_list1" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1920, 313)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1"]
@@ -168,6 +171,7 @@ layout_mode = 2
 text = "刪除"
 
 [node name="Ring_list2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1920, 343)
 layout_mode = 2
 theme_override_constants/margin_top = 30
 
@@ -304,19 +308,19 @@ layout_mode = 2
 layout_mode = 2
 text = "上一頁"
 
-[node name="item_search" type="MarginContainer" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer"]
+[node name="ring_search" type="MarginContainer" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer"]
 custom_minimum_size = Vector2(220, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/item_search"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "搜尋裝備名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
-script = ExtResource("3_mylh8")
+script = SubResource("GDScript_6vf1o")
 
 [node name="next_page" type="MarginContainer" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer"]
 custom_minimum_size = Vector2(104, 0)
@@ -326,107 +330,113 @@ layout_mode = 2
 layout_mode = 2
 text = "下一頁"
 
-[node name="item_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ring_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(735, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 225
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
+script = ExtResource("4_jauhl")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/item_manage"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage"]
+layout_mode = 2
+
+[node name="ring_status" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 245
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="item_code" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_id" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_code"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_id"]
 layout_mode = 2
 placeholder_text = "狀態代號"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_name"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_name"]
 layout_mode = 2
 placeholder_text = "狀態名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_physics_armor" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_attack_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_physics_armor"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_power"]
 layout_mode = 2
 placeholder_text = "物理攻擊"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_magic_armor" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_magic_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_magic_armor"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_power"]
 layout_mode = 2
 placeholder_text = "魔法攻擊"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_physics_armor2" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_attack_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_physics_armor2"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_defence"]
 layout_mode = 2
 placeholder_text = "物理防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="item_physics_armor3" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_magic_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/item_physics_armor3"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_defence"]
 layout_mode = 2
-placeholder_text = "物理防禦"
+placeholder_text = "魔法防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer"]
+[node name="ring_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 19
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/item_manage/HBoxContainer/MarginContainer"]
+[node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯裝備"
 
-[node name="item_search" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1080, 105)
+[node name="ring_description" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer"]
+custom_minimum_size = Vector2(1100, 105)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/item_search"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_description"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "狀態敘述"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
-script = ExtResource("3_mylh8")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
