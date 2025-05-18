@@ -38,20 +38,17 @@ func skill_change():#技能的變更
 func new_ring():#增加新的狀態
 	pass
 
-func attack_damege():#物理傷害
+func _get_attack_damege():#物理傷害
 	pass
 
-func magic_damege():#魔法傷害
+func _get_magic_damege():#魔法傷害
 	pass
 
-func attack_defense():#物理減傷
+func _get_attack_defense():#物理減傷
 	pass
 
-func magic_defense():#魔法減傷
+func _get_magic_defense():#魔法減傷
 	pass
 
 func damege_calculate():#傷害計算包含血量變更
-	pass
-
-func die():
 	pass
