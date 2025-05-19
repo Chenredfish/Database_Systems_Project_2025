@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dscowiyylqavf"]
+[gd_scene load_steps=10 format=3 uid="uid://dscowiyylqavf"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
+[ext_resource type="Script" uid="uid://bfjnw0il7dfem" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="4_jauhl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
@@ -51,36 +52,34 @@ layout_mode = 2
 theme = SubResource("Theme_lyk4f")
 theme_override_font_sizes/font_size = 36
 
-[node name="Ring_list1" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1920, 313)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1"]
-custom_minimum_size = Vector2(835, 241)
+[node name="ring_list" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(833, 656)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 127
 
-[node name="Ring1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ring_list"]
+layout_mode = 2
+
+[node name="Ring1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer"]
 custom_minimum_size = Vector2(0, 313)
 layout_mode = 2
 theme_override_constants/separation = 23
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1"]
 custom_minimum_size = Vector2(193, 241)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 31
 
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1/PanelContainer/VBoxContainer"]
+[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "天與咒縛"
 label_settings = SubResource("LabelSettings_mylh8")
 horizontal_alignment = 1
 
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1/PanelContainer/VBoxContainer"]
+[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "魔攻與魔防降至 0，物攻與物防翻倍"
@@ -88,209 +87,18 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1"]
+[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring1/Ring1_del"]
-layout_mode = 2
-text = "刪除"
-
-[node name="Ring2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer"]
-custom_minimum_size = Vector2(0, 313)
-layout_mode = 2
-theme_override_constants/separation = 23
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2"]
-custom_minimum_size = Vector2(193, 241)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 31
-
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "天與咒縛"
-label_settings = SubResource("LabelSettings_mylh8")
-horizontal_alignment = 1
-
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(161, 0)
-layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
-label_settings = SubResource("LabelSettings_jauhl")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring2/Ring1_del"]
-layout_mode = 2
-text = "刪除"
-
-[node name="Ring3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer"]
-custom_minimum_size = Vector2(0, 313)
-layout_mode = 2
-theme_override_constants/separation = 23
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3"]
-custom_minimum_size = Vector2(193, 241)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 31
-
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "天與咒縛"
-label_settings = SubResource("LabelSettings_mylh8")
-horizontal_alignment = 1
-
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(161, 0)
-layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
-label_settings = SubResource("LabelSettings_jauhl")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list1/HBoxContainer/Ring3/Ring1_del"]
-layout_mode = 2
-text = "刪除"
-
-[node name="Ring_list2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1920, 343)
-layout_mode = 2
-theme_override_constants/margin_top = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2"]
-custom_minimum_size = Vector2(835, 241)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 127
-
-[node name="Ring1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer"]
-custom_minimum_size = Vector2(0, 313)
-layout_mode = 2
-theme_override_constants/separation = 23
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1"]
-custom_minimum_size = Vector2(193, 241)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 31
-
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "天與咒縛"
-label_settings = SubResource("LabelSettings_mylh8")
-horizontal_alignment = 1
-
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(161, 0)
-layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
-label_settings = SubResource("LabelSettings_jauhl")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring1/Ring1_del"]
-layout_mode = 2
-text = "刪除"
-
-[node name="Ring2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer"]
-custom_minimum_size = Vector2(0, 313)
-layout_mode = 2
-theme_override_constants/separation = 23
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2"]
-custom_minimum_size = Vector2(193, 241)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 31
-
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "天與咒縛"
-label_settings = SubResource("LabelSettings_mylh8")
-horizontal_alignment = 1
-
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(161, 0)
-layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
-label_settings = SubResource("LabelSettings_jauhl")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring2/Ring1_del"]
-layout_mode = 2
-text = "刪除"
-
-[node name="Ring3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer"]
-custom_minimum_size = Vector2(0, 313)
-layout_mode = 2
-theme_override_constants/separation = 23
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3"]
-custom_minimum_size = Vector2(193, 241)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 31
-
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "天與咒縛"
-label_settings = SubResource("LabelSettings_mylh8")
-horizontal_alignment = 1
-
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(161, 0)
-layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
-label_settings = SubResource("LabelSettings_jauhl")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Ring1_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3"]
-custom_minimum_size = Vector2(80, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Ring_list2/HBoxContainer/Ring3/Ring1_del"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/Ring1_del"]
 layout_mode = 2
 text = "刪除"
 
 [node name="switch_pages" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/switch_pages"]
 custom_minimum_size = Vector2(463, 49)
@@ -334,108 +142,113 @@ custom_minimum_size = Vector2(735, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_top = 10
-script = ExtResource("4_jauhl")
+theme_override_constants/margin_top = 30
+script = ExtResource("4_6vf1o")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage"]
-layout_mode = 2
-
-[node name="ring_status" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer"]
+[node name="ring_status" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage"]
 layout_mode = 2
 theme_override_constants/margin_left = 245
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ring_id" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_id" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_id"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_id"]
 layout_mode = 2
 placeholder_text = "狀態代號"
 alignment = 1
 keep_editing_on_text_submit = true
-expand_to_text_length = true
 
-[node name="ring_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_name" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_name"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_name"]
 layout_mode = 2
 placeholder_text = "狀態名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="ring_attack_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_level" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_power"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_level"]
+layout_mode = 2
+placeholder_text = "等級"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="ring_health" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_health"]
+layout_mode = 2
+placeholder_text = "生命值"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="ring_attack_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_attack_power"]
 layout_mode = 2
 placeholder_text = "物理攻擊"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="ring_magic_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_magic_power" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_power"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_magic_power"]
 layout_mode = 2
 placeholder_text = "魔法攻擊"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="ring_attack_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_attack_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_attack_defence"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_attack_defence"]
 layout_mode = 2
 placeholder_text = "物理防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="ring_magic_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
-custom_minimum_size = Vector2(183.75, 0)
+[node name="ring_magic_defence" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_magic_defence"]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_magic_defence"]
 layout_mode = 2
 placeholder_text = "魔法防禦"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="ring_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer"]
+[node name="ring_manage" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer"]
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 19
 
-[node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_manage"]
+[node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯裝備"
 
-[node name="ring_description" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer"]
-custom_minimum_size = Vector2(1100, 105)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_description"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-placeholder_text = "狀態敘述"
-alignment = 1
-keep_editing_on_text_submit = true
-expand_to_text_length = true
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/VBoxContainer/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
