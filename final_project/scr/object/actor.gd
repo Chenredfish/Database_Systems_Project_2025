@@ -17,21 +17,22 @@ var db := SQLite.new()
 var equipment: Equipment
 var skills: Skill
 var rings: Array[Ring] = []
+
 # 初始化方法
-func _init(_id: int, _name: String, _element: String, _health: int , _attack_point: int ,
-			_magic_point: int , _attack_defence: int , _magic_defence: int , _level: int) -> void:
-	self.id = _id
-	self._name = _name
-	self.element = _element
-	self.health = _health
-	self.attack_point = _attack_point
-	self.magic_point = _magic_point
-	self.attack_defence = _attack_defence
-	self.magic_defence = _magic_defence
-	self.level = _level
-	db.path = "res://data/game.db"
+func _init(data: Dictionary) -> void:
+	id = data.get("id", 0)
+	_name = data.get("name", "")
+	element = data.get("element", "")
+	health = data.get("health", 0)
+	attack_point = data.get("attack_point,0 )
+	magic_point = data.get("magic_point", 0)
+	attack_defence = data.get("attack_defence", 0)
+	magic_defence = data.get("magic_defence", 0)
+	level = data.get("level", 0)
+
 	
 func open_data():
+	db.path = "res://data/game.db"
 	if not db.open_db():
 		push_error("無法開啟資料庫")
 		return
