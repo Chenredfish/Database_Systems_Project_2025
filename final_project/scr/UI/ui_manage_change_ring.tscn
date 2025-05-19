@@ -59,6 +59,9 @@ size_flags_horizontal = 4
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ring_list"]
 layout_mode = 2
+theme_override_constants/h_separation = 127
+theme_override_constants/v_separation = 30
+columns = 3
 
 [node name="Ring1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer"]
 custom_minimum_size = Vector2(0, 313)
@@ -71,18 +74,58 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 31
+theme_override_constants/separation = 5
 
-[node name="Ring_name" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+[node name="ring_name" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "天與咒縛"
 label_settings = SubResource("LabelSettings_mylh8")
 horizontal_alignment = 1
 
-[node name="Ring_effect" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+[node name="ring_level" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
-text = "魔攻與魔防降至 0，物攻與物防翻倍"
+text = "光環階級："
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_health" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "生命值："
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_attack_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "物理攻擊："
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_magic_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔法攻擊："
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_attack_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "物理防禦："
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_magic_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/GridContainer/Ring1/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔法防禦："
 label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
