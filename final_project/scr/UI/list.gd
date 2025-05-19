@@ -1,17 +1,33 @@
 extends GridContainer
 
+signal next_page_pressed
+signal previous_page_pressed
+
 @onready var ring_test = $ring_test
-@onready var ring_n = 0
+@onready var ring_page = 0
 @onready var ring_data = ring_test.db.select_rows("ring", "id > 0", ["*"])
 
 func _ready():
 	ring_test.hide()
-	while ring_n == 0 or ring_n%6!=0:
-		_add_ring()
-		ring_n += 1
-	
-func _add_ring():
-	print(ring_n)
+	_page_update()
+
+func _page_update():	#刷新頁面
+	for child in self.get_children():
+		if child.name != "ring_test":
+			child.queue_free()
+	var count = ring_page * 6
+	while count < ring_page * 6 + 6 and count < ring_data.size():
+		_add_ring(count)
+		count += 1
+		
+
+func _page_change(x):	#換頁
+	if ring_page + x >= 0 and ring_page * 6 + 1 < ring_data.size():
+		ring_page += x
+		print(ring_page)
+		_page_update()
+
+func _add_ring(ring_n):	#顯示每個狀態
 	var new_ring = ring_test.duplicate()
 	new_ring.name = "new_ring" + str(ring_n)
 	add_child(new_ring)
