@@ -46,6 +46,7 @@ func enter(_msg: Dictionary = {}):
 	if actor:
 		agent.ui_layer.show_actor_equipment(actor.get_all_equipment())
 
+
 func update(delta):
 	pass
 
