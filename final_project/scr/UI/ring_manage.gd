@@ -26,9 +26,6 @@ func _on_ring_manage_btn_pressed():
 		print("add")
 		ring_add()
 
-func ring_delete():
-	db.delete_rows("ring", "id = '" + ring_id.text + "'")
-
 func ring_change():
 	var data = {
 		"name":ring_name.text,
