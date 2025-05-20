@@ -44,7 +44,6 @@ func _init(data: Dictionary) -> void:
 	put_hero_picture()	
 		
 	print("成功建立：%s，Level: %d" % [_name, level])
-
 	
 	open_data()
 	
