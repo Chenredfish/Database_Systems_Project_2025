@@ -17,7 +17,7 @@ var db := SQLite.new()
 var equipment: Equipment
 var skill: Skill
 var rings: Array[Ring] = []
-var is_hero = false
+var is_player = false
 var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
 var sprite_textures = []
 # 初始化方法
@@ -31,6 +31,11 @@ func _init(data: Dictionary) -> void:
 	attack_defence = data.get("attack_defence", 0)
 	magic_defence = data.get("magic_defence", 0)
 	level = data.get("level", 0)
+	
+	if level == 0:
+		is_player = true
+		
+	picture_ready()
 	
 	print("成功建立 " + data.get("name", ""))
 	
@@ -54,7 +59,7 @@ func picture_ready():
 	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
 	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture")
 	var sprite_node = $Actor_png
-	if not is_hero:
+	if not is_player:
 		sprite_node.texture = hero_texture
 	else:
 		randomize_sprite()
