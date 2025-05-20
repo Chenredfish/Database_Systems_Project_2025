@@ -16,13 +16,7 @@ func enter(_msg:Dictionary = {}):
 	if !state_machine.has_value('level'):
 		state_machine.set_value('level', 1)
 	
-	if !state_machine.has_value('enemy'):
-		create_level_actor(state_machine.get_value('level'), 'enemy')
-		
-	if !state_machine.has_value('player'):
-		create_level_actor(0, 'player')
-		
-	agent.add_child(state_machine.get_value('player'))
+	create_actor_node()
 	
 	agent.ui_layer.show_ui_playing()
 	if !agent.ui_layer.exit_playing.is_connected(exit_playing):
@@ -74,11 +68,36 @@ func update_level():
 
 func exit_playing():
 	state_machine.set_value('to_manage_main', true)
+	halt_battle()
 
 func show_ring():
 	state_machine.set_value('to_show_ring', true)
+	halt_battle()
+	
+func create_actor_node():
+	if !state_machine.has_value('enemy'):
+		create_level_actor(state_machine.get_value('level'), 'enemy')
+		
+	if !state_machine.has_value('player'):
+		create_level_actor(0, 'player')
+	
+	if !agent.has_node("player"):
+		agent.add_child(state_machine.get_value('player'))
+	else:
+		agent.get_node("player").show()
+		
+	if !agent.has_node("enemy"):
+		agent.add_child(state_machine.get_value('enemy'))
+	else:
+		agent.get_node("enemy").show()
 
 func create_level_actor(level:int, name:String):
 	var actor_data:Array = db.select_rows("actor", "level = " + str(level), ["*"])
 	var rand_actor_id:int = (randi() % actor_data.size())
-	state_machine.set_value(name, Actor.new(actor_data[rand_actor_id]))
+	var actor = Actor.new(actor_data[rand_actor_id])
+	actor.name = name
+	state_machine.set_value(name, actor)
+	
+func halt_battle():
+	agent.get_node("player").hide()
+	agent.get_node("enemy").hide()
