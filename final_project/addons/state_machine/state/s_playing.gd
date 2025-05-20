@@ -8,6 +8,11 @@ var to_show_ring:bool = false
 func enter(_msg:Dictionary = {}):
 	print("into state of s_Playing")
 	
+	if !state_machine.has_value('level'):
+		state_machine.set_value('level', 1)
+	
+	create_level_enemy(state_machine.get_value('level'))
+	
 	agent.ui_layer.show_ui_playing()
 	if !agent.ui_layer.exit_playing.is_connected(exit_playing):
 		agent.ui_layer.exit_playing.connect(exit_playing)
@@ -42,3 +47,8 @@ func exit_playing():
 
 func show_ring():
 	state_machine.set_value('to_show_ring', true)
+
+func create_level_enemy(level:int):
+	var enemy_data:Array = agent.db.select_rows("actor", "level = " + str(level), ["*"])
+	var rand_enemy_id:int = (randi() % enemy_data.size())
+	state_machine.set_value('enemy', Actor.new(enemy_data[rand_enemy_id]))
