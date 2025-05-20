@@ -41,8 +41,8 @@ func _init(data: Dictionary) -> void:
 	sprite.z_index = 1
 	
 	if level == 0:
-		enemy_picture()
-		hero_picture()	
+		put_enemy_picture()
+		put_hero_picture()	
 		
 	print("成功建立：%s，Level: %d" % [_name, level])
 
@@ -62,7 +62,7 @@ func open_data():
 		push_error("無法開啟資料庫")
 		return
 
-func hero_picture():
+func put_hero_picture():
 	sprite.name = "Actor_png"
 	sprite.position = Vector2(640, 400)
 	sprite.scale = Vector2(0.5,0.5)
@@ -87,7 +87,7 @@ func load_textures_from_folder(path: String):
 		file_name = dir.get_next()
 	dir.list_dir_end()
 	
-func enemy_picture():
+func put_enemy_picture():
 	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
 	if sprite_textures.size() == 0:
 		push_warning("無圖片")
