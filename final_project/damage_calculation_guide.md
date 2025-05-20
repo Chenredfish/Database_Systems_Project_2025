@@ -296,6 +296,69 @@
 **等級** `ring.level`
 1. 同上level
 
+
+紀錄 (自動新增，無法編輯) Record:
+- **遊戲編號** `record.game_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. 主鍵組合之一
+
+- **戰鬥編號** `record.battle_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. 主鍵組合之一
+
+- **玩家等級** `record.level`
+  1. INTEGER
+  2. NOT NULL = true
+
+- **掉落裝備** `record.equipment`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES equipment(id)
+
+- **使用技能** `record.skill_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES skill(id)
+
+- **技能選項1** `record.skill_choice_id_1`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES skill(id)
+
+- **技能選項2** `record.skill_choice_id_2`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES skill(id)
+
+- **技能選項3** `record.skill_choice_id_3`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES skill(id)
+
+- **戰前新增狀態** `record.ring_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
+- **狀態選項1** `record.ring_choice_id_1`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
+- **狀態選項2** `record.ring_choice_id_2`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
+- **狀態選項3** `record.ring_choice_id_3`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
+**主鍵：** (`game_id`, `battle_id`)
+
 ## 角色資料填寫區 actor
 
 | id | name         | element | health | attack_point | magic_point | attack_defence | magic_defence | level |
