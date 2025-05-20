@@ -17,7 +17,9 @@ var db := SQLite.new()
 var equipment: Equipment
 var skill: Skill
 var rings: Array[Ring] = []
-
+var is_hero = false
+var hero_texture = preload("res://scr/object/hero_picture/hero.png")
+var sprite_textures = []
 # 初始化方法
 func _init(data: Dictionary) -> void:
 	id = data.get("id", 0)
@@ -46,7 +48,42 @@ func open_data():
 	if not db.open_db():
 		push_error("無法開啟資料庫")
 		return
+
+func picture_ready():
+	randomize()
+	load_textures_from_folder("res://scr/object/monster_picture")
+	load_textures_from_folder("res://scr/object/hero_picture")
+	var sprite_node = $Actor_png
+	if not is_hero:
+		sprite_node.texture = hero_texture
+	else:
+		randomize_sprite()
 		
+func load_textures_from_folder(path: String):
+	var dir = DirAccess.open(path)
+	if dir == null:
+		push_error("無法打開資料夾: " + path)
+		return
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if !dir.current_is_dir():
+			if file_name.ends_with(".png"):
+				var texture_path = path + "/" + file_name
+				var tex = load(texture_path)
+				if tex:
+					sprite_textures.append(tex)
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	
+func randomize_sprite():
+	if sprite_textures.size() == 0:
+		push_warning("無圖片")
+		return
+	var sprite_node = $Actor_png
+	sprite_node.texture = sprite_textures[randi() % sprite_textures.size()]	
+	
 func equipment_change(equipment_id: int) -> void:
 	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
 	db.query_with_bindings(query, [equipment_id])
