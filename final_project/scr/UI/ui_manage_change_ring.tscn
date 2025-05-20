@@ -167,7 +167,7 @@ custom_minimum_size = Vector2(220, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search"]
+[node name="ring_search" type="LineEdit" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "搜尋狀態名稱"
@@ -300,5 +300,6 @@ text = "新增 / 編輯狀態"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search/ring_search" to="." method="_on_ring_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
