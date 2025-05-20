@@ -7,6 +7,8 @@ extends Node2D
 
 @onready var db = SQLite.new()
 
+@export var start_level:int = 1
+
 
 
 func _ready():
@@ -25,5 +27,5 @@ func _ready():
 	ui_layer.show()
 	game_state_machine.launch()
 	
-	game_state_machine.set_value('actor', Actor.new(rand_actor_data[0]))
-	
+	game_state_machine.set_value('player', Actor.new(rand_actor_data[0]))
+	game_state_machine.set_value('level', start_level)

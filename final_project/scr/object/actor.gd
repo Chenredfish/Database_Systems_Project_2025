@@ -30,7 +30,7 @@ func _init(data: Dictionary) -> void:
 	magic_defence = data.get("magic_defence", 0)
 	level = data.get("level", 0)
 	
-	print("成功建立" + data.get("name", ""))
+	print("成功建立 " + data.get("name", ""))
 	
 	open_data()
 	if !skill:
