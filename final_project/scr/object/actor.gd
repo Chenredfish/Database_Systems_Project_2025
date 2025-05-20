@@ -15,6 +15,7 @@ var level: int
 
 var db := SQLite.new()
 var equipment: Equipment
+var equipment_list:Array[Equipment] = []
 var skill: Skill
 var rings: Array[Ring] = []
 var is_hero = false
@@ -95,10 +96,9 @@ func equipment_change(equipment_id: int) -> void:
 	var row = db.query_result[0]
 
 	var new_equipment = Equipment.new(row)
-	new_equipment.id = row["id"]
-	new_equipment.name = row["name"]
-	new_equipment.attack_defence = row["attack_defence"]
-	new_equipment.magic_defence = row["magic_defence"]
+	
+	if new_equipment.id != equipment.id:
+		equipment_list.append(new_equipment)
 
 	equipment = new_equipment
 
