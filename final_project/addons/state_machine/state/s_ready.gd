@@ -17,20 +17,22 @@ func enter(_msg: Dictionary = {}):
 		push_error("無法開啟資料庫")
 		return
 
+	var min_level = max(1, level - 2)  # level~level-2，不低於 1
+
 	# 抓技能
-	db.query("SELECT * FROM skill WHERE level <= %d" % level)
+	db.query("SELECT * FROM skill WHERE level BETWEEN %d AND %d" % [min_level, level])
 	var skill_results = db.query_result.duplicate()
 	skill_results.shuffle()
 	available_skills = skill_results.slice(0, 3)
 
-	# 抓戒指
-	db.query("SELECT * FROM ring WHERE level <= %d" % level)
+	# 抓ring
+	db.query("SELECT * FROM ring WHERE level BETWEEN %d AND %d" % [min_level, level])
 	var ring_results = db.query_result.duplicate()
 	ring_results.shuffle()
 	available_rings = ring_results.slice(0, 3)
 
 	# 抓裝備
-	db.query("SELECT * FROM equipment WHERE level <= %d" % level)
+	db.query("SELECT * FROM equipment WHERE level BETWEEN %d AND %d" % [min_level, level])
 	var equip_results = db.query_result.duplicate()
 	equip_results.shuffle()
 	available_equipment = equip_results[0] if equip_results.size() > 0 else null
@@ -40,11 +42,12 @@ func enter(_msg: Dictionary = {}):
 	state_machine.set_value("available_rings", available_rings)
 	state_machine.set_value("available_equipment", available_equipment)
 
-	# skill、ring、所有equipment顯示
-	agent.ui_layer.show_skill_selection(available_skills)
-	agent.ui_layer.show_ring_selection(available_rings)
-	if actor:
-		agent.ui_layer.show_actor_equipment(actor.get_all_equipment())
+	# UI顯示隨機生成的東西
+	#agent.ui_layer.show_技能_selection(available_skills)
+	#agent.ui_layer.show_戒指_selection(available_rings)
+	#if actor:
+		#agent.ui_layer.show_actor_裝備(actor.get_all_equipment())
+
 
 
 func update(delta):
