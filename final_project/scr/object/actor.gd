@@ -24,11 +24,13 @@ func _init(data: Dictionary) -> void:
 	_name = data.get("name", "")
 	element = data.get("element", "")
 	health = data.get("health", 0)
-	attack_point = data.get("attack_point,0 )
+	attack_point = data.get("attack_point",0 )
 	magic_point = data.get("magic_point", 0)
 	attack_defence = data.get("attack_defence", 0)
 	magic_defence = data.get("magic_defence", 0)
 	level = data.get("level", 0)
+	
+	print("成功建立" + data.get("name", ""))
 
 	
 func open_data():
@@ -47,7 +49,7 @@ func equipment_change(equipment_id: int) -> void:
 
 	var row = db.query_result[0]
 
-	var new_equipment = Equipment.new()
+	var new_equipment = Equipment.new(row)
 	new_equipment.id = row["id"]
 	new_equipment.name = row["name"]
 	new_equipment.attack_defence = row["attack_defence"]
@@ -68,7 +70,7 @@ func skill_change(skill_id: int) -> void:
 
 	var row = db.query_result[0]
 
-	var new_skill = Skill.new()
+	var new_skill = Skill.new(row)
 	new_skill.id = row["id"]
 	new_skill.name = row["name"]
 	new_skill.power = row["power"]
@@ -78,7 +80,8 @@ func skill_change(skill_id: int) -> void:
 
 	print("%s 學會了 %s" % [_name, new_skill.name])
 
-func new_ring(ring_id: int):#增加新的狀態
+#取名重複，原本函式跟內部變數重複取名
+func build_new_ring(ring_id: int):#增加新的狀態
 	var query = "SELECT id, name, attack_power, magic_power, attack_defence, magic_defence, health FROM ring WHERE id = ?"
 	db.query_with_bindings(query, [ring_id])
 
@@ -88,7 +91,7 @@ func new_ring(ring_id: int):#增加新的狀態
 
 	var row = db.query_result[0]  # 是一個 Array 對應欄位順序
 
-	var new_ring = Ring.new()
+	var new_ring = Ring.new(row)
 	new_ring.id = row["id"]
 	new_ring.name = row["name"]
 	new_ring.attack_power = row["attack_power"]
@@ -153,8 +156,8 @@ func _get_attack_defence():#物理減傷
 func _get_magic_defence():#魔法減傷
 	var ring_state = get_combined_ring_state()
 	var magic_defence_number = (equipment.magic_defence + self.magic_defence) * (1 + ring_state["magic_defence"])
-	var magic_defence = magic_defence_number / (100 + magic_defence_number)
-	return magic_defence
+	var magic_defence_result = magic_defence_number / (100 + magic_defence_number)
+	return magic_defence_result
 
 func _get_max_health():#最大血量
 	var ring_state = get_combined_ring_state()

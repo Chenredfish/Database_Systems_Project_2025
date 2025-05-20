@@ -15,4 +15,4 @@ func _init(data: Dictionary) -> void:
 	power = data.get("power", 0.0)
 	cooldown = data.get("cooldown",0 )
 	level = data.get("level", 0)
-    ismagic = data.get("ismagic",0)
+	ismagic = data.get("ismagic",0)
