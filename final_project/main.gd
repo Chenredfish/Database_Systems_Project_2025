@@ -26,3 +26,4 @@ func _ready():
 	game_state_machine.launch()
 	
 	game_state_machine.set_value('actor', Actor.new(rand_actor_data[0]))
+	

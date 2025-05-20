@@ -15,7 +15,7 @@ var level: int
 
 var db := SQLite.new()
 var equipment: Equipment
-var skills: Skill
+var skill: Skill
 var rings: Array[Ring] = []
 
 # 初始化方法
@@ -31,6 +31,13 @@ func _init(data: Dictionary) -> void:
 	level = data.get("level", 0)
 	
 	print("成功建立" + data.get("name", ""))
+	
+	open_data()
+	if !skill:
+		var level_0_skill:Array = db.select_rows("skill", "level = 0", ["id"])
+		var number_level_0_skill:int = level_0_skill.size()
+		var rand_skill_id:int = randi()%number_level_0_skill
+		skill_change(level_0_skill[rand_skill_id]["id"])
 
 	
 func open_data():
@@ -61,7 +68,7 @@ func equipment_change(equipment_id: int) -> void:
 
 
 func skill_change(skill_id: int) -> void:
-	var query = "SELECT id, name, power, cost FROM skill WHERE id = ?"
+	var query = "SELECT * FROM skill WHERE id = ?"
 	db.query_with_bindings(query, [skill_id])
 
 	if db.query_result.size() == 0:
@@ -71,18 +78,14 @@ func skill_change(skill_id: int) -> void:
 	var row = db.query_result[0]
 
 	var new_skill = Skill.new(row)
-	new_skill.id = row["id"]
-	new_skill.name = row["name"]
-	new_skill.power = row["power"]
-	new_skill.cost = row["cost"]
 
-	skills = new_skill
+	skill = new_skill
 
 	print("%s 學會了 %s" % [_name, new_skill.name])
 
 #取名重複，原本函式跟內部變數重複取名
 func build_new_ring(ring_id: int):#增加新的狀態
-	var query = "SELECT id, name, attack_power, magic_power, attack_defence, magic_defence, health FROM ring WHERE id = ?"
+	var query = "SELECT * FROM ring WHERE id = ?"
 	db.query_with_bindings(query, [ring_id])
 
 	if db.query_result.size() == 0:
@@ -92,13 +95,6 @@ func build_new_ring(ring_id: int):#增加新的狀態
 	var row = db.query_result[0]  # 是一個 Array 對應欄位順序
 
 	var new_ring = Ring.new(row)
-	new_ring.id = row["id"]
-	new_ring.name = row["name"]
-	new_ring.attack_power = row["attack_power"]
-	new_ring.magic_power = row["magic_power"]
-	new_ring.attack_defence = row["attack_defence"]
-	new_ring.magic_defence = row["magic_defence"]
-	new_ring.health = row["health"]
 
 	rings.append(new_ring)
 	print("已新增狀態：", new_ring.name) 
@@ -167,8 +163,8 @@ func _get_max_health():#最大血量
 func damage_calculate(target:Actor, is_magic: bool = 0) -> String:#傷害計算包含血量變更
 	var attacker_damage: int
 	var target_defence: float
-	var skill_power = skills.power
-	var attacker_element = skills.element
+	var skill_power = skill.power
+	var attacker_element = skill.element
 	var target_element = target.element
 	var element_percent = get_element_multiplier_from_db(attacker_element, target_element)
 
