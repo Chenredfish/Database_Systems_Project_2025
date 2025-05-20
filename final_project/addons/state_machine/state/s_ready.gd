@@ -26,6 +26,12 @@ func enter(_msg: Dictionary = {}):
 	state_machine.set_value("available_rings", available_rings)
 	state_machine.set_value("available_equipment", available_equipment)
 
+func update(delta):
+	pass
+
+func exit():
+	pass
+
 #從enter裡拉出選skill、ring、equip
 func fetch_random_skills(level: int) -> Array:
 	var min_level = max(1, level - 2)
@@ -47,10 +53,3 @@ func fetch_random_equipment(level: int) -> Dictionary:
 	var results = db.query_result.duplicate()
 	results.shuffle()
 	return results[0] if results.size() > 0 else null
-
-
-func update(delta):
-	pass
-
-func exit():
-	pass
