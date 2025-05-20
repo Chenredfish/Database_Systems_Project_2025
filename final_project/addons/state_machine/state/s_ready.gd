@@ -17,7 +17,7 @@ func enter(_msg: Dictionary = {}):
 		push_error("無法開啟資料庫")
 		return
 
-	var min_level = max(1, level - 2)  # level~level-2，不低於 1
+	var min_level = max(1, level - 2)  # level~level-2，不<= 1
 
 	# 抓技能
 	db.query("SELECT * FROM skill WHERE level BETWEEN %d AND %d" % [min_level, level])
