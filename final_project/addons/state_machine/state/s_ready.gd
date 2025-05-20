@@ -11,7 +11,7 @@ func enter(_msg: Dictionary = {}):
 	print("into state of s_Ready")
 
 	var level = state_machine.get_value("level")
-	var actor = state_machine.get_value("actor")
+	var player = state_machine.get_value("player")
 
 	if not db.open("res://data/game.db"):
 		push_error("無法開啟資料庫")
