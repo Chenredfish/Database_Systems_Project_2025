@@ -4,5 +4,3 @@
 
 [node name="Actor" type="Node2D"]
 script = ExtResource("1_ndk2c")
-
-[node name="Actor_png" type="Sprite2D" parent="."]

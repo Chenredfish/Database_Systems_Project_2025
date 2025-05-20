@@ -2,18 +2,18 @@
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
-[ext_resource type="Script" uid="uid://bfjnw0il7dfem" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
+[ext_resource type="Script" uid="uid://ruffxhwmyaeb" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
 [ext_resource type="Script" uid="uid://cy4a03po0inoh" path="res://scr/UI/ring_list.gd" id="4_7n0i0"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="4_jauhl"]
 [ext_resource type="Script" uid="uid://cv5bq86mpmh1m" path="res://scr/UI/ring_delete.gd" id="5_4t4mw"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7n0i0"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
 texture = ExtResource("2_mylh8")
 texture_margin_top = 9.63859
 region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_lyk4f"]
-Button/styles/normal = SubResource("StyleBoxTexture_7n0i0")
+Button/styles/normal = SubResource("StyleBoxTexture_m56eh")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mylh8"]
 font_size = 24
@@ -59,34 +59,34 @@ custom_minimum_size = Vector2(833, 656)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ring_list" type="GridContainer" parent="MarginContainer/VBoxContainer/ring_list"]
+[node name="list" type="GridContainer" parent="MarginContainer/VBoxContainer/ring_list"]
 layout_mode = 2
 theme_override_constants/h_separation = 127
 theme_override_constants/v_separation = 30
 columns = 3
 script = ExtResource("4_7n0i0")
 
-[node name="ring_test" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/ring_list"]
+[node name="ring_test" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/list"]
 custom_minimum_size = Vector2(0, 313)
 layout_mode = 2
 theme_override_constants/separation = 23
 script = ExtResource("5_4t4mw")
 
-[node name="PC" type="PanelContainer" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test"]
+[node name="PC" type="PanelContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test"]
 custom_minimum_size = Vector2(193, 241)
 layout_mode = 2
 
-[node name="VBC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC"]
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ring_name" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_name" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 layout_mode = 2
 text = "天與咒縛"
 label_settings = SubResource("LabelSettings_mylh8")
 horizontal_alignment = 1
 
-[node name="ring_level" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_level" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "光環階級：5"
@@ -94,7 +94,7 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_health" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_health" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "生命值：0.5"
@@ -102,7 +102,7 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_attack_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_attack_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "物理攻擊：0.9"
@@ -110,7 +110,7 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_magic_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_magic_power" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "魔法攻擊：-0.9"
@@ -118,7 +118,7 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_attack_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_attack_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "物理防禦：0.9"
@@ -126,7 +126,7 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_magic_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/PC/VBC"]
+[node name="ring_magic_defence" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
 text = "魔法防禦：-0.9"
@@ -134,12 +134,12 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test"]
+[node name="ring_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/ring_del"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del"]
 layout_mode = 2
 text = "刪除"
 
@@ -295,10 +295,10 @@ theme_override_constants/margin_left = 19
 [node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
-text = "新增 / 編輯狀態"
+text = "新增 / 編輯裝備"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/ring_list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
