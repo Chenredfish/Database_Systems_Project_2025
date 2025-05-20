@@ -295,7 +295,7 @@ theme_override_constants/margin_left = 19
 [node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
-text = "新增 / 編輯裝備"
+text = "新增 / 編輯狀態"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
