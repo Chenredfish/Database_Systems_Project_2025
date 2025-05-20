@@ -18,7 +18,7 @@ var equipment: Equipment
 var skill: Skill
 var rings: Array[Ring] = []
 var is_hero = false
-var hero_texture = preload("res://scr/object/hero_picture/hero.png")
+var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
 var sprite_textures = []
 # 初始化方法
 func _init(data: Dictionary) -> void:
@@ -51,8 +51,8 @@ func open_data():
 
 func picture_ready():
 	randomize()
-	load_textures_from_folder("res://scr/object/monster_picture")
-	load_textures_from_folder("res://scr/object/hero_picture")
+	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
+	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture")
 	var sprite_node = $Actor_png
 	if not is_hero:
 		sprite_node.texture = hero_texture
