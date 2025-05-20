@@ -52,6 +52,25 @@ func exit():
 	
 	to_show_ring = false
 	state_machine.set_value('to_show_ring', to_show_ring)
+	
+	#處理目前等級
+	update_level()
+	
+func update_level():
+	var level = state_machine.get_value('level')
+	var count_next_level = 0
+	
+	if state_machine.has_value('count_next_level'):
+		count_next_level = state_machine.get_value('count_next_level')
+	
+	count_next_level += 1
+	
+	if count_next_level >= 5: #打超過五次就 level up !
+		level += 1
+		count_next_level = 0  # 重置進度
+
+	state_machine.set_value('level', level)
+	state_machine.set_value('count_next_level', count_next_level)
 
 func exit_playing():
 	state_machine.set_value('to_manage_main', true)
