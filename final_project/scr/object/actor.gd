@@ -21,6 +21,7 @@ var equipment_list:Array[Equipment] = []
 var skill: Skill
 var rings: Array[Ring] = []
 var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
+var enemy_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture/monster.png")
 var sprite_textures = []
 var sprite = Sprite2D.new()
 var sprite2 = Sprite2D.new()
@@ -36,13 +37,16 @@ func _init(data: Dictionary) -> void:
 	attack_defence = data.get("attack_defence", 0)
 	magic_defence = data.get("magic_defence", 0)
 	level = data.get("level", 0)
+	sprite.z_index = 0
+	sprite.z_index = 1
 	
 	if level == 0:
-		hero_picture()
-	else:
 		enemy_picture()
+	else:
+		hero_picture()
 	
-	print("成功建立 " + data.get("name", ""))
+	print("成功建立：%s，Level: %d" % [_name, level])
+
 	
 	open_data()
 	
@@ -85,19 +89,19 @@ func load_textures_from_folder(path: String):
 	dir.list_dir_end()
 	
 func enemy_picture():
-	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
-	if sprite_textures.size() == 0:
-		push_warning("無圖片")
-		return
-	sprite.name = "Enemy_png"
-	sprite.position = Vector2(1280, 400)
-	sprite.scale = Vector2(2,2)
-	sprite.texture = hero_texture
-	add_child(sprite)
-	if sprite2 and sprite_textures.size() > 0:
-		sprite2.texture = sprite_textures[randi() % sprite_textures.size()]
-	else:
-		push_error("找不到節點或圖片未載入")
+	#load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
+	#if sprite_textures.size() == 0:
+		#push_warning("無圖片")
+		#return
+	sprite2.name = "Enemy_png"
+	sprite2.position = Vector2(1280, 400)
+	sprite2.scale = Vector2(0.5,0.5)
+	sprite2.texture = enemy_texture
+	add_child(sprite2)
+	#if sprite2 and sprite_textures.size() > 0:
+		#sprite2.texture = sprite_textures[randi() % sprite_textures.size()]
+	#else:
+		#push_error("找不到節點或圖片未載入")
 
 	
 func equipment_change(equipment_id: int) -> void:
