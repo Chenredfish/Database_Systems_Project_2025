@@ -13,16 +13,20 @@ var attack_defence: int
 var magic_defence: int 
 var level: int 
 
+
+
 var db := SQLite.new()
 var equipment: Equipment
 var equipment_list:Array[Equipment] = []
 var skill: Skill
 var rings: Array[Ring] = []
-var is_player = false
 var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
 var sprite_textures = []
+var sprite = Sprite2D.new()
+var sprite2 = Sprite2D.new()
 # 初始化方法
 func _init(data: Dictionary) -> void:
+	randomize()
 	id = data.get("id", 0)
 	_name = data.get("name", "")
 	element = data.get("element", "")
@@ -34,36 +38,33 @@ func _init(data: Dictionary) -> void:
 	level = data.get("level", 0)
 	
 	if level == 0:
-		is_player = true
-		
-	picture_ready()
+		hero_picture()
+	else:
+		enemy_picture()
 	
 	print("成功建立 " + data.get("name", ""))
 	
 	open_data()
+	
 	if !skill:
 		var level_skill:Array = db.select_rows("skill", "level = 0", ["id"])
 		#var level_skill:Array = db.select_rows("skill", "level = " + str(level), ["id"])
 		var number_level_skill:int = level_skill.size()
 		var rand_skill_id:int = randi() % number_level_skill
 		skill_change(level_skill[rand_skill_id]["id"])
-
-	
+		
 func open_data():
 	db.path = "res://data/game.db"
 	if not db.open_db():
 		push_error("無法開啟資料庫")
 		return
 
-func picture_ready():
-	randomize()
-	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
-	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture")
-	var sprite_node = $Actor_png
-	if not is_player:
-		sprite_node.texture = hero_texture
-	else:
-		randomize_sprite()
+func hero_picture():
+	sprite.name = "Actor_png"
+	sprite.position = Vector2(640, 400)
+	sprite.scale = Vector2(0.5,0.5)
+	sprite.texture = hero_texture
+	add_child(sprite)	
 		
 func load_textures_from_folder(path: String):
 	var dir = DirAccess.open(path)
@@ -83,12 +84,21 @@ func load_textures_from_folder(path: String):
 		file_name = dir.get_next()
 	dir.list_dir_end()
 	
-func randomize_sprite():
+func enemy_picture():
+	load_textures_from_folder("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture")
 	if sprite_textures.size() == 0:
 		push_warning("無圖片")
 		return
-	var sprite_node = $Actor_png
-	sprite_node.texture = sprite_textures[randi() % sprite_textures.size()]	
+	sprite.name = "Enemy_png"
+	sprite.position = Vector2(1280, 400)
+	sprite.scale = Vector2(2,2)
+	sprite.texture = hero_texture
+	add_child(sprite)
+	if sprite2 and sprite_textures.size() > 0:
+		sprite2.texture = sprite_textures[randi() % sprite_textures.size()]
+	else:
+		push_error("找不到節點或圖片未載入")
+
 	
 func equipment_change(equipment_id: int) -> void:
 	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
