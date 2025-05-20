@@ -11,7 +11,10 @@ func enter(_msg:Dictionary = {}):
 	if !state_machine.has_value('level'):
 		state_machine.set_value('level', 1)
 	
-	create_level_enemy(state_machine.get_value('level'))
+	if !state_machine.has_value('enemy'):
+		create_level_enemy(state_machine.get_value('level'))
+		
+	agent.add_child(state_machine.get_value('actor'))
 	
 	agent.ui_layer.show_ui_playing()
 	if !agent.ui_layer.exit_playing.is_connected(exit_playing):

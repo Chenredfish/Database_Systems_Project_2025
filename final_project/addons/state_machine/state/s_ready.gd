@@ -12,6 +12,11 @@ func enter(_msg: Dictionary = {}):
 
 	var level = state_machine.get_value("level")
 	var player = state_machine.get_value("player")
+	
+	update_level()
+	
+	free_old_enemy()
+	create_level_enemy(level)
 
 	if not db.open("res://data/game.db"):
 		push_error("無法開啟資料庫")
@@ -53,3 +58,16 @@ func fetch_random_equipment(level: int) -> Dictionary:
 	var results = db.query_result.duplicate()
 	results.shuffle()
 	return results[0] if results.size() > 0 else null
+
+func free_old_enemy():
+	if agent.is_ancestor_of(state_machine.get_value('enemy')):
+		agent.enemy.queue_free()
+		
+func create_level_enemy(level:int):
+	var enemy_data:Array = agent.db.select_rows("actor", "level = " + str(level), ["*"])
+	var rand_enemy_id:int = (randi() % enemy_data.size())
+	state_machine.set_value('enemy', Actor.new(enemy_data[rand_enemy_id]))
+
+#更新目前的level, 打五次同個level就來
+func update_level():
+	pass
