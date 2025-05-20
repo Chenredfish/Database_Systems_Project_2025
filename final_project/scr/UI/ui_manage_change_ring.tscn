@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
-[ext_resource type="Script" uid="uid://bfjnw0il7dfem" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
-[ext_resource type="Script" uid="uid://cy4a03po0inoh" path="res://scr/UI/list.gd" id="4_7n0i0"]
+[ext_resource type="Script" uid="uid://ruffxhwmyaeb" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
+[ext_resource type="Script" uid="uid://cy4a03po0inoh" path="res://scr/UI/ring_list.gd" id="4_7n0i0"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="4_jauhl"]
 [ext_resource type="Script" uid="uid://cv5bq86mpmh1m" path="res://scr/UI/ring_delete.gd" id="5_4t4mw"]
 
@@ -295,7 +295,7 @@ theme_override_constants/margin_left = 19
 [node name="ring_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage"]
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
-text = "新增 / 編輯裝備"
+text = "新增 / 編輯狀態"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]

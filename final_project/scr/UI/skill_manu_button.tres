@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://d3qq5b2n25cwj"]
+
+[ext_resource type="Texture2D" uid="uid://c1mylnha2cekb" path="res://assets/UI Buttons/Pixel_Button.png" id="1_uyapu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b2ec6"]
+texture = ExtResource("1_uyapu")
+region_rect = Rect2(101, 129, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itwh6"]
+texture = ExtResource("1_uyapu")
+region_rect = Rect2(132, 132, 24, 24)
+
+[resource]
+Button/styles/normal = SubResource("StyleBoxTexture_b2ec6")
+Button/styles/pressed = SubResource("StyleBoxTexture_itwh6")
