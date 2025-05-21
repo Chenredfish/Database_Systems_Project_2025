@@ -42,7 +42,9 @@ func _init(data: Dictionary) -> void:
 	sprite.z_index = 0
 	sprite.z_index = 1
 	
-	put_enemy_picture()
+	if level != 0:
+		put_enemy_picture()
+		
 	put_hero_picture()	
 		
 	print("成功建立：%s，Level: %d" % [_name, level])

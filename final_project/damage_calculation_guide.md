@@ -308,16 +308,16 @@
   2. NOT NULL = true
   3. 主鍵組合之一
 
-- **玩家等級** `record.level`
+- **玩家等級** `record.player_level`
   1. INTEGER
   2. NOT NULL = true
 
-- **掉落裝備** `record.equipment`
+- **掉落裝備** `record.player_equipment_id`
   1. INTEGER
   2. NOT NULL = true
   3. REFERENCES equipment(id)
 
-- **使用技能** `record.skill_id`
+- **使用技能** `record.player_skill_id`
   1. INTEGER
   2. NOT NULL = true
   3. REFERENCES skill(id)
@@ -337,7 +337,7 @@
   2. NOT NULL = true
   3. REFERENCES skill(id)
 
-- **戰前新增狀態** `record.ring_id`
+- **戰前新增狀態** `record.player_ring_id`
   1. INTEGER
   2. NOT NULL = true
   3. REFERENCES ring(id)
@@ -353,6 +353,25 @@
   3. REFERENCES ring(id)
 
 - **狀態選項3** `record.ring_choice_id_3`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
+- **敵人id** `record.enemy_id`
+  1. INTEGER
+  2. NOT NULL = true
+
+- **敵人裝備** `record.enemy_equipment_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES equipment(id)
+
+- **敵人技能** `record.enemy_skill_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES skill(id)
+
+  - **敵人狀態** `record.enemy_ring_id`
   1. INTEGER
   2. NOT NULL = true
   3. REFERENCES ring(id)
