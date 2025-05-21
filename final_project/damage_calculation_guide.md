@@ -371,6 +371,11 @@
   2. NOT NULL = true
   3. REFERENCES skill(id)
 
+  - **敵人狀態** `record.enemy_ring_id`
+  1. INTEGER
+  2. NOT NULL = true
+  3. REFERENCES ring(id)
+
 **主鍵：** (`game_id`, `battle_id`)
 
 ## 角色資料填寫區 actor
