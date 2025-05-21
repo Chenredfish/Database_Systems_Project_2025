@@ -25,19 +25,21 @@ func enter(_msg:Dictionary = {}):
 		agent.ui_layer.to_show_ring.connect(show_ring)
 
 func update(delta):
-	
 	#切換管理者介面
 	if state_machine.has_value('to_manage_main'):
-		to_manage_main = state_machine.get_value('to_manage_main')
-		
+		to_manage_main = state_machine.get_value('to_manage_main')	
 	if to_manage_main:
 		transform_to(StateEnum.GAME_STATE_TYPE.MANAGE_MAIN)
+		
 	#切換顯示ring的介面
 	if state_machine.has_value('to_show_ring'):
-		to_show_ring = state_machine.get_value('to_show_ring')
-		
+		to_show_ring = state_machine.get_value('to_show_ring')	
 	if to_show_ring:
 		transform_to(StateEnum.GAME_STATE_TYPE.SHOW_RING)
+	
+	#攻擊冷卻	
+	update_actor_cooldown(delta)
+	
 func exit():
 	agent.ui_layer.hide_ui_playing()
 	
@@ -105,3 +107,21 @@ func create_level_actor(level:int, name:String):
 func halt_battle():
 	agent.get_node("player").hide()
 	agent.get_node("enemy").hide()
+	
+func update_actor_cooldown(delta: float) -> void:
+	var player: Actor = state_machine.get_value("player")
+	var enemy: Actor = state_machine.get_value("enemy")
+
+	if player and player.health > 0:
+		player.attack_timer += delta
+		if player.attack_timer >= player.cooldown:
+			var result = player.damage_calculate(enemy)
+			print(result)
+			player.attack_timer = 0.0
+	
+	if enemy and enemy.health > 0:
+		enemy.attack_timer += delta
+		if enemy.attack_timer >= enemy.cooldown:
+			var result = enemy.damage_calculate(player)
+			print(result)
+			enemy.attack_timer = 0.0

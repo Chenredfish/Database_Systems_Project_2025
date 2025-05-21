@@ -12,7 +12,8 @@ var magic_point: int
 var attack_defence: int 
 var magic_defence: int 
 var level: int 
-
+var cooldown: float = 0.0
+var attack_timer: float = 0.0 #不同actor的攻擊冷卻計時器
 
 
 var db := SQLite.new()
@@ -25,6 +26,7 @@ var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_pictur
 var sprite_textures = []
 var sprite = Sprite2D.new()
 var sprite2 = Sprite2D.new()
+
 # 初始化方法
 func _init(data: Dictionary) -> void:
 	randomize()
@@ -133,6 +135,8 @@ func skill_change(skill_id: int) -> void:
 	var new_skill = Skill.new(row)
 
 	skill = new_skill
+	
+	cooldown = float(row.get("cooldown", 0.0)) #
 
 	print("%s 學會了 %s" % [_name, new_skill.name])
 
