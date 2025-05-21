@@ -10,6 +10,7 @@ func enter(_msg:Dictionary = {}):
 		agent.ui_layer.exit_show_ring.connect(exit_s_show_ring)
 	
 	agent.ui_layer.show_ui_show_ring()
+	agent.ui_layer.input_show_ring_data(state_machine.get_value('player'))
 
 func update(delta):
 	if state_machine.has_value('hide_show_ring'):

@@ -15,6 +15,11 @@ signal to_manage_ring
 signal to_manage_something(aim:String)
 signal to_show_ring
 
+#輸入資料給show_ring顯示
+func input_show_ring_data(actor:Actor):
+	ui_show_ring.input_show_ring_data(actor)
+
+
 #開關UI的函式
 func show_ui_manage_change():
 	ui_manage_change.show()
@@ -51,6 +56,7 @@ func show_ui_show_ring():
 	
 func hide_ui_show_ring():
 	ui_show_ring.hide()
+	ui_show_ring.delete_show_ring_data()
 
 #管理按鈕按下
 func _on_ui_playing_exit_btn_pressed():
@@ -72,4 +78,4 @@ func _on_ui_playing_pause_btn_pressed():
 	to_show_ring.emit()
 
 func _on_ui_show_ring_exit_show_ring():
-	exit_show_ring.emit(	)
+	exit_show_ring.emit()

@@ -96,6 +96,10 @@ func create_level_actor(level:int, name:String):
 	var rand_actor_id:int = (randi() % actor_data.size())
 	var actor = Actor.new(actor_data[rand_actor_id])
 	actor.name = name
+	
+	#這是一個測試show_ring的程式
+	actor.build_new_ring(1)
+	
 	state_machine.set_value(name, actor)
 	
 func halt_battle():
