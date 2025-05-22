@@ -53,7 +53,7 @@ func _init(data: Dictionary) -> void:
 	open_data()
 	
 	if !skill:
-		var level_skill:Array = db.select_rows("skill", "level = 0", ["id"])
+		var level_skill:Array = db.select_rows("skill", "level = " + str(self.level), ["id"])
 		#var level_skill:Array = db.select_rows("skill", "level = " + str(level), ["id"])
 		var number_level_skill:int = level_skill.size()
 		var rand_skill_id:int = randi() % number_level_skill
