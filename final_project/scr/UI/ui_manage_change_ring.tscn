@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dscowiyylqavf"]
+[gd_scene load_steps=11 format=3 uid="uid://dscowiyylqavf"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_4psur"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_mylh8"]
@@ -20,8 +20,6 @@ font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_jauhl"]
 font_size = 18
-
-[sub_resource type="GDScript" id="GDScript_6vf1o"]
 
 [node name="UiManageChangeRing" type="Control"]
 layout_mode = 3
@@ -174,7 +172,6 @@ placeholder_text = "搜尋狀態名稱"
 alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
-script = SubResource("GDScript_6vf1o")
 
 [node name="next_page" type="MarginContainer" parent="MarginContainer/VBoxContainer/switch_pages/HBoxContainer"]
 custom_minimum_size = Vector2(104, 0)
