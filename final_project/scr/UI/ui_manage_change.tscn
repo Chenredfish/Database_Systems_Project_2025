@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_k5p3l"]
 [ext_resource type="Script" uid="uid://e5gix08vcf5x" path="res://scr/UI/ui_manage_change.gd" id="2_lm8j4"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2j3j"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jl0x0"]
 texture = ExtResource("2_k5p3l")
 texture_margin_top = 9.63859
 region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_oui6d"]
-Button/styles/normal = SubResource("StyleBoxTexture_u2j3j")
+Button/styles/normal = SubResource("StyleBoxTexture_jl0x0")
 
 [sub_resource type="GDScript" id="GDScript_6vf1o"]
 
