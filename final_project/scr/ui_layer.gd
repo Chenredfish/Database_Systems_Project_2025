@@ -13,7 +13,8 @@ signal exit_manage_change_ring
 signal exit_show_ring
 signal to_manage_ring
 signal to_manage_something(aim:String)
-signal to_show_ring
+signal to_show_ring(aim:String)
+signal to_pause
 
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
@@ -75,7 +76,10 @@ func _on_ui_manage_main_to_manage_something(aim):
 	to_manage_something.emit(aim)
 
 func _on_ui_playing_pause_btn_pressed():
-	to_show_ring.emit()
+	to_pause.emit()
 
 func _on_ui_show_ring_exit_show_ring():
 	exit_show_ring.emit()
+
+func _on_ui_playing_show_ring_btn_pressed(aim):
+	to_show_ring.emit(aim)

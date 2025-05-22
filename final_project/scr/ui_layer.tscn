@@ -35,4 +35,5 @@ visible = false
 [connection signal="to_manage_something" from="UiManageMain" to="." method="_on_ui_manage_main_to_manage_something"]
 [connection signal="exit_btn_pressed" from="UiPlaying" to="." method="_on_ui_playing_exit_btn_pressed"]
 [connection signal="pause_btn_pressed" from="UiPlaying" to="." method="_on_ui_playing_pause_btn_pressed"]
+[connection signal="show_ring_btn_pressed" from="UiPlaying" to="." method="_on_ui_playing_show_ring_btn_pressed"]
 [connection signal="exit_show_ring" from="UiShowRing" to="." method="_on_ui_show_ring_exit_show_ring"]

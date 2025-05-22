@@ -72,8 +72,9 @@ func exit_playing():
 	state_machine.set_value('to_manage_main', true)
 	halt_battle()
 
-func show_ring():
+func show_ring(aim:String):
 	state_machine.set_value('to_show_ring', true)
+	state_machine.set_value('to_show_aim', aim)
 	halt_battle()
 	
 func create_actor_node():

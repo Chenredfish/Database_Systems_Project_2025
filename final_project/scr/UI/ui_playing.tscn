@@ -93,7 +93,7 @@ expand_mode = 1
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/show_status"]
+[node name="player_data_Button" type="Button" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/show_status"]
 layout_mode = 2
 theme = SubResource("Theme_ec4lx")
 
@@ -134,7 +134,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/show_status"]
+[node name="enemy_data_Button" type="Button" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/show_status"]
 layout_mode = 2
 theme = SubResource("Theme_ec4lx")
 
@@ -170,5 +170,7 @@ layout_mode = 2
 theme = SubResource("Theme_u5myt")
 theme_override_font_sizes/font_size = 36
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/show_status/player_data_Button" to="." method="_on_player_data_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/show_status/enemy_data_Button" to="." method="_on_enemy_data_button_pressed"]
 [connection signal="button_down" from="exit/Button" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="pause/pause" to="." method="_on_pause_pressed"]
