@@ -1,0 +1,423 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjfx3rayleivn"]
+
+[ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_jlmoo"]
+[ext_resource type="Script" uid="uid://bbe7xob4pjl2r" path="res://scr/UI/ui_manage_change_actor.gd" id="2_ikuwv"]
+[ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_jvcyf"]
+[ext_resource type="Script" uid="uid://nl0fbljax3yj" path="res://scr/UI/actor_list.gd" id="3_aleoa"]
+[ext_resource type="Script" uid="uid://dxosngey3c8f3" path="res://scr/UI/actor_test.gd" id="5_3vl2d"]
+[ext_resource type="Script" uid="uid://gg6odkdkoiql" path="res://scr/UI/actor_manage.gd" id="6_nyunk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ikuwv"]
+texture = ExtResource("2_jvcyf")
+texture_margin_top = 9.63859
+region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
+
+[sub_resource type="Theme" id="Theme_ikuwv"]
+Button/styles/normal = SubResource("StyleBoxTexture_ikuwv")
+
+[node name="ui_manage_change_actor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jlmoo")
+script = ExtResource("2_ikuwv")
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBC" type="VBoxContainer" parent="MC"]
+custom_minimum_size = Vector2(404, 422)
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Exit" type="MarginContainer" parent="MC/VBC"]
+custom_minimum_size = Vector2(162, 142)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 104
+
+[node name="Exit_Button" type="Button" parent="MC/VBC/Exit"]
+custom_minimum_size = Vector2(102, 102)
+layout_mode = 2
+theme = SubResource("Theme_ikuwv")
+theme_override_font_sizes/font_size = 36
+
+[node name="_status" type="MarginContainer" parent="MC/VBC"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MC/VBC/_status"]
+custom_minimum_size = Vector2(735, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="actor_id" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_id"]
+layout_mode = 2
+text = "角色代號"
+horizontal_alignment = 1
+
+[node name="actor_name" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_name"]
+layout_mode = 2
+text = "角色名稱"
+horizontal_alignment = 1
+
+[node name="actor_level" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_level"]
+layout_mode = 2
+text = "角色等級"
+horizontal_alignment = 1
+
+[node name="actor_element" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_element"]
+layout_mode = 2
+text = "角色屬性"
+horizontal_alignment = 1
+
+[node name="actor_health" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_health"]
+layout_mode = 2
+text = "生命值"
+horizontal_alignment = 1
+
+[node name="actor_attack_point" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_attack_point"]
+layout_mode = 2
+text = "物理攻擊"
+horizontal_alignment = 1
+
+[node name="actor_magic_point" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_magic_point"]
+layout_mode = 2
+text = "魔法攻擊"
+horizontal_alignment = 1
+
+[node name="actor_attack_defence" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_attack_defence"]
+layout_mode = 2
+text = "物理防禦"
+horizontal_alignment = 1
+
+[node name="actor_magic_defence" type="PanelContainer" parent="MC/VBC/_status/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/_status/HBoxContainer/actor_magic_defence"]
+layout_mode = 2
+text = "魔法防禦"
+horizontal_alignment = 1
+
+[node name="actor_list" type="MarginContainer" parent="MC/VBC"]
+custom_minimum_size = Vector2(1115, 344)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 100
+
+[node name="actor_list" type="VBoxContainer" parent="MC/VBC/actor_list"]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("3_aleoa")
+
+[node name="actor_test" type="MarginContainer" parent="MC/VBC/actor_list/actor_list"]
+layout_mode = 2
+script = ExtResource("5_3vl2d")
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC/actor_list/actor_list/actor_test"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="actor_id" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_id"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="actor_name" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_name"]
+layout_mode = 2
+text = "陳碩軒"
+horizontal_alignment = 1
+
+[node name="actor_level" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_level"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="actor_element" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_element"]
+layout_mode = 2
+text = "水"
+horizontal_alignment = 1
+
+[node name="actor_health" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_health"]
+layout_mode = 2
+text = "5000"
+horizontal_alignment = 1
+
+[node name="actor_attack_point" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_attack_point"]
+layout_mode = 2
+text = "200"
+horizontal_alignment = 1
+
+[node name="actor_magic_point" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_magic_point"]
+layout_mode = 2
+text = "500"
+horizontal_alignment = 1
+
+[node name="actor_attack_defence" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_attack_defence"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="actor_magic_defence" type="PanelContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_magic_defence"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="actor_delete" type="MarginContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="actor_delete_btn" type="Button" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_delete"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "刪除"
+
+[node name="switch_pages" type="MarginContainer" parent="MC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_top = 49
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC/switch_pages"]
+custom_minimum_size = Vector2(463, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 53
+
+[node name="previous_page" type="MarginContainer" parent="MC/VBC/switch_pages/HBC"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="previous_page_btn" type="Button" parent="MC/VBC/switch_pages/HBC/previous_page"]
+layout_mode = 2
+text = "上一頁"
+
+[node name="actor_search" type="MarginContainer" parent="MC/VBC/switch_pages/HBC"]
+custom_minimum_size = Vector2(220, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="actor_search" type="LineEdit" parent="MC/VBC/switch_pages/HBC/actor_search"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "搜尋角色名稱"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="next_page" type="MarginContainer" parent="MC/VBC/switch_pages/HBC"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="next_page_btn" type="Button" parent="MC/VBC/switch_pages/HBC/next_page"]
+layout_mode = 2
+text = "下一頁"
+
+[node name="actor_manage" type="MarginContainer" parent="MC/VBC"]
+custom_minimum_size = Vector2(735, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 245
+theme_override_constants/margin_top = 30
+script = ExtResource("6_nyunk")
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC/actor_manage"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="actor_id" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_id"]
+layout_mode = 2
+placeholder_text = "角色代號"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_name" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_name"]
+layout_mode = 2
+placeholder_text = "角色名稱"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_level" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_level"]
+layout_mode = 2
+placeholder_text = "角色等級"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_element" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_element"]
+layout_mode = 2
+placeholder_text = "角色屬性"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_health" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_health"]
+layout_mode = 2
+placeholder_text = "生命值"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_attack_point" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_attack_point"]
+layout_mode = 2
+placeholder_text = "物理攻擊"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_magic_point" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_magic_point"]
+layout_mode = 2
+placeholder_text = "魔法攻擊"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_attack_defence" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_attack_defence"]
+layout_mode = 2
+placeholder_text = "物理防禦"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_magic_defence" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_magic_defence"]
+layout_mode = 2
+placeholder_text = "魔法防禦"
+alignment = 1
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="actor_manage" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 19
+
+[node name="actor_manage_btn" type="Button" parent="MC/VBC/actor_manage/HBC/actor_manage"]
+custom_minimum_size = Vector2(225, 49)
+layout_mode = 2
+text = "新增 / 編輯角色"
+
+[connection signal="pressed" from="MC/VBC/switch_pages/HBC/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
+[connection signal="text_submitted" from="MC/VBC/switch_pages/HBC/actor_search/actor_search" to="." method="_on_actor_search_text_submitted"]
+[connection signal="pressed" from="MC/VBC/switch_pages/HBC/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
+[connection signal="pressed" from="MC/VBC/actor_manage/HBC/actor_manage/actor_manage_btn" to="MC/VBC/actor_manage" method="_on_actor_manage_btn_pressed"]

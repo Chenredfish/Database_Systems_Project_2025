@@ -1,0 +1,575 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcb6isphqlejv"]
+
+[ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_k281g"]
+[ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_8oy23"]
+[ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="3_8oy23"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7u1ug"]
+texture = ExtResource("2_8oy23")
+texture_margin_top = 9.63859
+region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
+
+[sub_resource type="Theme" id="Theme_43ihx"]
+Button/styles/normal = SubResource("StyleBoxTexture_7u1ug")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8oy23"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_7u1ug"]
+font_size = 18
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u1ug"]
+atlas = ExtResource("3_8oy23")
+region = Rect2(416, 404.5, 179, 205)
+
+[sub_resource type="LabelSettings" id="LabelSettings_43ihx"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_2y1p6"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb322"]
+font_size = 18
+
+[node name="ui_record" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k281g")
+
+[node name="MC" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit" type="MarginContainer" parent="MC"]
+custom_minimum_size = Vector2(162, 142)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+
+[node name="Exit_Button" type="Button" parent="MC/Exit"]
+custom_minimum_size = Vector2(102, 102)
+layout_mode = 2
+theme = SubResource("Theme_43ihx")
+theme_override_font_sizes/font_size = 36
+
+[node name="VBC" type="VBoxContainer" parent="MC"]
+layout_mode = 2
+
+[node name="game" type="MarginContainer" parent="MC/VBC"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 30
+
+[node name="switch_game" type="HBoxContainer" parent="MC/VBC/game"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+theme_override_constants/separation = 53
+
+[node name="previous_page" type="MarginContainer" parent="MC/VBC/game/switch_game"]
+custom_minimum_size = Vector2(104, 49)
+layout_mode = 2
+
+[node name="previous_page_btn" type="Button" parent="MC/VBC/game/switch_game/previous_page"]
+layout_mode = 2
+text = "上一頁"
+
+[node name="game" type="PanelContainer" parent="MC/VBC/game/switch_game"]
+custom_minimum_size = Vector2(160, 49)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/game/switch_game/game"]
+layout_mode = 2
+text = "遊戲局數：1"
+horizontal_alignment = 1
+
+[node name="next_page" type="MarginContainer" parent="MC/VBC/game/switch_game"]
+custom_minimum_size = Vector2(104, 49)
+layout_mode = 2
+
+[node name="next_page_btn" type="Button" parent="MC/VBC/game/switch_game/next_page"]
+layout_mode = 2
+text = "下一頁"
+
+[node name="round" type="MarginContainer" parent="MC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="switch_round" type="HBoxContainer" parent="MC/VBC/round"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 53
+
+[node name="previous_page" type="MarginContainer" parent="MC/VBC/round/switch_round"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="previous_page_btn" type="Button" parent="MC/VBC/round/switch_round/previous_page"]
+layout_mode = 2
+text = "上一頁"
+
+[node name="round" type="PanelContainer" parent="MC/VBC/round/switch_round"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/round/switch_round/round"]
+layout_mode = 2
+text = "回合數：0"
+horizontal_alignment = 1
+
+[node name="next_page" type="MarginContainer" parent="MC/VBC/round/switch_round"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+
+[node name="next_page_btn" type="Button" parent="MC/VBC/round/switch_round/next_page"]
+layout_mode = 2
+text = "下一頁"
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="ring_and_skill" type="VBoxContainer" parent="MC/VBC/HBC"]
+layout_mode = 2
+
+[node name="ring" type="MarginContainer" parent="MC/VBC/HBC/ring_and_skill"]
+custom_minimum_size = Vector2(0, 226)
+layout_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="VBC" type="VBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ring_id_name" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring_id_name"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring_id_name/ring_id"]
+layout_mode = 2
+text = "狀態代號"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring_id_name"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring_id_name/ring_name"]
+layout_mode = 2
+text = "狀態名稱"
+horizontal_alignment = 1
+
+[node name="ring1" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring1"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring1/ring_id"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring1"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring1/ring_name"]
+layout_mode = 2
+text = "狀態名稱"
+horizontal_alignment = 1
+
+[node name="ring2" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring2"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring2/ring_id"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring2"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring2/ring_name"]
+layout_mode = 2
+text = "狀態名稱"
+horizontal_alignment = 1
+
+[node name="ring3" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring3"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring3/ring_id"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring3"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/VBC/ring3/ring_name"]
+layout_mode = 2
+text = "狀態名稱"
+horizontal_alignment = 1
+
+[node name="PC" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="VBC" type="VBoxContainer" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ring_name" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+layout_mode = 2
+text = "天與咒縛"
+label_settings = SubResource("LabelSettings_8oy23")
+horizontal_alignment = 1
+
+[node name="ring_level" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "光環階級：5"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_health" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "生命值：0.5"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_attack_power" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "物理攻擊：0.9"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_magic_power" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔法攻擊：-0.9"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_attack_defence" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "物理防禦：0.9"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ring_magic_defence" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "魔法防禦：-0.9"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill" type="MarginContainer" parent="MC/VBC/HBC/ring_and_skill"]
+custom_minimum_size = Vector2(0, 341)
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="HBC" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="VBC" type="VBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="skill_id_name" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="skill_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill_id_name"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill_id_name/skill_id"]
+layout_mode = 2
+text = "技能代號"
+horizontal_alignment = 1
+
+[node name="skill_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill_id_name"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill_id_name/skill_name"]
+layout_mode = 2
+text = "技能名稱"
+horizontal_alignment = 1
+
+[node name="skill1" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill1"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill1/ring_id"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill1"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill1/ring_name"]
+layout_mode = 2
+text = "技能名稱"
+horizontal_alignment = 1
+
+[node name="skill2" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill2"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill2/ring_id"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill2"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill2/ring_name"]
+layout_mode = 2
+text = "技能名稱"
+horizontal_alignment = 1
+
+[node name="skill3" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill3"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill3/ring_id"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill3"]
+custom_minimum_size = Vector2(183.75, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/VBC/skill3/ring_name"]
+layout_mode = 2
+text = "技能名稱"
+horizontal_alignment = 1
+
+[node name="PC" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC"]
+custom_minimum_size = Vector2(193, 241)
+layout_mode = 2
+
+[node name="skill_element_texture" type="TextureRect" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC"]
+modulate = Color(0.501407, 0.501406, 0.501406, 1)
+layout_mode = 2
+texture = SubResource("AtlasTexture_7u1ug")
+expand_mode = 1
+
+[node name="VBC" type="VBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="skill_name" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+layout_mode = 2
+text = "裂地衝擊"
+label_settings = SubResource("LabelSettings_43ihx")
+horizontal_alignment = 1
+
+[node name="skill_level" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "技能階級：5"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_element" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "屬性：草"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_is_magic" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "攻擊類別：魔法"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_power" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "攻擊係數：0.9"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_cooldown" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/HBC/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "技能冷卻：6s"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="player_and_enemy" type="PanelContainer" parent="MC/VBC/HBC"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBC" type="VBoxContainer" parent="MC/VBC/HBC/player_and_enemy"]
+layout_mode = 2
+
+[node name="player_level" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "玩家等級："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="player_equipment_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "玩家裝備代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="player_equipment_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "玩家裝備名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="space" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="enemy_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_equipment_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人裝備代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_equipment_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人裝備名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_skill_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人技能代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_skill_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人技能名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_ring_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人光環代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_ring_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人光環名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1

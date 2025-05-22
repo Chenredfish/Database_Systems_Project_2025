@@ -26,7 +26,8 @@ var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_pictur
 var sprite_textures = []
 var sprite = Sprite2D.new()
 var sprite2 = Sprite2D.new()
-
+var player_damage_numbers_origin = Node2D.new()
+var enemy_damege_numbers_origin = Node2D.new()
 # 初始化方法
 func _init(data: Dictionary) -> void:
 	randomize()
@@ -103,21 +104,39 @@ func put_enemy_picture():
 	#else:
 		#push_error("找不到節點或圖片未載入")
 
+func add_equipment_to_list(equipment_id: int):#將裝備加入擁有清單中
+	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
+	db.query_with_bindings(query, [equipment_id])
 	
-func equipment_change(equipment_id: int) -> void:
+	if db.query_result.size() == 0:
+		print("找不到指定 ID 的裝備")
+		return
+			
+	var row = db.query_result[0]
+	var new_equipment = Equipment.new(row)
+	
+	for eq in equipment_list:
+		if eq.id == new_equipment.id:
+			print("裝備已存在")
+			return 
+			
+	equipment_list.append(new_equipment)
+	
+func equipment_change(equipment_id: int) -> void:#更換身上裝備
 	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
 	db.query_with_bindings(query, [equipment_id])
 
 	if db.query_result.size() == 0:
 		print("找不到指定 ID 的裝備")
 		return
-
+	
 	var row = db.query_result[0]
-
 	var new_equipment = Equipment.new(row)
 	
-	if new_equipment.id != equipment.id:
-		equipment_list.append(new_equipment)
+	for eq in equipment_list:
+		if eq.id != new_equipment.id:
+			print("無這件裝備")
+			return
 
 	equipment = new_equipment
 
@@ -204,13 +223,19 @@ func _get_magic_damage():#魔法傷害
 
 func _get_attack_defence():#物理減傷
 	var ring_state = get_combined_ring_state()
-	var defence_number = (equipment.attack_defence + self.attack_defence) * (1 + ring_state["attack_defence"])
+	if equipment != null:
+		var defence_number = (equipment.attack_defence + self.attack_defence) * (1 + ring_state["attack_defence"])
+		
+	var defence_number = (self.attack_defence) * (1 + ring_state["attack_defence"])
 	var defence = defence_number / (100 + defence_number)
 	return defence
 	
 func _get_magic_defence():#魔法減傷
 	var ring_state = get_combined_ring_state()
-	var magic_defence_number = (equipment.magic_defence + self.magic_defence) * (1 + ring_state["magic_defence"])
+	if equipment != null:
+		var magic_defence_number = (equipment.magic_defence + self.magic_defence) * (1 + ring_state["magic_defence"])
+	
+	var magic_defence_number = (self.magic_defence) * (1 + ring_state["magic_defence"])
 	var magic_defence_result = magic_defence_number / (100 + magic_defence_number)
 	return magic_defence_result
 
@@ -219,14 +244,22 @@ func _get_max_health():#最大血量
 	var health_now = self.health *(1 + ring_state["health"])
 	return health_now
 
-func damage_calculate(target:Actor, is_magic: bool = 0) -> String:#傷害計算包含血量變更
-	var attacker_damage: int
+func damage_calculate(target:Actor, is_magic: bool = false, is_player: bool = false) -> String:#傷害計算包含血量變更
+	var attacker_damage: float
 	var target_defence: float
 	var skill_power = skill.power
 	var attacker_element = skill.element
 	var target_element = target.element
 	var element_percent = get_element_multiplier_from_db(attacker_element, target_element)
-
+	var is_critical = false
+	var damage_numbers_origin = player_damage_numbers_origin
+	
+	player_damage_numbers_origin.position = Vector2(595,830)
+	enemy_damege_numbers_origin.position = Vector2(1330,830)
+	
+	if is_player:
+		damage_numbers_origin = enemy_damege_numbers_origin
+	
 	if is_magic:
 		attacker_damage =_get_magic_damage()
 		target_defence = target._get_magic_defence()
@@ -235,13 +268,15 @@ func damage_calculate(target:Actor, is_magic: bool = 0) -> String:#傷害計算�
 		target_defence = target._get_attack_defence()
 	
 	var final_damage = attacker_damage * element_percent * skill_power	
-	
 	var real_damage = final_damage * (1 - target_defence)
 	
 	target.health = max(0, target.health - real_damage)
 	
 	if target.health <= 0:
+		is_critical = true
+		DamageNumber.display_number(real_damage, damage_numbers_origin.global_position, is_critical)
 		return "%s has been defeated." %target._name
 	else:
+		DamageNumber.display_number(real_damage, damage_numbers_origin.global_position, is_critical)
 		return "%s took %d damage." %[target._name, int(real_damage)]
 	
