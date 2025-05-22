@@ -16,6 +16,9 @@ func enter(_msg:Dictionary = {}):
 	if !state_machine.has_value('level'):
 		state_machine.set_value('level', 1)
 	
+	if !state_machine.has_value('is_pause'):
+		state_machine.set_value('is_pause', false)
+	
 	create_actor_node()
 	
 	agent.ui_layer.show_ui_playing()
@@ -23,6 +26,8 @@ func enter(_msg:Dictionary = {}):
 		agent.ui_layer.exit_playing.connect(exit_playing)
 	if !agent.ui_layer.to_show_ring.is_connected(show_ring):
 		agent.ui_layer.to_show_ring.connect(show_ring)
+	if !agent.ui_layer.to_pause.is_connected(pause_button_pressed):
+		agent.ui_layer.to_pause.connect(pause_button_pressed)
 
 func update(delta):
 	#切換管理者介面
@@ -37,8 +42,9 @@ func update(delta):
 	if to_show_ring:
 		transform_to(StateEnum.GAME_STATE_TYPE.SHOW_RING)
 	
-	#攻擊冷卻	
-	update_actor_cooldown(delta)
+	#計算攻擊
+	if !state_machine.get_value('is_pause'):
+		update_actor_cooldown(delta)
 	
 func exit():
 	agent.ui_layer.hide_ui_playing()
@@ -50,7 +56,8 @@ func exit():
 	state_machine.set_value('to_show_ring', to_show_ring)
 	
 	#處理目前等級
-	update_level()
+	if !state_machine.get_value('is_pause'):
+		update_level()
 	
 func update_level():
 	var level = state_machine.get_value('level')
@@ -70,12 +77,12 @@ func update_level():
 
 func exit_playing():
 	state_machine.set_value('to_manage_main', true)
-	halt_battle()
+	pause_battle()
 
 func show_ring(aim:String):
 	state_machine.set_value('to_show_ring', true)
 	state_machine.set_value('to_show_aim', aim)
-	halt_battle()
+	pause_battle()
 	
 func create_actor_node():
 	if !state_machine.has_value('enemy'):
@@ -109,9 +116,14 @@ func create_level_actor(level:int, name:String):
 	
 	state_machine.set_value(name, actor)
 	
-func halt_battle():
+func pause_battle():
 	agent.get_node("player").hide()
 	agent.get_node("enemy").hide()
+	state_machine.set_value('is_pause', true)
+	
+func pause_button_pressed():
+	var is_pause:bool = state_machine.get_value('is_pause')
+	state_machine.set_value('is_pause', !is_pause)
 	
 func update_actor_cooldown(delta: float) -> void:
 	var player: Actor = state_machine.get_value("player")
@@ -121,12 +133,12 @@ func update_actor_cooldown(delta: float) -> void:
 		player.attack_timer += delta
 		if player.attack_timer >= player.cooldown:
 			var result = player.damage_calculate(enemy,true,true)
-			print(result)
+			#print(result)
 			player.attack_timer = 0.0
 	
 	if enemy and enemy.health > 0:
 		enemy.attack_timer += delta
 		if enemy.attack_timer >= enemy.cooldown:
 			var result = enemy.damage_calculate(player,true,false)
-			print(result)
+			#print(result)
 			enemy.attack_timer = 0.0
