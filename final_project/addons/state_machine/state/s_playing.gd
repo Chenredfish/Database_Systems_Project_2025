@@ -116,13 +116,13 @@ func update_actor_cooldown(delta: float) -> void:
 	if player and player.health > 0:
 		player.attack_timer += delta
 		if player.attack_timer >= player.cooldown:
-			var result = player.damage_calculate(enemy)
+			var result = player.damage_calculate(enemy,true,true)
 			print(result)
 			player.attack_timer = 0.0
 	
 	if enemy and enemy.health > 0:
 		enemy.attack_timer += delta
 		if enemy.attack_timer >= enemy.cooldown:
-			var result = enemy.damage_calculate(player)
+			var result = enemy.damage_calculate(player,true,false)
 			print(result)
 			enemy.attack_timer = 0.0
