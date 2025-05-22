@@ -43,3 +43,6 @@ func _on_previous_page_btn_pressed():
 
 func _on_next_page_btn_pressed():
 	ring._page_change(1)
+
+func _on_line_edit_text_submitted(new_text):
+	ring._search_ring(new_text)

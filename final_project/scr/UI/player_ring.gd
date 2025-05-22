@@ -4,12 +4,14 @@ extends GridContainer
 @onready var ring_page = 0
 
 var search_ring_data:Array[Ring] = []
+var all_ring_data:Array[Ring] = []
 
 func _ready() -> void:
 	ring_1.hide()
 
 func input_show_ring_data(actor:Actor):
 	search_ring_data = actor.get("rings")
+	all_ring_data = search_ring_data
 	_page_update()
 	
 func delete_show_ring_data():
@@ -33,6 +35,24 @@ func _page_update():	#刷新頁面
 	while count < ring_page * 6 + 6 and count < search_ring_data.size():
 		_add_ring(count)
 		count += 1
+		
+func _search_ring(keyword):
+	var count = 0
+	var check = true
+	if keyword == "":
+		check = false
+	search_ring_data = []
+	for child in self.get_children():
+		if !child.name.begins_with("ring_1"):
+			child.queue_free()
+	while count < all_ring_data.size() and check:
+		if keyword in all_ring_data[count].get("name"):
+			search_ring_data.append(all_ring_data[count])
+		count += 1
+	if check != true:
+		search_ring_data = all_ring_data
+	#print(search_ring_data)
+	_page_update()
 
 func _add_ring(ring_n):
 	var new_ring = ring_1.duplicate()

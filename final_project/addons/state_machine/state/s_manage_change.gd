@@ -9,6 +9,14 @@ func enter(_msg:Dictionary = {}):
 	aim = state_machine.get_value('to_manage_something')
 	
 	print("show " + aim)
+	
+	match aim:
+		"skill":
+			pass
+		"equipment":
+			pass
+		"actor":
+			pass
 
 func update(delta):
 	pass

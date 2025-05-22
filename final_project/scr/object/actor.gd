@@ -202,12 +202,12 @@ func get_combined_ring_state()->Dictionary:#當前狀態加成
 	 	"health" = 0.0
 	}
 	
-	for ring in rings:
-		result["attack_power"] += ring.attack_power
-		result["magic_power"] += ring.magic_power
-		result["attack_defence"] += ring.attack_defence
-		result["magic_defence"] += ring.magic_defence
-		result["health"] += ring.health
+	for r in rings:
+		result["attack_power"] += r.attack_power
+		result["magic_power"] += r.magic_power
+		result["attack_defence"] += r.attack_defence
+		result["magic_defence"] += r.magic_defence
+		result["health"] += r.health
 	
 	return result
 
@@ -223,19 +223,20 @@ func _get_magic_damage():#魔法傷害
 
 func _get_attack_defence():#物理減傷
 	var ring_state = get_combined_ring_state()
-	if equipment != null:
-		var defence_number = (equipment.attack_defence + self.attack_defence) * (1 + ring_state["attack_defence"])
-		
 	var defence_number = (self.attack_defence) * (1 + ring_state["attack_defence"])
+	
+	if equipment != null:
+		defence_number = (equipment.attack_defence + self.attack_defence) * (1 + ring_state["attack_defence"])
+		
 	var defence = defence_number / (100 + defence_number)
 	return defence
 	
 func _get_magic_defence():#魔法減傷
 	var ring_state = get_combined_ring_state()
-	if equipment != null:
-		var magic_defence_number = (equipment.magic_defence + self.magic_defence) * (1 + ring_state["magic_defence"])
 	
 	var magic_defence_number = (self.magic_defence) * (1 + ring_state["magic_defence"])
+	if equipment != null:
+		magic_defence_number = (equipment.magic_defence + self.magic_defence) * (1 + ring_state["magic_defence"])
 	var magic_defence_result = magic_defence_number / (100 + magic_defence_number)
 	return magic_defence_result
 
