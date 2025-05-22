@@ -43,7 +43,7 @@ func _search_ring(keyword):
 		check = false
 	search_ring_data = []
 	for child in self.get_children():
-		if !child.name.begins_with("ring_1"):
+		if child.name.begins_with("new_ring"):
 			child.queue_free()
 	while count < all_ring_data.size() and check:
 		if keyword in all_ring_data[count].get("name"):

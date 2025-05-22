@@ -15,12 +15,11 @@ func enter(_msg: Dictionary = {}):
 	
 	update_level()
 	
-	free_old_enemy()
+	#free_old_enemy()
 	create_level_enemy(level)
 
-	if not db.open("res://data/game.db"):
-		push_error("無法開啟資料庫")
-		return
+	db.path = "res://data/game"
+	db.open_db()
 
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
@@ -64,9 +63,12 @@ func free_old_enemy():
 		agent.enemy.queue_free()
 		
 func create_level_enemy(level:int):
-	var enemy_data:Array = agent.db.select_rows("actor", "level = " + str(level), ["*"])
-	var rand_enemy_id:int = (randi() % enemy_data.size())
-	state_machine.set_value('enemy', Actor.new(enemy_data[rand_enemy_id]))
+	var enemy_data:Array = db.select_rows("actor", "level = " + str(level), ["*"])
+	if enemy_data.size() > 0:
+		var rand_enemy_id:int = randi() % enemy_data.size()
+		state_machine.set_value('enemy', Actor.new(enemy_data[rand_enemy_id]))
+	else:
+		print("enemy_data 是空的，無法選擇隨機敵人")
 
 #更新目前的level, 打五次同個level就來
 func update_level():

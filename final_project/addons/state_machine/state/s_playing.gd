@@ -3,6 +3,7 @@ class_name s_Playing
 
 var to_manage_main:bool = false
 var to_show_ring:bool = false
+var to_ready_state:bool = false
 
 var db = SQLite.new()
 
@@ -41,6 +42,12 @@ func update(delta):
 		to_show_ring = state_machine.get_value('to_show_ring')	
 	if to_show_ring:
 		transform_to(StateEnum.GAME_STATE_TYPE.SHOW_RING)
+		
+	#切換ready
+	if state_machine.has_value('to_ready_state'):
+		to_ready_state = state_machine.get_value('to_ready_state')
+	if to_ready_state:
+		transform_to(StateEnum.GAME_STATE_TYPE.READY)
 	
 	#計算攻擊
 	if !state_machine.get_value('is_pause'):
@@ -135,6 +142,8 @@ func update_actor_cooldown(delta: float) -> void:
 			var result = player.damage_calculate(enemy,true,true)
 			#print(result)
 			player.attack_timer = 0.0
+	else:
+		print("game over")
 	
 	if enemy and enemy.health > 0:
 		enemy.attack_timer += delta
@@ -142,3 +151,5 @@ func update_actor_cooldown(delta: float) -> void:
 			var result = enemy.damage_calculate(player,true,false)
 			#print(result)
 			enemy.attack_timer = 0.0
+	else:
+		state_machine.set_value('to_ready_state', true)
