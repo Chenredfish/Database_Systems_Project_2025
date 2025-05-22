@@ -14,7 +14,7 @@ var db := SQLite.new()
 func _ready():
 	db.path = "res://data/game.db"  # 資料庫位置
 	db.open_db()
-	apply_button.pressed.connect(_on_apply_pressed)  # 綁定按鈕點擊事件
+	#apply_button.pressed.connect(_on_apply_pressed)  # 綁定按鈕點擊事件
 
 func _on_apply_pressed():
 	var id = id_input.text.strip_edges()
@@ -80,3 +80,7 @@ func show_alert(msg: String):
 	dialog.dialog_text = msg
 	add_child(dialog)
 	dialog.popup_centered()
+
+
+func _on_equipment_manage_btn_pressed() -> void:
+	_on_apply_pressed()

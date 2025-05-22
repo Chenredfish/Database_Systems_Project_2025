@@ -294,3 +294,5 @@ theme_override_constants/margin_left = 19
 custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯裝備"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_manage/equipment_manage_btn" to="." method="_on_equipment_manage_btn_pressed"]
