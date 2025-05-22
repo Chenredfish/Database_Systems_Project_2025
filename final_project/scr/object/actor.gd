@@ -103,21 +103,39 @@ func put_enemy_picture():
 	#else:
 		#push_error("找不到節點或圖片未載入")
 
+func add_equipment_to_list(equipment_id: int):#將裝備加入擁有清單中
+	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
+	db.query_with_bindings(query, [equipment_id])
 	
-func equipment_change(equipment_id: int) -> void:
+	if db.query_result.size() == 0:
+		print("找不到指定 ID 的裝備")
+		return
+			
+	var row = db.query_result[0]
+	var new_equipment = Equipment.new(row)
+	
+	for eq in equipment_list:
+		if eq.id == new_equipment.id:
+			print("裝備已存在")
+			return 
+			
+	equipment_list.append(new_equipment)
+	
+func equipment_change(equipment_id: int) -> void:#更換身上裝備
 	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
 	db.query_with_bindings(query, [equipment_id])
 
 	if db.query_result.size() == 0:
 		print("找不到指定 ID 的裝備")
 		return
-
+	
 	var row = db.query_result[0]
-
 	var new_equipment = Equipment.new(row)
 	
-	if new_equipment.id != equipment.id:
-		equipment_list.append(new_equipment)
+	for eq in equipment_list:
+		if eq.id != new_equipment.id:
+			print("無這件裝備")
+			return
 
 	equipment = new_equipment
 
