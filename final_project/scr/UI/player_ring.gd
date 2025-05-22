@@ -16,6 +16,14 @@ func delete_show_ring_data():
 	for child in self.get_children():
 		if child.name.begins_with("new_ring"):
 			child.queue_free()
+			
+func _page_change(x):	#換頁
+	if ring_page + x >= 0 and search_ring_data.size() > (ring_page + x) * 6:
+		ring_page += x
+		print(ring_page)
+		_page_update()
+	else:
+		print("OVER")
 
 func _page_update():	#刷新頁面
 	for child in self.get_children():

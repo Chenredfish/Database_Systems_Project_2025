@@ -36,3 +36,10 @@ func show_actor_data(actor:Actor):
 	attack_defence.text = str(actor.get("attack_defence"))
 	magic_defence.text = str(actor.get("magic_defence"))
 	
+
+
+func _on_previous_page_btn_pressed():
+	ring._page_change(-1)
+
+func _on_next_page_btn_pressed():
+	ring._page_change(1)

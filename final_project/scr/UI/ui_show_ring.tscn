@@ -234,7 +234,7 @@ theme_override_constants/separation = 53
 custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/previous_page"]
+[node name="previous_page_btn" type="Button" parent="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/previous_page"]
 layout_mode = 2
 text = "上一頁"
 
@@ -256,7 +256,7 @@ script = SubResource("GDScript_6vf1o")
 custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/next_page"]
+[node name="next_page_btn" type="Button" parent="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/next_page"]
 layout_mode = 2
 text = "下一頁"
 
@@ -276,4 +276,6 @@ layout_mode = 2
 theme = SubResource("Theme_nd284")
 theme_override_font_sizes/font_size = 36
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_list/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
 [connection signal="pressed" from="Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
