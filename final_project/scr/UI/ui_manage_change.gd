@@ -1,12 +1,12 @@
 extends Control
 
 # 正確抓取所有 LineEdit 元件
-@onready var id_input = %equipment_id/LineEdit
-@onready var name_input = %equipment_name/LineEdit
-@onready var level_input = %equipment_level/LineEdit
-@onready var pdef_input = %equipment_attack_defence/LineEdit
-@onready var mdef_input = %equipment_magic_defence/LineEdit
-@onready var apply_button = %equipment_manage/equipment_manage_btn
+@onready var id_input = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_id/LineEdit
+@onready var name_input = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_name/LineEdit
+@onready var level_input = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_level/LineEdit
+@onready var pdef_input = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_attack_defence/LineEdit
+@onready var mdef_input = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_magic_defence/LineEdit
+@onready var apply_button = $MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_manage/equipment_manage_btn
 
 # 資料庫連線
 var db := SQLite.new()

@@ -7,13 +7,13 @@
 [ext_resource type="Script" uid="uid://dxosngey3c8f3" path="res://scr/UI/actor_test.gd" id="5_3vl2d"]
 [ext_resource type="Script" uid="uid://gg6odkdkoiql" path="res://scr/UI/actor_manage.gd" id="6_nyunk"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2j3j"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ikuwv"]
 texture = ExtResource("2_jvcyf")
 texture_margin_top = 9.63859
 region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_ikuwv"]
-Button/styles/normal = SubResource("StyleBoxTexture_u2j3j")
+Button/styles/normal = SubResource("StyleBoxTexture_ikuwv")
 
 [node name="ui_manage_change_actor" type="Control"]
 layout_mode = 3
@@ -30,6 +30,7 @@ theme = ExtResource("1_jlmoo")
 script = ExtResource("2_ikuwv")
 
 [node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 

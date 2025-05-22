@@ -55,6 +55,8 @@ func _add_skill(skill_n):	#顯示每個狀態
 	new_skill.get_node("PC/VBC/skill_name").text = str(search_skill_data[skill_n]["name"])
 	new_skill.get_node("PC/VBC/skill_level").text = "技能階級：" + str(search_skill_data[skill_n]["level"])
 	new_skill.get_node("PC/VBC/skill_element").text = "屬性：" + str(search_skill_data[skill_n]["element"])
+	if str(search_skill_data[skill_n]["element"]) == "草":
+		new_skill.get_node("PC/skill_element_texture").atlas.region = Rect2(416, 404.5, 179, 205)
 	if search_skill_data[skill_n]["is_magic"] == 1:
 		new_skill.get_node("PC/VBC/skill_is_magic").text = "攻擊類別：魔法"
 	else:
