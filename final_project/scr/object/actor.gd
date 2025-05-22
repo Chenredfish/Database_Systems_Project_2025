@@ -254,9 +254,10 @@ func damage_calculate(target:Actor, is_magic: bool = false, is_player: bool = fa
 	var is_critical = false
 	var damage_numbers_origin = player_damage_numbers_origin
 	
+	player_damage_numbers_origin.position = Vector2(595,830)
+	enemy_damege_numbers_origin.position = Vector2(1330,830)
 	
-	
-	if not is_player:
+	if is_player:
 		damage_numbers_origin = enemy_damege_numbers_origin
 	
 	if is_magic:
