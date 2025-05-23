@@ -51,6 +51,7 @@ func _search_ring(keyword):
 		count += 1
 	if check != true:
 		search_ring_data = all_ring_data
+	await get_tree().process_frame
 	#print(search_ring_data)
 	_page_update()
 

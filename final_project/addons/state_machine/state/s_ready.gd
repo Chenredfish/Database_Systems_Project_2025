@@ -10,6 +10,8 @@ var available_equipment = null
 func enter(_msg: Dictionary = {}):
 	print("into state of s_Ready")
 	
+	agent.ui_layer.show_ui_ready()
+	
 	db.path = "res://data/game"
 	db.open_db()
 
@@ -18,7 +20,9 @@ func enter(_msg: Dictionary = {}):
 	
 	update_level()
 	
-	free_old_enemy()
+	free_actor("enemy")
+	free_actor("player")
+	
 	create_level_enemy(level)
 
 
@@ -35,7 +39,7 @@ func update(delta):
 	pass
 
 func exit():
-	pass
+	agent.ui_layer.hide_ui_ready()
 
 #從enter裡拉出選skill、ring、equip
 func fetch_random_skills(level: int) -> Array:
@@ -59,9 +63,9 @@ func fetch_random_equipment(level: int) -> Dictionary:
 	results.shuffle()
 	return results[0] if results.size() > 0 else null
 
-func free_old_enemy():
+func free_actor(aim:String):
 	for child in agent.get_children():
-		if child.name == "enemy":
+		if child.name == aim:
 			child.queue_free()
 		
 func create_level_enemy(level:int):
