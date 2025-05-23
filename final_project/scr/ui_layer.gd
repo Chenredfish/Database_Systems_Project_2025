@@ -27,6 +27,10 @@ func input_show_ring_data(actor:Actor):
 func set_pause_btn_to_pause():
 	ui_playing.set_pause_btn_to_pause()
 
+#修改血量顯示
+func ui_playing_change_health_bar(aim:String, max_value:int, value:int, min_value:int = 0):
+	ui_playing.change_health_bar(aim, max_value, value, min_value)
+
 #開關UI的函式
 func show_ui_manage_change():
 	ui_manage_change.show()

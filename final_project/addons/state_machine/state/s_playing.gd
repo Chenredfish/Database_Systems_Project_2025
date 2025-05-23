@@ -144,6 +144,7 @@ func update_actor_cooldown(delta: float) -> void:
 			var result = player.damage_calculate(enemy,true,true)
 			#print(result)
 			player.attack_timer = 0.0
+			update_ui_actor_health('player')
 	else:
 		print("game over")
 		pause_battle()
@@ -152,7 +153,15 @@ func update_actor_cooldown(delta: float) -> void:
 		enemy.attack_timer += delta
 		if enemy.attack_timer >= enemy.cooldown:
 			var result = enemy.damage_calculate(player,true,false)
+			
 			#print(result)
 			enemy.attack_timer = 0.0
+			update_ui_actor_health('enemy')
 	else:
 		state_machine.set_value('to_ready_state', true)
+		
+func update_ui_actor_health(aim:String):
+	var max_value = state_machine.get_value(aim)._get_max_health()
+	var value = state_machine.get_value(aim).get('health') 
+	print(" = " + str())
+	agent.ui_layer.ui_playing_change_health_bar(aim, max_value, value)
