@@ -7,6 +7,7 @@ var id: int
 var _name: String
 var element: String
 var health: int 
+var max_health: int
 var attack_point: int 
 var magic_point: int 
 var attack_defence: int 
@@ -35,6 +36,7 @@ func _init(data: Dictionary) -> void:
 	_name = data.get("name", "")
 	element = data.get("element", "")
 	health = data.get("health", 0)
+	max_health = data.get("health", 0)
 	attack_point = data.get("attack_point",0 )
 	magic_point = data.get("magic_point", 0)
 	attack_defence = data.get("attack_defence", 0)
@@ -242,7 +244,7 @@ func _get_magic_defence():#魔法減傷
 
 func _get_max_health():#最大血量
 	var ring_state = get_combined_ring_state()
-	var health_now = self.health *(1 + ring_state["health"])
+	var health_now = self.max_health*(1 + ring_state["health"])
 	return health_now
 
 func damage_calculate(target:Actor, is_magic: bool = false, is_player: bool = false) -> String:#傷害計算包含血量變更
