@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq6yx0ug0h7gs"]
+[gd_scene load_steps=10 format=3 uid="uid://cq6yx0ug0h7gs"]
 
 [ext_resource type="Script" uid="uid://cathh8bis0ae3" path="res://scr/ui_layer.gd" id="1_bm0y0"]
 [ext_resource type="PackedScene" uid="uid://b3e4f0c3gm3fr" path="res://scr/UI/ui_manage_change.tscn" id="2_p33g3"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d1rxp4v41kbnj" path="res://scr/UI/ui_playing.tscn" id="5_teefr"]
 [ext_resource type="PackedScene" uid="uid://b2cy87pcluu68" path="res://scr/UI/ui_ready.tscn" id="6_ierlu"]
 [ext_resource type="PackedScene" uid="uid://m882op0f8k67" path="res://scr/UI/ui_show_ring.tscn" id="7_15h24"]
+[ext_resource type="PackedScene" uid="uid://cjfx3rayleivn" path="res://scr/UI/ui_manage_change_actor.tscn" id="8_7pv3a"]
+[ext_resource type="PackedScene" uid="uid://dlehlyeyqhfv6" path="res://scr/UI/ui_manage_change_skill.tscn" id="9_w4eue"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_bm0y0")
@@ -29,6 +31,12 @@ visible = false
 [node name="UiShowRing" parent="." instance=ExtResource("7_15h24")]
 visible = false
 
+[node name="UIManageChangeActor" parent="." instance=ExtResource("8_7pv3a")]
+visible = false
+
+[node name="UiManageChangeSkill" parent="." instance=ExtResource("9_w4eue")]
+visible = false
+
 [connection signal="exit_btn_pressed" from="UiManageChangeRing" to="." method="_on_ui_manage_change_ring_exit_btn_pressed"]
 [connection signal="exit_btn_pressed" from="UiManageMain" to="." method="_on_ui_manage_main_exit_btn_pressed"]
 [connection signal="manage_ring_btn_pressed" from="UiManageMain" to="." method="_on_ui_manage_main_manage_ring_btn_pressed"]
@@ -37,3 +45,5 @@ visible = false
 [connection signal="pause_btn_pressed" from="UiPlaying" to="." method="_on_ui_playing_pause_btn_pressed"]
 [connection signal="show_ring_btn_pressed" from="UiPlaying" to="." method="_on_ui_playing_show_ring_btn_pressed"]
 [connection signal="exit_show_ring" from="UiShowRing" to="." method="_on_ui_show_ring_exit_show_ring"]
+[connection signal="exit_btn_pressed" from="UIManageChangeActor" to="." method="_on_ui_manage_change_actor_exit_btn_pressed"]
+[connection signal="exit_btn_pressed" from="UiManageChangeSkill" to="." method="_on_ui_manage_change_skill_exit_btn_pressed"]

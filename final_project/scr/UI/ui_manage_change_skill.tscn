@@ -282,6 +282,7 @@ custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯技能"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search" to="." method="_on_skill_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]

@@ -6,10 +6,13 @@ extends CanvasLayer
 @onready var ui_playing = $UiPlaying
 @onready var ui_ready = $UiReady
 @onready var ui_show_ring = $UiShowRing
+@onready var ui_manage_change_actor = $UIManageChangeActor
+@onready var ui_manage_change_skill = $UiManageChangeSkill
 
 signal exit_playing
 signal exit_manage_main
 signal exit_manage_change_ring
+signal exit_manage_change_something
 signal exit_show_ring
 signal to_manage_ring
 signal to_manage_something(aim:String)
@@ -61,6 +64,18 @@ func show_ui_show_ring():
 func hide_ui_show_ring():
 	ui_show_ring.hide()
 	ui_show_ring.delete_show_ring_data()
+	
+func show_ui_manage_change_actor():
+	ui_manage_change_actor.show()
+
+func hide_ui_manage_change_actor():
+	ui_manage_change_actor.hide()
+	
+func show_ui_manage_change_skill():
+	ui_manage_change_skill.show()
+
+func hide_ui_manage_change_skill():
+	ui_manage_change_skill.hide()
 
 #管理按鈕按下
 func _on_ui_playing_exit_btn_pressed():
@@ -86,3 +101,9 @@ func _on_ui_show_ring_exit_show_ring():
 
 func _on_ui_playing_show_ring_btn_pressed(aim):
 	to_show_ring.emit(aim)
+
+func _on_ui_manage_change_actor_exit_btn_pressed():
+	exit_manage_change_something.emit()
+
+func _on_ui_manage_change_skill_exit_btn_pressed():
+	exit_manage_change_something.emit()
