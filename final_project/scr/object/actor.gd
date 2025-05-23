@@ -176,6 +176,7 @@ func build_new_ring(ring_id: int):#增加新的狀態
 
 	rings.append(new_ring)
 	print("已新增狀態：", new_ring.name) 
+	
 
 func get_element_multiplier_from_db(attacker_element: String, target_element: String) -> float:#屬性判定	
 	var query = "SELECT advantage FROM element WHERE name = ?"
