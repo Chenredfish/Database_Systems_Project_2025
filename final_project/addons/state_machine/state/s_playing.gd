@@ -115,7 +115,7 @@ func create_level_actor(level:int, name:String):
 	actor.name = name
 	
 	#這是一個測試show_ring的程式
-	if name == "player":
+	if name == "enemy":
 		for i in range(1, 10):
 			actor.build_new_ring(i)
 	else:
@@ -127,6 +127,8 @@ func pause_battle():
 	agent.get_node("player").hide()
 	agent.get_node("enemy").hide()
 	state_machine.set_value('is_pause', true)
+	#一律以暫停圖片回到戰鬥
+	agent.ui_layer.set_pause_btn_to_pause()
 	
 func pause_button_pressed():
 	var is_pause:bool = state_machine.get_value('is_pause')
@@ -144,6 +146,7 @@ func update_actor_cooldown(delta: float) -> void:
 			player.attack_timer = 0.0
 	else:
 		print("game over")
+		pause_battle()
 	
 	if enemy and enemy.health > 0:
 		enemy.attack_timer += delta

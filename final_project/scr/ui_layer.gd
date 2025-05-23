@@ -20,6 +20,9 @@ signal to_pause
 func input_show_ring_data(actor:Actor):
 	ui_show_ring.input_show_ring_data(actor)
 
+#設定暫停按鈕回到暫停畫面
+func set_pause_btn_to_pause():
+	ui_playing.set_pause_btn_to_pause()
 
 #開關UI的函式
 func show_ui_manage_change():

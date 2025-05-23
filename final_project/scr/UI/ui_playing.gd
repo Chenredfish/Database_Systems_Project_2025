@@ -11,10 +11,12 @@ signal show_ring_btn_pressed(aim:String)
 func _ready():
 	pause.expand_icon = true
 	pause.set("icon", PAUSE_SQUARE_BUTTON)
+	
+func set_pause_btn_to_pause():
+	pause.set("icon", PLAY_SQUARE_BUTTON)
 
 func _on_button_button_down():
 	exit_btn_pressed.emit()
-
 
 func _on_pause_pressed():
 	pause_btn_pressed.emit()

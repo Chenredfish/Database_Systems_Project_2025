@@ -46,6 +46,7 @@ func exit():
 	to_manage_ring = false
 	state_machine.set_value('to_manage_ring', to_manage_ring)
 	
+	
 	agent.ui_layer.hide_ui_manage_main()
 
 #按鈕對應到的callable function
