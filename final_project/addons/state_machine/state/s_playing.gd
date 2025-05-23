@@ -29,6 +29,9 @@ func enter(_msg:Dictionary = {}):
 		agent.ui_layer.to_show_ring.connect(show_ring)
 	if !agent.ui_layer.to_pause.is_connected(pause_button_pressed):
 		agent.ui_layer.to_pause.connect(pause_button_pressed)
+		
+	update_ui_actor_health('player')
+	update_ui_actor_health('enemy')
 
 func update(delta):
 	#切換管理者介面
@@ -144,7 +147,7 @@ func update_actor_cooldown(delta: float) -> void:
 			var result = player.damage_calculate(enemy,true,true)
 			#print(result)
 			player.attack_timer = 0.0
-			update_ui_actor_health('player')
+			update_ui_actor_health('enemy')
 	else:
 		print("game over")
 		pause_battle()
@@ -156,12 +159,12 @@ func update_actor_cooldown(delta: float) -> void:
 			
 			#print(result)
 			enemy.attack_timer = 0.0
-			update_ui_actor_health('enemy')
+			update_ui_actor_health('player')
 	else:
 		state_machine.set_value('to_ready_state', true)
 		
 func update_ui_actor_health(aim:String):
 	var max_value = state_machine.get_value(aim)._get_max_health()
 	var value = state_machine.get_value(aim).get('health') 
-	print(" = " + str())
+	print("max_value = " + str(max_value))
 	agent.ui_layer.ui_playing_change_health_bar(aim, max_value, value)
