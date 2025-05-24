@@ -33,3 +33,7 @@ project/assembly_name="新遊戲專案"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
