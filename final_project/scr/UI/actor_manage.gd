@@ -1,4 +1,5 @@
 extends MarginContainer
+signal refresh_database
 
 @onready var actor_id = $HBC/actor_id/LineEdit
 @onready var actor_name = $HBC/actor_name/LineEdit
@@ -39,6 +40,7 @@ func actor_change():
 		"magic_defence":actor_magic_defence.text
 	}
 	db.update_rows("actor", "id = '" + actor_id.text + "'", data)
+	refresh_database.emit()
 
 func actor_add():
 	var data = {
@@ -53,3 +55,4 @@ func actor_add():
 		"magic_defence":actor_magic_defence.text
 	}
 	db.insert_row("actor", data)
+	refresh_database.emit()

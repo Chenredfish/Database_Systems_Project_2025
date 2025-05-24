@@ -7,6 +7,7 @@ signal previous_page_pressed
 @onready var ring_page = 0
 @onready var all_ring_data = ring_test.db.select_rows("ring", "id > 0", ["*"])
 @onready var search_ring_data = ring_test.db.select_rows("ring", "id > 0", ["*"])
+var object_delete = load("res://scr/UI/object_delete.gd").new()
 
 func _ready():
 	ring_test.hide()
@@ -59,3 +60,10 @@ func _add_ring(ring_n):	#顯示每個狀態
 	new_ring.get_node("PC/VBC/ring_magic_power").text = "魔法攻擊：" + str(search_ring_data[ring_n]["magic_power"])
 	new_ring.get_node("PC/VBC/ring_attack_defence").text = "物理防禦：" + str(search_ring_data[ring_n]["attack_defence"])
 	new_ring.get_node("PC/VBC/ring_magic_defence").text = "魔法防禦：" + str(search_ring_data[ring_n]["magic_defence"])
+	new_ring.get_node("ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
+
+func _on_ring_delete_pressed(ring_id):
+	print("deleted")
+	object_delete._object_delete(ring_test.db, "ring", str(ring_id))
+	search_ring_data = object_delete._refresh_database(ring_test.db, "ring")
+	_page_update()
