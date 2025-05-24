@@ -129,13 +129,16 @@ func show_skills_selection():
 
 		name_label.text = skill_data["name"]
 
-		var damage_type_text = "物理傷害" if int(skill_data["is_magic"]) == 0 else "魔法傷害"
-		var power_label = "物攻" if int(skill_data["is_magic"]) == 0 else "魔攻"
+		var is_magic = int(skill_data["is_magic"])
+		var damage_type_text = "物理傷害" if is_magic == 0 else "魔法傷害"
+		var power_label = "物攻" if is_magic == 0 else "魔攻"
+
+		var power_percent = int(float(skill_data["power"]) * 100)
 
 		var desc_text = ""
 		desc_text += "屬性：%s\n" % skill_data["element"]
 		desc_text += "%s\n" % damage_type_text
-		desc_text += "倍率：%s%% %s\n" % [str(skill_data["power"]), power_label]
+		desc_text += "倍率：%d%% %s\n" % [power_percent, power_label]
 		desc_text += "冷卻時間：%ss" % str(skill_data["cooldown"])
 
 		desc_label.text = desc_text.strip_edges()
