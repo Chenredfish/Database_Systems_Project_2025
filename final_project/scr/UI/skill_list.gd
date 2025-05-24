@@ -7,6 +7,7 @@ signal previous_page_pressed
 @onready var skill_page = 0
 @onready var all_skill_data = skill_test.db.select_rows("skill", "id > 0", ["*"])
 @onready var search_skill_data = skill_test.db.select_rows("skill", "id > 0", ["*"])
+var object_delete = load("res://scr/UI/object_delete.gd").new()
 
 func _ready():
 	skill_test.hide()
@@ -49,7 +50,7 @@ func _search_skill(keyword):
 
 func _add_skill(skill_n):	#顯示每個狀態
 	var new_skill = skill_test.duplicate()
-	new_skill.name = "new_skill" + str(skill_n)
+	new_skill.name = str(search_skill_data[skill_n]["id"])
 	add_child(new_skill)
 	new_skill.show()
 	new_skill.get_node("PC/VBC/skill_name").text = str(search_skill_data[skill_n]["name"])
@@ -63,3 +64,9 @@ func _add_skill(skill_n):	#顯示每個狀態
 		new_skill.get_node("PC/VBC/skill_is_magic").text = "攻擊類別：物理"
 	new_skill.get_node("PC/VBC/skill_power").text = "攻擊係數：" + str(search_skill_data[skill_n]["power"])
 	new_skill.get_node("PC/VBC/skill_cooldown").text = "技能冷卻：" + str(search_skill_data[skill_n]["cooldown"])
+	new_skill.get_node("skill_del/Button").pressed.connect(Callable(self, "_on_skill_delete_pressed").bind(str(search_skill_data[skill_n]["id"])))
+
+func _on_skill_delete_pressed(skill_id):
+	object_delete._object_delete(skill_test.db, "skill", str(skill_id))
+	search_skill_data = object_delete._refresh_database(skill_test.db, "skill")
+	_page_update()

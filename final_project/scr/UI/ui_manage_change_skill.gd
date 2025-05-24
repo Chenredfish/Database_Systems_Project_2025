@@ -1,6 +1,7 @@
 extends Control
 
 signal exit_btn_pressed
+signal refresh_database
 
 @onready var skill_list = $MarginContainer/VBoxContainer/skill_list/skill_list
 @onready var db = SQLite.new()

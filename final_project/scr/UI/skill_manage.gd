@@ -1,5 +1,7 @@
 extends MarginContainer
 
+signal refresh_database
+
 @onready var skill_id = $skill_status/HBoxContainer/skill_id/LineEdit
 @onready var skill_name = $skill_status/HBoxContainer/skill_name/LineEdit
 @onready var skill_level = $skill_status/HBoxContainer/skill_level/LineEdit
@@ -35,6 +37,7 @@ func skill_change():
 		"cooldown":skill_cooldown.text,
 	}
 	db.update_rows("skill", "id = '" + skill_id.text + "'", data)
+	refresh_database.emit()
 
 func skill_add():
 	var data = {
@@ -47,3 +50,4 @@ func skill_add():
 		"cooldown":skill_cooldown.text,
 	}
 	db.insert_row("skill", data)
+	refresh_database.emit()

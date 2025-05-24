@@ -1,5 +1,6 @@
 extends Control
 
+signal refresh_database
 signal exit_btn_pressed
 
 @onready var actor_list = $MC/VBC/actor_list/actor_list
@@ -9,6 +10,7 @@ signal exit_btn_pressed
 func _ready():
 	db.path = "res://data/game"
 	db.open_db()
+	refresh_database.connect(actor_list._refresh_database)
 
 func _on_exit_button_pressed():
 	exit_btn_pressed.emit()
