@@ -34,6 +34,9 @@ func enter(_msg: Dictionary = {}):
 	state_machine.set_value("available_skills", available_skills)
 	state_machine.set_value("available_rings", available_rings)
 	state_machine.set_value("available_equipment", available_equipment)
+	
+	show_rings_selection() #顯示ring，挑ring
+	show_skills_selection()
 
 func update(delta):
 	pass
@@ -79,3 +82,60 @@ func create_level_enemy(level:int):
 #更新目前的level, 打五次同個level就來
 func update_level():
 	pass
+
+#挑選ring環節	，顯示到ui_ready
+func show_rings_selection():
+	var ring_nodes = [
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1"),
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2"),
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3"),
+	]
+
+	for i in range(3):
+		var ring_data = available_rings[i]
+		var ring_node = ring_nodes[i]
+		var name_label = ring_node.get_node("PanelContainer/VBoxContainer/ring_name")
+		var effect_label = ring_node.get_node("PanelContainer/VBoxContainer/ring_effect")
+
+		name_label.text = ring_data["name"]
+		
+		var effect_text = ""
+		var props = {
+			"attack_power": "物攻",
+			"magic_power": "魔攻",
+			"attack_defence": "物防",
+			"magic_defence": "魔防",
+			"health": "血量"
+		}
+		
+		for key in props.keys():
+			if int(ring_data[key]) != 0:
+				effect_text += "%s +%d\n" % [props[key], int(ring_data.get(key, 0))]
+		
+		effect_label.text = effect_text.strip_edges()
+		
+func show_skills_selection():
+	var skill_nodes = [
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1"),
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2"),
+		agent.ui_layer.ui_ready.get_node("MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3"),
+	]
+
+	for i in range(3):
+		var skill_data = available_skills[i]
+		var skill_node = skill_nodes[i]
+		var name_label = skill_node.get_node("PanelContainer/VBoxContainer/skill_name")
+		var desc_label = skill_node.get_node("PanelContainer/VBoxContainer/skill_desc")
+
+		name_label.text = skill_data["name"]
+
+		var damage_type_text = "物理傷害" if int(skill_data["is_magic"]) == 0 else "魔法傷害"
+		var power_label = "物攻" if int(skill_data["is_magic"]) == 0 else "魔攻"
+
+		var desc_text = ""
+		desc_text += "屬性：%s\n" % skill_data["element"]
+		desc_text += "%s\n" % damage_type_text
+		desc_text += "倍率：%s%% %s\n" % [str(skill_data["power"]), power_label]
+		desc_text += "冷卻時間：%ss" % str(skill_data["cooldown"])
+
+		desc_label.text = desc_text.strip_edges()
