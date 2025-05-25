@@ -166,5 +166,5 @@ func update_actor_cooldown(delta: float) -> void:
 func update_ui_actor_health(aim:String):
 	var max_value = state_machine.get_value(aim)._get_max_health()
 	var value = state_machine.get_value(aim).get('health') 
-	print("max_value = " + str(max_value))
+	#print("max_value = " + str(max_value))
 	agent.ui_layer.ui_playing_change_health_bar(aim, max_value, value)
