@@ -24,6 +24,10 @@ signal to_pause
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
 	ui_show_ring.input_show_ring_data(actor)
+	
+#輸入資料給裝備顯示和選擇
+func input_show_equipment_data(actor:Actor):
+	ui_ready.input_show_equipment_data(actor)
 
 #設定暫停按鈕回到暫停畫面
 func set_pause_btn_to_pause():

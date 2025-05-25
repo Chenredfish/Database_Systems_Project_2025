@@ -26,7 +26,7 @@ func delete_show_ring_data():
 
 func show_actor_data(actor:Actor):
 	health.text = str(actor.get("health"))
-	max_health.text = str(int(actor._get_max_health()))
+	max_health.text = str(int(actor.get('max_health')))
 	level.text = str(actor.get("level"))
 	
 	#取名錯誤，type已經改名為element

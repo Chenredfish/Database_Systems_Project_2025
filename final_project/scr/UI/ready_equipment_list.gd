@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func input_show_equipment_data(actor:Actor):
 	search_equipment_data = actor.get("equipment_list")
+	#print(search_equipment_data[0].name)
 	all_ring_data = search_equipment_data
 	_page_update()
 	
@@ -26,7 +27,7 @@ func _page_update():	#刷新頁面
 
 func _add_ring(equipment_n):
 	var new_equipment = equipment_1.duplicate()
-	new_equipment.name = "new_ring" + str(equipment_n)
+	new_equipment.name = "new_equipment" + str(equipment_n)
 	v_box_container.add_child(new_equipment)
 	new_equipment.show()
 	#new_equipment.get_node("VBC/ring_name").text = str(search_equipment_data[equipment_n].get("name"))
