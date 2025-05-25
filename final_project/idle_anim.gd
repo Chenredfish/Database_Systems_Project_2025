@@ -1,56 +1,64 @@
 extends Node2D
 class_name IdleAnimation 
 
+# 基礎路徑：例如 "res://assets/Actor_anim/enemy_idle/" 或 "res://assets/Actor_anim/player_idle/"
+@export var animation_base_path: String = "res://assets/Actor_anim/enemy_idle/" # 預設為敵人路徑
+@export var subfolder_prefix: String = "boss" # 預設為 "boss"
+@export_range(1, 100) var subfolder_id_min: int = 1
+# 隨機 ID 範圍的最大值 (例如 15 for boss, 5 for hero)
+@export_range(1, 100) var subfolder_id_max: int = 15 # 預設為敵人的最大值
+
 @export var anim_name: String = "idle" # 動畫名稱，預設為 "idle"
-@export var anim_speed: float = 7.0 
-@export var anim_loop: bool = true 
-@export var sprite_scale: Vector2 = Vector2(2.0, 2.0) 
+@export var anim_speed: float = 7.0   
+@export var anim_loop: bool = true    
+
+@export var sprite_scale: Vector2 = Vector2(2.0, 2.0)  
 @export var sprite_position: Vector2 = Vector2(1350, 340) 
-# -----------------------------------------------------
+@export var sprite_z_index: int = 1 
+@export var flip_horizontally: bool = false 
 
 var animated_sprite: AnimatedSprite2D
 
 
 func _ready():
-	randomize()
+	randomize() 
 
 	animated_sprite = AnimatedSprite2D.new()
 	add_child(animated_sprite) 
 
-	# 隨機Boss，15挑1
-	var random_boss_id = randi_range(1, 15) 
-
 	animated_sprite.position = sprite_position
 	animated_sprite.scale = sprite_scale
-	animated_sprite.z_index = 1 # 顯示在適當的層級
+	animated_sprite.z_index = sprite_z_index
+	animated_sprite.flip_h = flip_horizontally # 應用左右翻轉設定
 
-	setup_animation_for_boss(random_boss_id)
+	# 根據設定的範圍隨機選擇一個 ID
+	var random_id = randi_range(subfolder_id_min, subfolder_id_max)
+
+	# 動畫幀資料夾路徑
+	var full_animation_path = animation_base_path + subfolder_prefix + str(random_id) + "/"
+
+	setup_animation(full_animation_path, random_id) 
 
 
-func setup_animation_for_boss(boss_id: int):
-	# 
-	var path_to_load = "res://assets/Actor_anim/enemy_idle/boss" + str(boss_id) + "/"
-	
+func setup_animation(path_to_load: String, selected_id: int): 
 	if path_to_load.is_empty():
 		push_warning("動畫幀路徑為空！無法載入動畫。")
-		# 清除現有動畫以避免顯示錯誤
 		animated_sprite.sprite_frames = null
 		return
 
 	var frames = SpriteFrames.new()
-	animated_sprite.sprite_frames = frames 
+	animated_sprite.sprite_frames = frames
 
-	load_animation_frames(frames, anim_name, path_to_load) 
+	load_animation_frames(frames, anim_name, path_to_load)
 
-	# 確保播放動畫
+	# 確保動畫存在並播放它
 	if frames.has_animation(anim_name):
-		# 檢查是否已在播放，避免重複啟動
 		if animated_sprite.animation != anim_name or not animated_sprite.is_playing():
 			animated_sprite.play(anim_name)
-		print("成功載入並播放 Boss%d 的 '%s' 動畫。" % [boss_id, anim_name])
+		# 打印時使用傳入的 selected_id
+		print("成功載入並播放 '%s' (ID: %d) 的 '%s' 動畫。" % [subfolder_prefix, selected_id, anim_name])
 	else:
 		push_warning("動畫名稱 '" + anim_name + "' 不存在於 SpriteFrames 中。")
-		# 如果動畫不存在，也清除避免顯示錯誤
 		animated_sprite.sprite_frames = null
 
 
@@ -58,34 +66,31 @@ func load_animation_frames(sprite_frames_res: SpriteFrames, anim_name_to_add: St
 	sprite_frames_res.add_animation(anim_name_to_add)
 	var dir = DirAccess.open(path)
 	if dir == null:
-		push_error("無法打開動畫資料夾: " + path)
+		push_error("無法打開動畫資料夾: " + path + ". 請檢查路徑和檔案是否存在。")
 		return
 
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	var file_names_to_load = []
 	while file_name != "":
-		if !dir.current_is_dir() and (file_name.ends_with(".png") || file_name.ends_with(".webp")):
+		if not dir.current_is_dir() and (file_name.ends_with(".png") || file_name.ends_with(".webp")):
 			file_names_to_load.append(file_name)
 		file_name = dir.get_next()
 	dir.list_dir_end()
-	
-	file_names_to_load.sort() # 檔名排序，確保動畫順序正確
+
+	file_names_to_load.sort()
 
 	var loaded_frames_count = 0
 	for f_name in file_names_to_load:
-		var texture_path = path + "/" + f_name
+		var texture_path = path + f_name # 正確拼接路徑
 		var tex = load(texture_path)
 		if tex:
 			sprite_frames_res.add_frame(anim_name_to_add, tex)
 			loaded_frames_count += 1
-	
+
 	if loaded_frames_count == 0:
 		push_warning("資料夾 '" + path + "' 中沒有找到任何圖片幀。")
 		return
 
-	# 統一設定動畫的速度和循環
 	sprite_frames_res.set_animation_speed(anim_name_to_add, anim_speed)
 	sprite_frames_res.set_animation_loop(anim_name_to_add, anim_loop)
-
-	print("成功載入動畫 '" + anim_name_to_add + "'，共 " + str(loaded_frames_count) + " 幀。")
