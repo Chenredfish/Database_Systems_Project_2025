@@ -11,6 +11,10 @@ var UI_chosen_theme = load("res://assets/UI_chosen_theme.tres")
 var search_equipment_data:Array[Equipment] = []
 var all_equipment_data:Array[Equipment] = []
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+var equipment_chosen
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
 =======
 var equipment_chosen
 >>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
@@ -39,6 +43,7 @@ func _page_update():	#刷新頁面
 		_add_equipment(count)
 		count += 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 func _search_equipment(keyword:String):
 	var count = 0
@@ -58,6 +63,9 @@ func _search_equipment(keyword:String):
 	await get_tree().process_frame
 	#print(search_ring_data)
 	_page_update()
+=======
+	print("refreshed")
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
 =======
 	print("refreshed")
 >>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
