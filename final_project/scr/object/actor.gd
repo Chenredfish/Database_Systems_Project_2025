@@ -24,9 +24,10 @@ var skill: Skill
 var rings: Array[Ring] = []
 var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
 #var enemy_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture/monster.png")
-var sprite_textures = []
+#var sprite_textures = []
 var sprite = Sprite2D.new()
-var sprite2 = Sprite2D.new()
+var enemy_animation_node: IdleAnimation  #
+#var sprite2 = Sprite2D.new()
 var player_damage_numbers_origin = Node2D.new()
 var enemy_damege_numbers_origin = Node2D.new()
 # 初始化方法
@@ -46,8 +47,8 @@ func _init(data: Dictionary) -> void:
 	sprite.z_index = 1
 	
 	if level != 0:
-		put_enemy_picture()
-		
+		#put_enemy_picture()
+		setup_enemy_animation()
 	put_hero_picture()	
 		
 	print("成功建立：%s，Level: %d" % [_name, level])
@@ -73,7 +74,8 @@ func put_hero_picture():
 	sprite.scale = Vector2(0.5,0.5)
 	sprite.texture = hero_texture
 	add_child(sprite)	
-		
+
+"""		
 func load_textures_from_folder(path: String):
 	var dir = DirAccess.open(path)
 	if dir == null:
@@ -105,6 +107,7 @@ func put_enemy_picture():
 	sprite2.texture = sprite_textures[randi() % sprite_textures.size()]
 	#else:
 		#push_error("找不到節點或圖片未載入")
+"""
 
 func add_equipment_to_list(equipment_id: int):#將裝備加入擁有清單中
 	var query = "SELECT id, name, attack_defence, magic_defence, level FROM equipment WHERE id = ?"
@@ -284,3 +287,9 @@ func damage_calculate(target:Actor, is_magic: bool = false, is_player: bool = fa
 		DamageNumber.display_number(real_damage, damage_numbers_origin.global_position, is_critical)
 		return "%s took %d damage." %[target._name, int(real_damage)]
 	
+func setup_enemy_animation(): 
+	# 實例化 IdleAnimation 節點
+	enemy_animation_node = IdleAnimation.new()
+	enemy_animation_node.name = "EnemyIdleAnimation" 
+	add_child(enemy_animation_node)
+	print("已為敵人載入 IdleAnimation。")

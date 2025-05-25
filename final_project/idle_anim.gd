@@ -5,7 +5,7 @@ class_name IdleAnimation
 @export var anim_speed: float = 7.0 
 @export var anim_loop: bool = true 
 @export var sprite_scale: Vector2 = Vector2(2.0, 2.0) 
-@export var sprite_position: Vector2 = Vector2(1250, 400) 
+@export var sprite_position: Vector2 = Vector2(1350, 350) 
 # -----------------------------------------------------
 
 var animated_sprite: AnimatedSprite2D
@@ -17,8 +17,8 @@ func _ready():
 	animated_sprite = AnimatedSprite2D.new()
 	add_child(animated_sprite) 
 
-	# 隨機Boss1~10
-	var random_boss_id = randi_range(1, 10) 
+	# 隨機Boss，15挑1
+	var random_boss_id = randi_range(1, 15) 
 
 	animated_sprite.position = sprite_position
 	animated_sprite.scale = sprite_scale
