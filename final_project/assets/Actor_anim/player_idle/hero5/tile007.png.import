@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw3v1kr4kuoud"
-path="res://.godot/imported/Noctis.png-4c02541a3b601d24114f4a11d6824bc2.ctex"
+uid="uid://bx6j5016plgv8"
+path="res://.godot/imported/tile007.png-5759003934c12ad2ff68d31760febda5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Actor_anim/player_idle/Noctis.png"
-dest_files=["res://.godot/imported/Noctis.png-4c02541a3b601d24114f4a11d6824bc2.ctex"]
+source_file="res://assets/Actor_anim/player_idle/hero5/tile007.png"
+dest_files=["res://.godot/imported/tile007.png-5759003934c12ad2ff68d31760febda5.ctex"]
 
 [params]
 
