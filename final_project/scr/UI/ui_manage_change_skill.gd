@@ -5,14 +5,15 @@ signal refresh_database
 
 @onready var db = SQLite.new()
 
-@onready var id_input = %LineEdit_1
-@onready var name_input = %LineEdit_2
-@onready var level_input = %LineEdit_3
-@onready var element_input = %LineEdit_4
-@onready var is_magic_input = %LineEdit_5
-@onready var power_input = %LineEdit_6
-@onready var cooldown_input = %LineEdit_7
-@onready var apply_button = %skill_manage_btn
+@onready var id_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_id/LineEdit
+@onready var name_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_name/LineEdit
+@onready var level_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_level/LineEdit
+@onready var element_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_element/LineEdit
+@onready var is_magic_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_is_magic/LineEdit
+@onready var power_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_power/LineEdit
+@onready var cooldown_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_cooldown/LineEdit
+@onready var apply_button = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_manage/skill_manage_btn
+
 
 @onready var skill_list = $MarginContainer/VBoxContainer/skill_list/skill_list
 @onready var skill_search = $MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search
@@ -20,8 +21,7 @@ signal refresh_database
 func _ready():
 	db.path = "res://data/game.db"
 	db.open_db()
-	if apply_button:
-		apply_button.pressed.connect(_on_apply_pressed)
+	
 
 func _on_exit_button_pressed():
 	exit_btn_pressed.emit()
@@ -101,3 +101,6 @@ func show_alert(msg: String):
 	dialog.dialog_text = msg
 	add_child(dialog)
 	dialog.popup_centered()
+
+func _on_skill_manage_btn_pressed() -> void:
+	_on_apply_pressed()

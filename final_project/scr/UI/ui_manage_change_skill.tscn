@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://jbimh8xkaq5m" path="res://scr/UI/ui_manage_change_skill.gd" id="2_omd2g"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_d8xsi"]
 [ext_resource type="Script" uid="uid://bud2kmpri38r0" path="res://scr/UI/skill_list.gd" id="4_omd2g"]
-[ext_resource type="Script" uid="uid://b54f6grn5n57y" path="res://scr/UI/skill_test.gd" id="4_qnok6"]
+[ext_resource type="Script" path="res://scr/UI/skill_test.gd" id="4_qnok6"]
 [ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="5_3ihih"]
 [ext_resource type="Script" uid="uid://dikx02s47qj4o" path="res://scr/UI/skill_manage.gd" id="7_d8xsi"]
 
@@ -286,4 +286,5 @@ text = "新增 / 編輯技能"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search" to="." method="_on_skill_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_manage/skill_manage_btn" to="." method="_on_skill_manage_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_manage/skill_manage_btn" to="MarginContainer/VBoxContainer/skill_manage" method="_on_skill_manage_btn_pressed"]

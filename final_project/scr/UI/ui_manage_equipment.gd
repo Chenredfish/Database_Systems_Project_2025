@@ -2,18 +2,19 @@ extends Control
 
 signal refresh_database
 signal exit_btn_pressed
+signal next_page_pressed
 
 @onready var db = SQLite.new()
 
-@onready var id_input = %LineEdit_1
-@onready var name_input = %LineEdit_2
-@onready var level_input = %LineEdit_3
-@onready var attack_defence_input = %LineEdit_4
-@onready var magic_defence_input = %LineEdit_5
-@onready var apply_button = %equipment_manage_btn
+@onready var id_input = $MC/VBC/equipment_manage/HBC/equipment_id/LineEdit
+@onready var name_input = $MC/VBC/equipment_manage/HBC/equipment_name/LineEdit
+@onready var level_input = $MC/VBC/equipment_manage/HBC/equipment_level/LineEdit
+@onready var attack_defence_input = $MC/VBC/equipment_manage/HBC/equipment_attack_defence/LineEdit
+@onready var magic_defence_input = $MC/VBC/equipment_manage/HBC/equipment_magic_defence/LineEdit
+@onready var apply_button = $MC/VBC/equipment_manage/HBC/equipment_manage/equipment_manage_btn
 
 @onready var equipment_list = $MC/VBC/equipment_list/equipment_list
-@onready var equipment_search = $MC/VBC/switch_pages/HBC/equipment_search/LineEdit
+@onready var equipment_search = $MC/VBC/switch_pages/HBC/equipment_search
 
 func _ready():
 	db.path = "res://data/game.db"
@@ -42,11 +43,11 @@ func _on_apply_pressed():
 	var magic_defence = magic_defence_input.text.strip_edges()
 
 	if [id, name, level, attack_defence, magic_defence].has(""):
-		show_alert("❗請填寫所有欄位")
+		print("❗請填寫所有欄位")
 		return
 
 	if not level.is_valid_int() or not attack_defence.is_valid_int() or not magic_defence.is_valid_int():
-		show_alert("⚠️ level、attack_defence、magic_defence 必須為整數")
+		print("⚠️ level、attack_defence、magic_defence 必須為整數")
 		return
 
 	var lv = int(level)
@@ -54,20 +55,20 @@ func _on_apply_pressed():
 	var md = int(magic_defence)
 
 	if lv < 0:
-		show_alert("⚠️ level 必須為非負整數")
+		print("⚠️ level 必須為非負整數")
 		return
 	if ad <= 0 or md <= 0:
-		show_alert("⚠️ 防禦力需為正整數")
+		print("⚠️ 防禦力需為正整數")
 		return
 
 	db.query_with_args("SELECT COUNT(*) as count FROM equipment WHERE id = ?", [id])
 	if db.query_result[0]["count"] > 0:
-		show_alert("❌ ID 已存在")
+		print("❌ ID 已存在")
 		return
 
 	db.query_with_args("SELECT COUNT(*) as count FROM equipment WHERE name = ?", [name])
 	if db.query_result[0]["count"] > 0:
-		show_alert("❌ 名稱已存在")
+		print("❌ 名稱已存在")
 		return
 
 	db.query_with_args(
@@ -75,10 +76,7 @@ func _on_apply_pressed():
 		[id, name, lv, ad, md]
 	)
 	refresh_database.emit()
-	show_alert("資料已儲存")
+	print("✅ 資料已儲存")
 
-func show_alert(msg: String):
-	var dialog = AcceptDialog.new()
-	dialog.dialog_text = msg
-	add_child(dialog)
-	dialog.popup_centered()
+func _on_equipment_manage_btn_pressed() -> void:
+	_on_apply_pressed()
