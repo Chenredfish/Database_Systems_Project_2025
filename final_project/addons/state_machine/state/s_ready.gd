@@ -96,10 +96,13 @@ func show_rings_selection():
 		var ring_node = ring_nodes[i]
 		var name_label = ring_node.get_node("PanelContainer/VBoxContainer/ring_name")
 		var effect_label = ring_node.get_node("PanelContainer/VBoxContainer/ring_effect")
-
+		
 		name_label.text = ring_data["name"]
 		
 		var effect_text = ""
+		var level = int(ring_data.get("level", 0))  
+		effect_text += "等級：%d\n" % level  
+		
 		var props = {
 			"attack_power": "物攻",
 			"magic_power": "魔攻",
@@ -135,10 +138,11 @@ func show_skills_selection():
 		var is_magic = int(skill_data["is_magic"])
 		var damage_type_text = "物理傷害" if is_magic == 0 else "魔法傷害"
 		var power_label = "物攻" if is_magic == 0 else "魔攻"
-
 		var power_percent = int(float(skill_data["power"]) * 100)
+		var level = int(skill_data.get("level", 0))
 
 		var desc_text = ""
+		desc_text += "等級：%d\n" % level
 		desc_text += "屬性：%s\n" % skill_data["element"]
 		desc_text += "%s\n" % damage_type_text
 		desc_text += "倍率：%d%% %s\n" % [power_percent, power_label]
