@@ -104,6 +104,17 @@ theme = SubResource("Theme_qncra")
 theme_override_font_sizes/font_size = 36
 text = "變更狀態效果"
 
+[node name="manage_ring2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(404, 89)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/manage_ring2"]
+layout_mode = 2
+theme = SubResource("Theme_qncra")
+theme_override_font_sizes/font_size = 36
+text = "查看對戰紀錄"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_character/Button" to="." method="_to_manage_actor_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_item/Button" to="." method="_to_manage_equipment_button_pressed"]
