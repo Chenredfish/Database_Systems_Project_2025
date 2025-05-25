@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func input_show_equipment_data(actor:Actor):
 	search_equipment_data = actor.get("equipment_list")
-	#print(search_equipment_data[0].name)
 	all_ring_data = search_equipment_data
 	_page_update()
 	
@@ -30,4 +29,9 @@ func _add_ring(equipment_n):
 	new_equipment.name = "new_equipment" + str(equipment_n)
 	v_box_container.add_child(new_equipment)
 	new_equipment.show()
-	#new_equipment.get_node("VBC/ring_name").text = str(search_equipment_data[equipment_n].get("name"))
+	new_equipment.get_node("HBoxContainer/equipment_id/Label").text = str(search_equipment_data[equipment_n].get("id"))
+	new_equipment.get_node("HBoxContainer/equipment_name/Label").text = str(search_equipment_data[equipment_n].get("name"))
+	new_equipment.get_node("HBoxContainer/equipment_level/Label").text = str(search_equipment_data[equipment_n].get("level"))
+	print(str(search_equipment_data[equipment_n].get("level")))
+	new_equipment.get_node("HBoxContainer/equipment_attack_defence/Label").text = str(search_equipment_data[equipment_n].get("attack_defence"))
+	new_equipment.get_node("HBoxContainer/equipment_magic_defence/Label").text = str(search_equipment_data[equipment_n].get("magic_defence"))
