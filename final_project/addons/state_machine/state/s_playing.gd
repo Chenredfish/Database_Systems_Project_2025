@@ -117,13 +117,6 @@ func create_level_actor(level:int, name:String):
 	var actor = Actor.new(actor_data[rand_actor_id])
 	actor.name = name
 	
-	#這是一個測試show_ring的程式
-	if name == "enemy":
-		for i in range(1, 10):
-			actor.build_new_ring(i)
-	else:
-		actor.build_new_ring(1)
-	
 	state_machine.set_value(name, actor)
 	
 func pause_battle():
@@ -166,5 +159,5 @@ func update_actor_cooldown(delta: float) -> void:
 func update_ui_actor_health(aim:String):
 	var max_value = state_machine.get_value(aim)._get_max_health()
 	var value = state_machine.get_value(aim).get('health') 
-	print("max_value = " + str(max_value))
+	#print("max_value = " + str(max_value))
 	agent.ui_layer.ui_playing_change_health_bar(aim, max_value, value)

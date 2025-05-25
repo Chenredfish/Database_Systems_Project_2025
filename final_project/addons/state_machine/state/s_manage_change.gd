@@ -18,7 +18,7 @@ func enter(_msg:Dictionary = {}):
 		"skill":
 			agent.ui_layer.show_ui_manage_change_skill()
 		"equipment":
-			pass
+			agent.ui_layer.show_ui_manage_equipment()
 		"actor":
 			agent.ui_layer.show_ui_manage_change_actor()
 
@@ -35,6 +35,7 @@ func exit():
 	
 	agent.ui_layer.hide_ui_manage_change_actor()
 	agent.ui_layer.hide_ui_manage_change_skill()
+	agent.ui_layer.hide_ui_manage_equipment()
 	
 func exit_manage_change_something():
 	state_machine.set_value('to_playing', true)

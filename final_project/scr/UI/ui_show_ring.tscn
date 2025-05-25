@@ -71,6 +71,18 @@ layout_mode = 2
 text = "660"
 horizontal_alignment = 1
 
+[node name="Label1" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "最大血量"
+horizontal_alignment = 1
+
+[node name="max_health" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1000"
+horizontal_alignment = 1
+
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 text = "等級"
