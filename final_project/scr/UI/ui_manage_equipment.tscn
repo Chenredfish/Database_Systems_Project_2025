@@ -26,6 +26,7 @@ theme = ExtResource("1_c7y5k")
 script = ExtResource("2_3j5ax")
 
 [node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
