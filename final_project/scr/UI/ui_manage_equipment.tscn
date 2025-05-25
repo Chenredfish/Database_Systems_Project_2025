@@ -26,6 +26,7 @@ theme = ExtResource("1_c7y5k")
 script = ExtResource("2_3j5ax")
 
 [node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
@@ -296,7 +297,9 @@ custom_minimum_size = Vector2(225, 49)
 layout_mode = 2
 text = "新增 / 編輯裝備"
 
+[connection signal="pressed" from="MC/VBC/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MC/VBC/switch_pages/HBC/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MC/VBC/switch_pages/HBC/equipment_search/equipment_search" to="." method="_on_equipment_search_text_submitted"]
 [connection signal="pressed" from="MC/VBC/switch_pages/HBC/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
+[connection signal="pressed" from="MC/VBC/equipment_manage/HBC/equipment_manage/equipment_manage_btn" to="." method="_on_equipment_manage_btn_pressed"]
 [connection signal="pressed" from="MC/VBC/equipment_manage/HBC/equipment_manage/equipment_manage_btn" to="MC/VBC/equipment_manage" method="_on_equipment_manage_btn_pressed"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2cy87pcluu68"]
+[gd_scene load_steps=10 format=3 uid="uid://b2cy87pcluu68"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_b8djm"]
+[ext_resource type="Script" uid="uid://bvpmjjyqpcpv4" path="res://scr/UI/ready_equipment_list.gd" id="2_84ty6"]
+[ext_resource type="Script" uid="uid://pg26bt4yop56" path="res://scr/UI/ui_ready.gd" id="2_621v3"]
 [ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="3_84ty6"]
 
 [sub_resource type="GDScript" id="GDScript_6vf1o"]
@@ -27,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_b8djm")
+script = ExtResource("2_621v3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -147,6 +150,7 @@ custom_minimum_size = Vector2(640, 261)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("2_84ty6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list"]
 layout_mode = 2
@@ -223,7 +227,7 @@ theme_override_constants/separation = 53
 custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page"]
+[node name="previous_page_btn" type="Button" parent="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page"]
 layout_mode = 2
 text = "上一頁"
 
@@ -245,7 +249,7 @@ script = SubResource("GDScript_6vf1o")
 custom_minimum_size = Vector2(104, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/next_page"]
+[node name="next_page_btn" type="Button" parent="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/next_page"]
 layout_mode = 2
 text = "下一頁"
 
@@ -590,3 +594,6 @@ theme_override_font_sizes/font_size = 36
 text = "下一回合
 敵人屬性"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
