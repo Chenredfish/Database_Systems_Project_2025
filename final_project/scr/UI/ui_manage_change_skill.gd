@@ -5,15 +5,14 @@ signal refresh_database
 
 @onready var db = SQLite.new()
 
-@onready var id_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_id/LineEdit
-@onready var name_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_name/LineEdit
-@onready var level_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_level/LineEdit
-@onready var element_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_element/LineEdit
-@onready var is_magic_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_is_magic/LineEdit
-@onready var power_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_power/LineEdit
-@onready var cooldown_input = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_cooldown/LineEdit
-@onready var apply_button = $MarginContainer/VBoxContainer/skill_manage/HBoxContainer/skill_manage/skill_manage_btn
-
+@onready var id_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_id/LineEdit
+@onready var name_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_name/LineEdit
+@onready var level_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_level/LineEdit
+@onready var element_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_element/LineEdit
+@onready var is_magic_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_is_magic/LineEdit
+@onready var power_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_power/LineEdit
+@onready var cooldown_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_cooldown/LineEdit
+@onready var apply_button = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_manage/skill_manage_btn
 
 @onready var skill_list = $MarginContainer/VBoxContainer/skill_list/skill_list
 @onready var skill_search = $MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search
@@ -21,7 +20,6 @@ signal refresh_database
 func _ready():
 	db.path = "res://data/game.db"
 	db.open_db()
-	
 
 func _on_exit_button_pressed():
 	exit_btn_pressed.emit()
@@ -44,16 +42,17 @@ func _on_apply_pressed():
 	var power = power_input.text.strip_edges()
 	var cooldown = cooldown_input.text.strip_edges()
 
-	if [id, name, level, element, is_magic, power, cooldown].has(""):
-		show_alert("❗請填寫所有欄位")
-		return
+	for field in [id, name, level, element, is_magic, power, cooldown]:
+		if field.strip_edges() == "":
+			show_alert("❗請勿留空或只輸入空格")
+			return
 
 	if not level.is_valid_int() or not is_magic.is_valid_int() or not cooldown.is_valid_int():
 		show_alert("⚠️ level, is_magic, cooldown 必須是整數")
 		return
 
 	if not power.is_valid_float():
-		show_alert("⚠️ power 必須為小數")
+		show_alert("⚠️ 攻擊係數必須為小數")
 		return
 
 	var lv = int(level)
@@ -74,25 +73,23 @@ func _on_apply_pressed():
 		show_alert("⚠️ power 必須介於 1.0～2.0 之間")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM skill WHERE id = ?", [id])
-	if db.query_result[0]["count"] > 0:
+		db.query("SELECT COUNT(*) as count FROM skill WHERE id = '" + id + "'")
+	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
 		show_alert("❌ ID 已存在")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM skill WHERE name = ?", [name])
-	if db.query_result[0]["count"] > 0:
+	db.query("SELECT COUNT(*) as count FROM skill WHERE name = '" + name + "'")
+	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
 		show_alert("❌ 名稱已存在")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM element WHERE id = ?", [element])
-	if db.query_result[0]["count"] == 0:
+	db.query("SELECT COUNT(*) as count FROM element WHERE id = '" + element + "'")
+	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] == 0:
 		show_alert("❌ element 不存在")
 		return
 
-	db.query_with_args(
-		"INSERT INTO skill (id, name, level, element, is_magic, power, cooldown) VALUES (?, ?, ?, ?, ?, ?, ?)",
-		[id, name, lv, element, magic, pw, cd]
-	)
+	db.query("INSERT INTO skill (id, name, level, element, is_magic, power, cooldown) VALUES ('" + id + "', '" + name + "', " + str(lv) + ", '" + element + "', " + str(magic) + ", " + str(pw) + ", " + str(cd) + ")")
+	
 	refresh_database.emit()
 	show_alert("資料已儲存")
 

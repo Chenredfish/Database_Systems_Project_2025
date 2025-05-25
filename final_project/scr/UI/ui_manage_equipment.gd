@@ -20,8 +20,8 @@ func _ready():
 	db.path = "res://data/game.db"
 	db.open_db()
 	refresh_database.connect(equipment_list._refresh_db)
-	if apply_button:
-		apply_button.pressed.connect(_on_apply_pressed)
+	if apply_button and not apply_button.pressed.is_connected(_on_equipment_manage_btn_pressed):
+		apply_button.pressed.connect(_on_equipment_manage_btn_pressed)
 
 func _on_exit_button_pressed():
 	exit_btn_pressed.emit()
@@ -35,19 +35,28 @@ func _on_next_page_btn_pressed() -> void:
 func _on_equipment_search_text_submitted(new_text: String) -> void:
 	equipment_list._search_ring(equipment_search.text)
 
+func show_alert(msg: String):
+	var dialog = AcceptDialog.new()
+	dialog.dialog_text = msg
+	add_child(dialog)
+	dialog.popup_centered()
+
+
 func _on_apply_pressed():
+	# 取得欄位值並去除前後空格
 	var id = id_input.text.strip_edges()
 	var name = name_input.text.strip_edges()
 	var level = level_input.text.strip_edges()
 	var attack_defence = attack_defence_input.text.strip_edges()
 	var magic_defence = magic_defence_input.text.strip_edges()
 
-	if [id, name, level, attack_defence, magic_defence].has(""):
-		print("❗請填寫所有欄位")
-		return
+	for field in [id, name, level, attack_defence, magic_defence]:
+		if field.strip_edges() == "" or field.strip_edges().is_empty():
+			show_alert("❗請勿留空或只輸入空格")
+			return
 
 	if not level.is_valid_int() or not attack_defence.is_valid_int() or not magic_defence.is_valid_int():
-		print("⚠️ level、attack_defence、magic_defence 必須為整數")
+		show_alert("⚠️ level、attack_defence、magic_defence 必須為整數")
 		return
 
 	var lv = int(level)
@@ -55,28 +64,26 @@ func _on_apply_pressed():
 	var md = int(magic_defence)
 
 	if lv < 0:
-		print("⚠️ level 必須為非負整數")
+		show_alert("⚠️ level 必須為非負整數")
 		return
 	if ad <= 0 or md <= 0:
-		print("⚠️ 防禦力需為正整數")
+		show_alert("⚠️ 防禦力需為正整數")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM equipment WHERE id = ?", [id])
-	if db.query_result[0]["count"] > 0:
-		print("❌ ID 已存在")
+	db.query("SELECT COUNT(*) as count FROM equipment WHERE id = '" + id + "'")
+	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
+		show_alert("❌ ID 已存在")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM equipment WHERE name = ?", [name])
-	if db.query_result[0]["count"] > 0:
-		print("❌ 名稱已存在")
+	db.query("SELECT COUNT(*) as count FROM equipment WHERE name = '" + name + "'")
+	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
+		show_alert("❌ 名稱已存在")
 		return
 
-	db.query_with_args(
-		"INSERT INTO equipment (id, name, level, attack_defence, magic_defence) VALUES (?, ?, ?, ?, ?)",
-		[id, name, lv, ad, md]
-	)
+	db.query("INSERT INTO equipment (id, name, level, attack_defence, magic_defence) VALUES ('" + id + "', '" + name + "', " + str(lv) + ", " + str(ad) + ", " + str(md) + ")")
+
 	refresh_database.emit()
-	print("✅ 資料已儲存")
+	show_alert("✅ 資料已儲存")
 
 func _on_equipment_manage_btn_pressed() -> void:
 	_on_apply_pressed()
