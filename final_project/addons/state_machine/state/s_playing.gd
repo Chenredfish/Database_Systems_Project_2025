@@ -117,13 +117,6 @@ func create_level_actor(level:int, name:String):
 	var actor = Actor.new(actor_data[rand_actor_id])
 	actor.name = name
 	
-	#這是一個測試show_ring的程式
-	if name == "enemy":
-		for i in range(1, 10):
-			actor.build_new_ring(i)
-	else:
-		actor.build_new_ring(1)
-	
 	state_machine.set_value(name, actor)
 	
 func pause_battle():
