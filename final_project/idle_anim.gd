@@ -5,7 +5,7 @@ class_name IdleAnimation
 @export var anim_speed: float = 7.0 
 @export var anim_loop: bool = true 
 @export var sprite_scale: Vector2 = Vector2(2.0, 2.0) 
-@export var sprite_position: Vector2 = Vector2(1350, 350) 
+@export var sprite_position: Vector2 = Vector2(1350, 340) 
 # -----------------------------------------------------
 
 var animated_sprite: AnimatedSprite2D
