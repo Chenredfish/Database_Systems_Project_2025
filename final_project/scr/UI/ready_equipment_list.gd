@@ -7,14 +7,14 @@ extends MarginContainer
 @export var max_amount_in_one_page:int = 5
 
 var search_equipment_data:Array[Equipment] = []
-var all_ring_data:Array[Equipment] = []
+var all_equipment_data:Array[Equipment] = []
 
 func _ready() -> void:
 	equipment_1.hide()
 
 func input_show_equipment_data(actor:Actor):
 	search_equipment_data = actor.get("equipment_list")
-	all_ring_data = search_equipment_data
+	all_equipment_data = search_equipment_data
 	_page_update()
 	
 func _page_change(x):	#換頁
@@ -32,6 +32,25 @@ func _page_update():	#刷新頁面
 	while count < equipment_page * max_amount_in_one_page + max_amount_in_one_page and count < search_equipment_data.size():
 		_add_equipment(count)
 		count += 1
+		
+func _search_equipment(keyword:String):
+	var count = 0
+	var check = true
+	if keyword == "":
+		check = false
+	search_equipment_data = []
+	for child in v_box_container.get_children():
+		if child.name.begins_with("new_equipment"):
+			child.queue_free()
+	while count < all_equipment_data.size() and check:
+		if keyword in all_equipment_data[count].get("name"):
+			search_equipment_data.append(all_equipment_data[count])
+		count += 1
+	if check != true:
+		search_equipment_data = all_equipment_data
+	await get_tree().process_frame
+	#print(search_ring_data)
+	_page_update()
 
 func _add_equipment(equipment_n):
 	var new_equipment = equipment_1.duplicate()

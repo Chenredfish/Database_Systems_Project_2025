@@ -596,4 +596,5 @@ text = "下一回合
 horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/equipment_search/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
