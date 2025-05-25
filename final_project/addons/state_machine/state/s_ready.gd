@@ -109,9 +109,12 @@ func show_rings_selection():
 		}
 		
 		for key in props.keys():
-			if int(ring_data[key]) != 0:
-				effect_text += "%s +%d\n" % [props[key], int(ring_data.get(key, 0))]
-		
+			var raw = ring_data.get(key, 0.0)
+			if typeof(raw) in [TYPE_INT, TYPE_FLOAT] and float(raw) != 0.0:
+				var percent = int(round(float(raw) * 100))
+				var sign = "+" if percent > 0 else ""
+				effect_text += "%s %s%d%%\n" % [props[key], sign, percent]
+
 		effect_label.text = effect_text.strip_edges()
 		
 func show_skills_selection():
