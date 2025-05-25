@@ -10,8 +10,18 @@ var UI_normal_theme = load("res://assets/UI_Theme.tres")
 var UI_chosen_theme = load("res://assets/UI_chosen_theme.tres")
 var search_equipment_data:Array[Equipment] = []
 var all_equipment_data:Array[Equipment] = []
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d14bfcebfd53778f9628e51c5ad752df1f2a0ce3
 var equipment_chosen
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
+=======
+var equipment_chosen
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
 
 func _ready() -> void:
 	equipment_1.hide()
@@ -36,6 +46,11 @@ func _page_update():	#刷新頁面
 	while count < equipment_page * max_amount_in_one_page + max_amount_in_one_page and count < search_equipment_data.size():
 		_add_equipment(count)
 		count += 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d14bfcebfd53778f9628e51c5ad752df1f2a0ce3
 		
 func _search_equipment(keyword:String):
 	var count = 0
@@ -55,7 +70,15 @@ func _search_equipment(keyword:String):
 	await get_tree().process_frame
 	#print(search_ring_data)
 	_page_update()
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d14bfcebfd53778f9628e51c5ad752df1f2a0ce3
 	print("refreshed")
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
+=======
+	print("refreshed")
+>>>>>>> e5afa4e2638a0a7ea518931f931ac0dc2cca78aa
 
 func _add_equipment(equipment_n):
 	var new_equipment = equipment_1.duplicate()
