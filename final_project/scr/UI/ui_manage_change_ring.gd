@@ -2,19 +2,19 @@ extends Control
 
 signal refresh_database
 signal exit_btn_pressed
+signal next_page_pressed
 
 @onready var db = SQLite.new()
 
-@onready var id_input = %LineEdit_1
-@onready var name_input = %LineEdit_2
-@onready var level_input = %LineEdit_3
-@onready var health_input = %LineEdit_4
-@onready var attack_power_input = %LineEdit_5
-@onready var magic_power_input = %LineEdit_6
-@onready var attack_defence_input = %LineEdit_7
-@onready var magic_defence_input = %LineEdit_8
-@onready var apply_button = %ring_manage_btn
-
+@onready var id_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_id/LineEdit
+@onready var name_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_name/LineEdit
+@onready var level_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_level/LineEdit
+@onready var health_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_health/LineEdit
+@onready var attack_power_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_attack_power/LineEdit
+@onready var magic_power_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_magic_power/LineEdit
+@onready var attack_defence_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_attack_defence/LineEdit
+@onready var magic_defence_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_magic_defence/LineEdit
+@onready var apply_button = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn
 @onready var list = $MarginContainer/VBoxContainer/ring_list/list
 @onready var ring_search = $MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search/ring_search
 
@@ -36,6 +36,19 @@ func _on_previous_page_btn_pressed() -> void:
 func _on_ring_search_text_submitted(new_text: String) -> void:
 	list._search_ring(ring_search.text)
 
+func check_float_range(value_str: String, label: String) -> Variant:
+	if value_str.strip_edges() == "":
+		show_alert("❗請填寫所有欄位")
+		return null
+	if not value_str.is_valid_float():
+		show_alert("⚠️ " + label + " 必須為小數")
+		return null
+	var v = float(value_str)
+	if v < -1.0 or v > 1.0:
+		show_alert("⚠️ " + label + " 必須介於 -1 到 1 之間")
+		return null
+	return v
+
 func _on_apply_pressed():
 	var id = id_input.text.strip_edges()
 	var name = name_input.text.strip_edges()
@@ -46,69 +59,61 @@ func _on_apply_pressed():
 	var attack_defence = attack_defence_input.text.strip_edges()
 	var magic_defence = magic_defence_input.text.strip_edges()
 
-	if [id, name, level, health, attack_power, magic_power, attack_defence, magic_defence].has(""):
+	if id == "" or name == "" or level == "" or health == "" or attack_power == "" or magic_power == "" or attack_defence == "" or magic_defence == "":
 		show_alert("❗請填寫所有欄位")
 		return
 
-	var float_fields = [health, attack_power, magic_power, attack_defence, magic_defence]
-	for val in float_fields:
-		if not val.is_valid_float():
-			show_alert("⚠️ 數值欄位需為小數")
-			return
+	if not id.is_valid_int():
+		show_alert("⚠️ ID 必須為整數")
+		return
+	var id_val = int(id)
+	if id_val <= 0:
+		show_alert("⚠️ ID 必須大於 0")
+		return
 
 	if not level.is_valid_int():
-		show_alert("⚠️ level 必須是整數")
+		show_alert("⚠️ 等級必須為整數")
 		return
-
 	var lv = int(level)
 	if lv <= 0:
-		show_alert("⚠️ level 必須大於 0")
+		show_alert("⚠️ 等級需為正整數")
 		return
 
-	var health_f = float(health)
-	if health_f < -1.0 or health_f > 1.0:
-		show_alert("⚠️ health 必須介於 -1 到 1 之間")
+	var h = check_float_range(health, "血量加成")
+	var ap = check_float_range(attack_power, "物理攻擊加成")
+	var mp = check_float_range(magic_power, "魔法攻擊加成")
+	var ad = check_float_range(attack_defence, "物理防禦加成")
+	var md = check_float_range(magic_defence, "魔法防禦加成")
+
+	if h == null or ap == null or mp == null or ad == null or md == null:
 		return
 
-	var attack_power_f = float(attack_power)
-	if attack_power_f < -1.0 or attack_power_f > 1.0:
-		show_alert("⚠️ attack_power 必須介於 -1 到 1 之間")
-		return
-
-	var magic_power_f = float(magic_power)
-	if magic_power_f < -1.0 or magic_power_f > 1.0:
-		show_alert("⚠️ magic_power 必須介於 -1 到 1 之間")
-		return
-
-	var attack_defence_f = float(attack_defence)
-	if attack_defence_f < -1.0 or attack_defence_f > 1.0:
-		show_alert("⚠️ attack_defence 必須介於 -1 到 1 之間")
-		return
-
-	var magic_defence_f = float(magic_defence)
-	if magic_defence_f < -1.0 or magic_defence_f > 1.0:
-		show_alert("⚠️ magic_defence 必須介於 -1 到 1 之間")
-		return
-
-	db.query_with_args("SELECT COUNT(*) as count FROM ring WHERE id = ?", [id])
-	if db.query_result[0]["count"] > 0:
+	db.query("SELECT COUNT(*) as count FROM ring WHERE id = " + str(id_val))
+	var result = db.query_result
+	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
 		show_alert("❌ ID 已存在")
 		return
 
-	db.query_with_args("SELECT COUNT(*) as count FROM ring WHERE name = ?", [name])
-	if db.query_result[0]["count"] > 0:
+	db.query("SELECT COUNT(*) as count FROM ring WHERE name = '" + name + "'")
+	result = db.query_result
+	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
 		show_alert("❌ 名稱已存在")
 		return
 
-	db.query_with_args(
-		"INSERT INTO ring (id, name, level, health, attack_power, magic_power, attack_defence, magic_defence) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-		[id, name, lv, health_f, attack_power_f, magic_power_f, attack_defence_f, magic_defence_f]
-	)
+	db.query("INSERT INTO ring (id, name, level, health, attack_power, magic_power, attack_defence, magic_defence) VALUES (" +
+		str(id_val) + ", '" + name + "', " + str(lv) + ", " + str(h) + ", " + str(ap) + ", " + str(mp) + ", " + str(ad) + ", " + str(md) + ")")
+
+	emit_signal("next_page_pressed")
 	refresh_database.emit()
-	show_alert("資料已儲存")
+	show_alert("✅ 資料已儲存")
 
 func show_alert(msg: String):
+	await get_tree().process_frame  # 確保 UI 準備好再顯示
 	var dialog = AcceptDialog.new()
 	dialog.dialog_text = msg
+	dialog.get_ok_button().show()
 	add_child(dialog)
 	dialog.popup_centered()
+
+func _on_ring_manage_btn_pressed() -> void:
+	_on_apply_pressed()

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ruffxhwmyaeb" path="res://scr/UI/ring_manage.gd" id="4_6vf1o"]
 [ext_resource type="Script" uid="uid://cy4a03po0inoh" path="res://scr/UI/ring_list.gd" id="4_7n0i0"]
 [ext_resource type="Script" uid="uid://cvjl45yjgmps6" path="res://scr/UI/ui_manage_change_ring.gd" id="4_jauhl"]
-[ext_resource type="Script" uid="uid://cv5bq86mpmh1m" path="res://scr/UI/ring_delete.gd" id="5_4t4mw"]
+[ext_resource type="Script" path="res://scr/UI/ring_delete.gd" id="5_4t4mw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
 texture = ExtResource("2_mylh8")
@@ -299,4 +299,5 @@ text = "新增 / 編輯狀態"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search/ring_search" to="." method="_on_ring_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="." method="_on_ring_manage_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_manage/ring_manage_btn" to="MarginContainer/VBoxContainer/ring_manage" method="_on_ring_manage_btn_pressed"]
