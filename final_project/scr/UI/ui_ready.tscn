@@ -101,6 +101,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
 [node name="equipment_id" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(128.75, 0)
 layout_mode = 2
 
@@ -110,7 +111,7 @@ text = "裝備代號"
 horizontal_alignment = 1
 
 [node name="equipment_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer/equipment_name"]
@@ -119,7 +120,7 @@ text = "裝備名稱"
 horizontal_alignment = 1
 
 [node name="equipment_level" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer/equipment_level"]
@@ -128,7 +129,7 @@ text = "裝備等級"
 horizontal_alignment = 1
 
 [node name="equipment_attack_defense" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer/equipment_attack_defense"]
@@ -137,7 +138,7 @@ text = "物理防禦"
 horizontal_alignment = 1
 
 [node name="equipment_magic_defense" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_status/HBoxContainer/equipment_magic_defense"]
@@ -161,6 +162,7 @@ custom_minimum_size = Vector2(0, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/margin_left = 75
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1"]
 layout_mode = 2
@@ -168,7 +170,8 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
 [node name="equipment_id" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+visible = false
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_id"]
@@ -177,7 +180,7 @@ text = "E000001"
 horizontal_alignment = 1
 
 [node name="equipment_name" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_name"]
@@ -186,7 +189,7 @@ text = "軍團聖盾"
 horizontal_alignment = 1
 
 [node name="equipment_level" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_level"]
@@ -195,7 +198,7 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="equipment_attack_defence" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_attack_defence"]
@@ -204,13 +207,22 @@ text = "30"
 horizontal_alignment = 1
 
 [node name="equipment_magic_defence" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
-custom_minimum_size = Vector2(128.75, 0)
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_magic_defence"]
 layout_mode = 2
 text = "30"
 horizontal_alignment = 1
+
+[node name="equipment_choose" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="equipment_choose_btn" type="Button" parent="MarginContainer/HBoxContainer/character/character/equipment_list/VBoxContainer/equipment1/HBoxContainer/equipment_choose"]
+layout_mode = 2
+text = "選擇"
 
 [node name="switch_pages" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/character"]
 layout_mode = 2
