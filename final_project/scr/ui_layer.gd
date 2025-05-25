@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var ui_show_ring = $UiShowRing
 @onready var ui_manage_change_actor = $UIManageChangeActor
 @onready var ui_manage_change_skill = $UiManageChangeSkill
+@onready var ui_manage_equipment = $ui_manage_equipment
+@onready var ui_record = $ui_record
 
 signal exit_playing
 signal exit_manage_main
@@ -22,6 +24,10 @@ signal to_pause
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
 	ui_show_ring.input_show_ring_data(actor)
+	
+#輸入資料給裝備顯示和選擇
+func input_show_equipment_data(actor:Actor):
+	ui_ready.input_show_equipment_data(actor)
 
 #設定暫停按鈕回到暫停畫面
 func set_pause_btn_to_pause():
@@ -80,6 +86,12 @@ func show_ui_manage_change_skill():
 
 func hide_ui_manage_change_skill():
 	ui_manage_change_skill.hide()
+	
+func show_ui_manage_equipment():
+	ui_manage_equipment.show()
+	
+func hide_ui_manage_equipment():
+	ui_manage_equipment.hide()
 
 #管理按鈕按下
 func _on_ui_playing_exit_btn_pressed():
@@ -110,4 +122,7 @@ func _on_ui_manage_change_actor_exit_btn_pressed():
 	exit_manage_change_something.emit()
 
 func _on_ui_manage_change_skill_exit_btn_pressed():
+	exit_manage_change_something.emit()
+
+func _on_ui_manage_equipment_exit_btn_pressed():
 	exit_manage_change_something.emit()
