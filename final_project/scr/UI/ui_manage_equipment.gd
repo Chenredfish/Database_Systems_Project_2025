@@ -87,3 +87,4 @@ func _on_apply_pressed():
 
 func _on_equipment_manage_btn_pressed() -> void:
 	_on_apply_pressed()
+ 

@@ -136,3 +136,4 @@ func show_alert(msg: String):
 
 func _on_actor_manage_btn_pressed() -> void:
 	_on_apply_pressed()
+ 

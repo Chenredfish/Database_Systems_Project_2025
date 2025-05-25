@@ -117,3 +117,4 @@ func show_alert(msg: String):
 
 func _on_ring_manage_btn_pressed() -> void:
 	_on_apply_pressed()
+ 
