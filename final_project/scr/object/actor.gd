@@ -81,7 +81,7 @@ func _init(data: Dictionary) -> void:
 		character_animation_node.subfolder_id_max = 5
 		character_animation_node.anim_speed = 6.0 
 		character_animation_node.sprite_scale = Vector2(3.5, 3.5) 
-		character_animation_node.sprite_position = Vector2(630, 500) 
+		character_animation_node.sprite_position = Vector2(630, 480) 
 		character_animation_node.sprite_z_index = 0 
 		character_animation_node.flip_horizontally = true # 左右翻轉
 		print("已為玩家 '%s' 載入通用動畫。" % _name)
