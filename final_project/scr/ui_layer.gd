@@ -20,6 +20,8 @@ signal to_manage_ring
 signal to_manage_something(aim:String)
 signal to_show_ring(aim:String)
 signal to_pause
+signal skill_choose(number:int)
+signal ring_choose(number:int)
 
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
@@ -126,3 +128,9 @@ func _on_ui_manage_change_skill_exit_btn_pressed():
 
 func _on_ui_manage_equipment_exit_btn_pressed():
 	exit_manage_change_something.emit()
+
+func _on_ui_ready_ring_choose(number: int) -> void:
+	ring_choose.emit(number)
+
+func _on_ui_ready_skill_choose(number: int) -> void:
+	skill_choose.emit(number)

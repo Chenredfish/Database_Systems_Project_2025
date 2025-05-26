@@ -1,5 +1,8 @@
 extends Control
 
+signal skill_choose(number:int)
+signal ring_choose(number:int)
+
 @onready var equipment_list = $MarginContainer/HBoxContainer/character/character/equipment_list
 
 func input_show_equipment_data(actor:Actor):
@@ -15,3 +18,11 @@ func _on_next_page_btn_pressed():
 
 func _on_line_edit_text_submitted(new_text):
 	equipment_list._search_equipment(new_text)
+
+
+func _on_ring_list_ring_choose(number: int) -> void:
+	ring_choose.emit(number)
+
+
+func _on_skill_list_skill_choose(number: int) -> void:
+	skill_choose.emit(number)

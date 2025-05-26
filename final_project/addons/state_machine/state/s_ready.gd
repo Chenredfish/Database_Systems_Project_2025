@@ -6,6 +6,8 @@ var db := SQLite.new()
 var available_skills:Array[Skill] = []
 var available_rings:Array[Ring] = []
 var available_equipment:Equipment = null
+var new_skill:Skill
+var new_ring:Ring
 
 # 載入 Equipment 類別
 const Equipment = preload("res://scr/object/equipment.gd")
@@ -29,6 +31,13 @@ func enter(_msg: Dictionary = {}):
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
 	
+	if !agent.ui_layer.ring_choose.is_connected(ring_choosed):
+		agent.ui_layer.ring_choose.connect(ring_choosed)
+	
+	if !agent.ui_layer.skill_choose.is_connected(skill_choosed):
+		agent.ui_layer.skill_choose.connect(skill_choosed)
+		
+	
 	for i in range(1, 10):
 		available_equipment = fetch_random_equipment(level)
 		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
@@ -44,6 +53,14 @@ func update(delta):
 
 func exit():
 	agent.ui_layer.hide_ui_ready()
+
+func skill_choosed(number:int):
+	new_skill = available_skills[number-1]
+	print("玩家選擇技能：" + new_skill.name)
+
+func ring_choosed(number:int):
+	new_ring = available_rings[number-1]
+	print("玩家選擇光環：" + new_ring.name)
 
 func fetch_random_skills(level: int) -> Array[Skill]:
 	var min_level = max(1, level - 2)
