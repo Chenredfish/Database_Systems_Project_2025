@@ -53,8 +53,8 @@ func enter(_msg: Dictionary = {}):
 	show_rings_selection()
 	show_skills_selection()
 	
-	free_actor("enemy")
-	free_actor("player")
+	remove_actor("enemy")
+	remove_actor("player")
 
 func update(delta):
 	pass
@@ -101,10 +101,10 @@ func fetch_random_equipment(level: int) -> Equipment:
 	results.shuffle()
 	return Equipment.new(results[0]) if results.size() > 0 else null
 
-func free_actor(aim:String):
+func remove_actor(aim:String):
 	for child in agent.get_children():
 		if child.name == aim:
-			child.queue_free()
+			agent.remove_child(child)
 		
 func create_level_enemy(level:int):
 	var enemy_data = db.select_rows("actor", "level = " + str(level), ["*"])
