@@ -5,9 +5,11 @@ var db := SQLite.new()
 
 var available_skills:Array[Skill] = []
 var available_rings:Array[Ring] = []
+var available_equipments:Array[Equipment] = []
 var available_equipment:Equipment = null
 var new_skill:Skill
 var new_ring:Ring
+var new_equipment:Equipment
 
 # 載入 Equipment 類別
 const Equipment = preload("res://scr/object/equipment.gd")
@@ -23,19 +25,20 @@ func enter(_msg: Dictionary = {}):
 	var level = state_machine.get_value("level")
 	var player = state_machine.get_value("player")
 	
-	free_actor("enemy")
-	free_actor("player")
-	
 	create_level_enemy(level)
 
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
+	available_equipments = state_machine.get_value('player').get('equipment_list')
 	
-	if !agent.ui_layer.ring_choose.is_connected(ring_choosed):
-		agent.ui_layer.ring_choose.connect(ring_choosed)
+	if !agent.ui_layer.ring_choose.is_connected(ring_choosen):
+		agent.ui_layer.ring_choose.connect(ring_choosen)
 	
-	if !agent.ui_layer.skill_choose.is_connected(skill_choosed):
-		agent.ui_layer.skill_choose.connect(skill_choosed)
+	if !agent.ui_layer.skill_choose.is_connected(skill_choosen):
+		agent.ui_layer.skill_choose.connect(skill_choosen)
+		
+	if !agent.ui_layer.equipment_choose.is_connected(equipment_choosen):
+		agent.ui_layer.equipment_choose.connect(equipment_choosen)
 		
 	
 	for i in range(1, 10):
@@ -47,6 +50,9 @@ func enter(_msg: Dictionary = {}):
 	agent.ui_layer.input_show_equipment_data(state_machine.get_value('player'))
 	show_rings_selection()
 	show_skills_selection()
+	
+	free_actor("enemy")
+	free_actor("player")
 
 func update(delta):
 	pass
@@ -54,13 +60,17 @@ func update(delta):
 func exit():
 	agent.ui_layer.hide_ui_ready()
 
-func skill_choosed(number:int):
+func skill_choosen(number:int):
 	new_skill = available_skills[number-1]
 	print("玩家選擇技能：" + new_skill.name)
 
-func ring_choosed(number:int):
+func ring_choosen(number:int):
 	new_ring = available_rings[number-1]
 	print("玩家選擇光環：" + new_ring.name)
+	
+func equipment_choosen(equipments_index:int):
+	new_equipment = available_equipments[equipments_index]
+	print("玩家選擇裝備：" + new_equipment.name)
 
 func fetch_random_skills(level: int) -> Array[Skill]:
 	var min_level = max(1, level - 2)

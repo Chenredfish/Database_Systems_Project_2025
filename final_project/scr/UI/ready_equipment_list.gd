@@ -10,8 +10,11 @@ var UI_normal_theme = load("res://assets/UI_Theme.tres")
 var UI_chosen_theme = load("res://assets/UI_chosen_theme.tres")
 var search_equipment_data:Array[Equipment] = []
 var all_equipment_data:Array[Equipment] = []
+var equipment_choosen_num:int = -1
 
-var equipment_chosen
+var equipment_chosen:Node
+
+signal equipment_choose(equipments_index:int)
 
 
 func _ready() -> void:
@@ -60,10 +63,12 @@ func _search_equipment(keyword:String):
 	print("refreshed")
 
 
-func _add_equipment(equipment_n):
+func _add_equipment(equipment_n:int):
 	var new_equipment = equipment_1.duplicate()
 	new_equipment.name = "new_equipment" + str(equipment_n)
 	var equipment_choose_btn = new_equipment.get_node("HBoxContainer/equipment_choose/equipment_choose_btn")
+	if equipment_n == equipment_choosen_num:
+		new_equipment.theme = UI_chosen_theme
 	v_box_container.add_child(new_equipment)
 	new_equipment.show()
 	new_equipment.get_node("HBoxContainer/equipment_id/Label").text = str(search_equipment_data[equipment_n].get("id"))
@@ -73,10 +78,13 @@ func _add_equipment(equipment_n):
 	new_equipment.get_node("HBoxContainer/equipment_magic_defence/Label").text = str(search_equipment_data[equipment_n].get("magic_defence"))
 	equipment_choose_btn.pressed.connect(Callable(self, "_equipment_choose").bind(equipment_n, new_equipment))
 
-func _equipment_choose(equipment_num, equipment):
+func _equipment_choose(equipment_n:int, equipment:Node):
+	equipment_choosen_num = equipment_n
 	for child in v_box_container.get_children():
-		if child.name != "new_equipment" + str(equipment_num):
+		if child.name != "new_equipment" + str(equipment_choosen_num):
 			child.theme = UI_normal_theme
 		else:
 			child.theme = UI_chosen_theme
 			equipment_chosen = equipment
+			equipment_choose.emit(equipment_choosen_num)
+			

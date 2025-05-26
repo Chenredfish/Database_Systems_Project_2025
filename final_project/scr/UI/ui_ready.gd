@@ -2,6 +2,7 @@ extends Control
 
 signal skill_choose(number:int)
 signal ring_choose(number:int)
+signal equipment_choose(equipments_index:int)
 
 @onready var equipment_list = $MarginContainer/HBoxContainer/character/character/equipment_list
 
@@ -26,3 +27,7 @@ func _on_ring_list_ring_choose(number: int) -> void:
 
 func _on_skill_list_skill_choose(number: int) -> void:
 	skill_choose.emit(number)
+
+
+func _on_equipment_list_equipment_choose(equipments_index: int) -> void:
+	equipment_choose.emit(equipments_index)
