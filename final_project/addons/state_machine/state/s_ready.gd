@@ -31,9 +31,10 @@ func enter(_msg: Dictionary = {}):
 	
 	create_level_enemy(level)
 
+	# 這裡複製玩家裝備列表，避免直接操作玩家資料
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
-	available_equipments = state_machine.get_value('player').get('equipment_list')
+	available_equipments = state_machine.get_value('player').get('equipment_list').duplicate()
 	new_equipment = null
 	new_ring = null
 	new_skill = null
@@ -51,16 +52,16 @@ func enter(_msg: Dictionary = {}):
 		agent.ui_layer.next_wave.connect(next_wave)
 		
 	
-	#for i in range(1, 10):
 	var available_equipment = fetch_random_equipment(level)
-	print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
-	
 	if available_equipment:
+		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 		available_equipments.append(available_equipment)
 		new_equipment = available_equipment
+		# 不要在這裡直接加入玩家裝備，等玩家選擇後再加入
 		await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
 	
-	agent.ui_layer.input_show_equipment_data(state_machine.get_value('player'))
+	# 將 available_equipments 傳給 UI 顯示
+	agent.ui_layer.input_show_equipment_data(available_equipments)
 	show_rings_selection()
 	show_skills_selection()
 	

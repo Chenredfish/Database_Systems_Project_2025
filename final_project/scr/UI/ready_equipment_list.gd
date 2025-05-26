@@ -20,8 +20,8 @@ signal equipment_choose(equipments_index:int)
 func _ready() -> void:
 	equipment_1.hide()
 
-func input_show_equipment_data(actor:Actor):
-	search_equipment_data = actor.get("equipment_list")
+func input_show_equipment_data(equipments:Array):
+	search_equipment_data = equipments
 	all_equipment_data = search_equipment_data
 	_page_update()
 	
@@ -87,4 +87,3 @@ func _equipment_choose(equipment_n:int, equipment:Node):
 			child.theme = UI_chosen_theme
 			equipment_chosen = equipment
 			equipment_choose.emit(equipment_choosen_num)
-			

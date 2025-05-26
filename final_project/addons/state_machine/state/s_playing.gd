@@ -140,7 +140,7 @@ func update_actor_cooldown(delta: float) -> void:
 	if player and player.health > 0:
 		player.attack_timer += delta
 		if player.attack_timer >= player.cooldown:
-			var result = player.damage_calculate(enemy,true,true)
+			var result = player.damage_calculate(enemy,player.get('skill').get('is_magic'), true)
 			#print(result)
 			player.attack_timer = 0.0
 			update_ui_actor_health('enemy')
@@ -151,7 +151,7 @@ func update_actor_cooldown(delta: float) -> void:
 	if enemy and enemy.health > 0:
 		enemy.attack_timer += delta
 		if enemy.attack_timer >= enemy.cooldown:
-			var result = enemy.damage_calculate(player,true,false)
+			var result = enemy.damage_calculate(player,enemy.get('skill').get('is_magic'),false)
 			
 			#print(result)
 			enemy.attack_timer = 0.0

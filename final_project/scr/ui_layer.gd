@@ -30,8 +30,8 @@ func input_show_ring_data(actor:Actor):
 	ui_show_ring.input_show_ring_data(actor)
 	
 #輸入資料給裝備顯示和選擇
-func input_show_equipment_data(actor:Actor):
-	ui_ready.input_show_equipment_data(actor)
+func input_show_equipment_data(equipments:Array):
+	ui_ready.input_show_equipment_data(equipments)
 
 #設定暫停按鈕回到暫停畫面
 func set_pause_btn_to_pause():

@@ -134,9 +134,9 @@ func equipment_change(equipment_id: int) -> void:#更換身上裝備
 	var new_equipment = Equipment.new(row)
 
 	for eq in equipment_list:
-		if eq.id != new_equipment.id:
-			print("無這件裝備")
-			return
+		if eq.id == new_equipment.id:
+			print("確實有這件裝備!")
+			break
 
 	equipment = new_equipment
 
