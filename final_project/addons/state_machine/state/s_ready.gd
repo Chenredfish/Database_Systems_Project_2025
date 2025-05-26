@@ -6,7 +6,6 @@ var db := SQLite.new()
 var available_skills:Array[Skill] = []
 var available_rings:Array[Ring] = []
 var available_equipments:Array[Equipment] = []
-var available_equipment:Equipment = null
 var new_skill:Skill
 var new_ring:Ring
 var new_equipment:Equipment
@@ -30,6 +29,9 @@ func enter(_msg: Dictionary = {}):
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
 	available_equipments = state_machine.get_value('player').get('equipment_list')
+	new_equipment = null
+	new_ring = null
+	new_skill = null
 	
 	if !agent.ui_layer.ring_choose.is_connected(ring_choosen):
 		agent.ui_layer.ring_choose.connect(ring_choosen)
@@ -42,7 +44,7 @@ func enter(_msg: Dictionary = {}):
 		
 	
 	for i in range(1, 10):
-		available_equipment = fetch_random_equipment(level)
+		var available_equipment = fetch_random_equipment(level)
 		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 	
 		state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
