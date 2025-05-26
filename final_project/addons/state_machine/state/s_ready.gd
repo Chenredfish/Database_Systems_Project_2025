@@ -26,7 +26,6 @@ func enter(_msg: Dictionary = {}):
 	
 	create_level_enemy(level)
 
-
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
 	

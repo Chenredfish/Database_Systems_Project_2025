@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2cy87pcluu68"]
+[gd_scene load_steps=12 format=3 uid="uid://b2cy87pcluu68"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_b8djm"]
 [ext_resource type="Script" uid="uid://bvpmjjyqpcpv4" path="res://scr/UI/ready_equipment_list.gd" id="2_84ty6"]
 [ext_resource type="Script" uid="uid://pg26bt4yop56" path="res://scr/UI/ui_ready.gd" id="2_621v3"]
 [ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="3_84ty6"]
+[ext_resource type="Script" uid="uid://b05usjfxxjmy2" path="res://scr/UI/ready_ring_list.gd" id="4_7pg34"]
+[ext_resource type="Script" uid="uid://e4mmkdvaymu4" path="res://scr/UI/ready_skill_list.gd" id="5_1stcd"]
 
 [sub_resource type="GDScript" id="GDScript_6vf1o"]
 
@@ -286,6 +288,7 @@ horizontal_alignment = 1
 [node name="ring_list" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
 custom_minimum_size = Vector2(902, 313)
 layout_mode = 2
+script = ExtResource("4_7pg34")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list"]
 custom_minimum_size = Vector2(835, 241)
@@ -325,7 +328,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/ring_choose"]
+[node name="ring_choose_1" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/ring_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -361,7 +364,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/ring_choose"]
+[node name="ring_choose_2" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/ring_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -397,7 +400,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/ring_choose"]
+[node name="ring_choose_3" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/ring_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -418,6 +421,7 @@ horizontal_alignment = 1
 [node name="skill_list" type="MarginContainer" parent="MarginContainer/HBoxContainer/ring_and_skill"]
 custom_minimum_size = Vector2(902, 313)
 layout_mode = 2
+script = ExtResource("5_1stcd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list"]
 custom_minimum_size = Vector2(835, 241)
@@ -465,7 +469,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/skill_choose"]
+[node name="skill_choose_1" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/skill_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -509,7 +513,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/skill_choose"]
+[node name="skill_choose_2" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/skill_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -553,7 +557,7 @@ custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/skill_choose"]
+[node name="skill_choose_3" type="Button" parent="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/skill_choose"]
 layout_mode = 2
 text = "選擇"
 
@@ -610,3 +614,9 @@ horizontal_alignment = 1
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/equipment_search/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/ring_choose/ring_choose_1" to="MarginContainer/HBoxContainer/ring_and_skill/ring_list" method="_on_ring_choose_1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/ring_choose/ring_choose_2" to="MarginContainer/HBoxContainer/ring_and_skill/ring_list" method="_on_ring_choose_2_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/ring_choose/ring_choose_3" to="MarginContainer/HBoxContainer/ring_and_skill/ring_list" method="_on_ring_choose_3_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/skill_choose/skill_choose_1" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/skill_choose/skill_choose_2" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_2_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/skill_choose/skill_choose_3" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_3_pressed"]
