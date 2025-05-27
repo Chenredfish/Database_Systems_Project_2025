@@ -36,6 +36,7 @@ func _page_update():	#刷新頁面
 	for child in v_box_container.get_children():
 		if child.name.begins_with("new_equipment"):
 			child.queue_free()
+	await get_tree().process_frame
 	var count = equipment_page * max_amount_in_one_page
 	while count < equipment_page * max_amount_in_one_page + max_amount_in_one_page and count < search_equipment_data.size():
 		_add_equipment(count)

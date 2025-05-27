@@ -56,8 +56,6 @@ func enter(_msg: Dictionary = {}):
 	if available_equipment:
 		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 		available_equipments.append(available_equipment)
-		new_equipment = available_equipment
-		# 不要在這裡直接加入玩家裝備，等玩家選擇後再加入
 		await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
 	
 	# 將 available_equipments 傳給 UI 顯示
