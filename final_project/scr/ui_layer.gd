@@ -151,3 +151,6 @@ func _on_ui_ready_next_wave():
 
 func _on_ui_record_exit_btn_pressed():
 	exit_manage_change_something.emit()
+
+func _on_ui_ready_to_show_ring(aim:String) -> void:
+	to_show_ring.emit(aim)

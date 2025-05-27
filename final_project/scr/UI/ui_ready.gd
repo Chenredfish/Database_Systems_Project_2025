@@ -4,6 +4,7 @@ signal skill_choose(number:int)
 signal ring_choose(number:int)
 signal equipment_choose(equipments_index:int)
 signal next_wave
+signal to_show_ring(aim:String)
 
 @onready var equipment_list = $MarginContainer/HBoxContainer/character/character/equipment_list
 
@@ -36,3 +37,6 @@ func _on_equipment_list_equipment_choose(equipments_index: int) -> void:
 
 func _on_next_wave_btn_pressed():
 	next_wave.emit()
+
+func _on_show_ring_btn_pressed():
+	to_show_ring.emit('player')
