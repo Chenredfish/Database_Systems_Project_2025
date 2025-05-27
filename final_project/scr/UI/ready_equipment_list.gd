@@ -34,10 +34,10 @@ func _page_change(x):	#換頁
 	
 func _page_update():	#刷新頁面
 	for child in v_box_container.get_children():
-		if child.name.begins_with("new_equipment"):
+		if child.name != "equipment1":
 			child.queue_free()
 	var count = equipment_page * max_amount_in_one_page
-	while count < equipment_page * max_amount_in_one_page + max_amount_in_one_page and count < search_equipment_data.size():
+	while count < (equipment_page + 1) * max_amount_in_one_page and count < search_equipment_data.size():
 		_add_equipment(count)
 		count += 1
 		

@@ -1,0 +1,63 @@
+extends VBoxContainer
+
+signal first_data
+
+@onready var game_label: Label = $game/switch_game/game/Label
+@onready var round_label: Label = $round/switch_round/round/Label
+
+@onready var db = SQLite.new()
+
+var record_data
+var game_max = 1
+var round_max: Array = [1]
+@onready var game_page = 1
+@onready var round_page = 1
+
+func _ready():
+	db.path = "res://data/game.db"
+	db.open_db()
+	record_data = db.select_rows("record", "game_id > 0", ["*"])
+	_game_count_max()
+	_round_count_max()
+	
+func _game_count_max():
+	for game in record_data:
+		if int(game["game_id"]) > game_max:
+			game_max = game["game_id"]
+
+func _round_count_max():
+	for game in range(1, game_max+1):
+		var sql = "SELECT * FROM record WHERE game_id = ?"
+		db.query_with_bindings(sql, [str(game)])
+		var rounds_in_game = db.query_result
+		var max = 0
+		for round in rounds_in_game:
+			if int(round["round_id"]) > max:
+				max = int(round["round_id"])
+		round_max.append(max)
+	print(round_max)
+	
+	
+func _page_change(type, n):
+	var reset_round = false
+	var type_max
+	if type == "game":
+		type = game_page
+		type_max = game_max
+		reset_round = true
+	else:
+		type = round_page
+		type_max = round_max[game_page]
+		
+	if type + n > 0 and type + n <= type_max:
+		type += n
+		if reset_round:
+			game_page = type
+			game_label.text = "遊戲局數：" + str(game_page)
+			round_page = 1
+			
+		else:
+			round_page = type
+		round_label.text = "回合數：" + str(round_page)
+	else:
+		print("OVER")
