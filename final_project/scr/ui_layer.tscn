@@ -56,7 +56,6 @@ visible = false
 [connection signal="next_wave" from="UiReady" to="." method="_on_ui_ready_next_wave"]
 [connection signal="ring_choose" from="UiReady" to="." method="_on_ui_ready_ring_choose"]
 [connection signal="skill_choose" from="UiReady" to="." method="_on_ui_ready_skill_choose"]
-[connection signal="exit_show_ring" from="UiShowRing" to="." method="_on_ui_show_ring_exit_show_ring"]
 [connection signal="exit_btn_pressed" from="UIManageChangeActor" to="." method="_on_ui_manage_change_actor_exit_btn_pressed"]
 [connection signal="exit_btn_pressed" from="UiManageChangeSkill" to="." method="_on_ui_manage_change_skill_exit_btn_pressed"]
 [connection signal="exit_btn_pressed" from="ui_manage_equipment" to="." method="_on_ui_manage_equipment_exit_btn_pressed"]
