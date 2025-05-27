@@ -120,3 +120,4 @@ text = "查看對戰紀錄"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_item/Button" to="." method="_to_manage_equipment_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_skill/Button" to="." method="_to_manage_skill_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/manage_ring/Button" to="." method="_to_manage_ring_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/manage_ring2/Button" to="." method="_to_manage_record_button_pressed"]

@@ -55,7 +55,7 @@ func enter(_msg: Dictionary = {}):
 	var available_equipment = fetch_random_equipment(level)
 	print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 	
-	state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
+	await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
 	
 	agent.ui_layer.input_show_equipment_data(state_machine.get_value('player'))
 	show_rings_selection()

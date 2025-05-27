@@ -60,3 +60,4 @@ visible = false
 [connection signal="exit_btn_pressed" from="UIManageChangeActor" to="." method="_on_ui_manage_change_actor_exit_btn_pressed"]
 [connection signal="exit_btn_pressed" from="UiManageChangeSkill" to="." method="_on_ui_manage_change_skill_exit_btn_pressed"]
 [connection signal="exit_btn_pressed" from="ui_manage_equipment" to="." method="_on_ui_manage_equipment_exit_btn_pressed"]
+[connection signal="exit_btn_pressed" from="ui_record" to="." method="_on_ui_record_exit_btn_pressed"]

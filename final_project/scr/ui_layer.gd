@@ -97,6 +97,12 @@ func show_ui_manage_equipment():
 func hide_ui_manage_equipment():
 	ui_manage_equipment.hide()
 
+func show_ui_record():
+	ui_record.show()
+	
+func hide_ui_record():
+	ui_record.hide()
+	
 #管理按鈕按下
 func _on_ui_playing_exit_btn_pressed():
 	exit_playing.emit()
@@ -142,3 +148,6 @@ func _on_ui_ready_equipment_choose(equipments_index: int) -> void:
 
 func _on_ui_ready_next_wave():
 	next_wave.emit()
+
+func _on_ui_record_exit_btn_pressed():
+	exit_manage_change_something.emit()
