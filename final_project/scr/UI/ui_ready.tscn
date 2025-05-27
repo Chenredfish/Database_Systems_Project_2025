@@ -623,3 +623,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill1/skill_choose/skill_choose_1" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_1_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill2/skill_choose/skill_choose_2" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_2_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/skill_list/HBoxContainer/skill3/skill_choose/skill_choose_3" to="MarginContainer/HBoxContainer/ring_and_skill/skill_list" method="_on_skill_choose_3_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ring_and_skill/next_wave/next_wave_btn" to="." method="_on_next_wave_btn_pressed"]

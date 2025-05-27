@@ -23,6 +23,7 @@ signal to_pause
 signal skill_choose(number:int)
 signal ring_choose(number:int)
 signal equipment_choose(equipments_index:int)
+signal next_wave
 
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
@@ -138,3 +139,6 @@ func _on_ui_ready_skill_choose(number: int) -> void:
 
 func _on_ui_ready_equipment_choose(equipments_index: int) -> void:
 	equipment_choose.emit(equipments_index)
+
+func _on_ui_ready_next_wave():
+	next_wave.emit()

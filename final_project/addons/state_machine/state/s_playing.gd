@@ -65,6 +65,9 @@ func exit():
 	to_show_ring = false
 	state_machine.set_value('to_show_ring', to_show_ring)
 	
+	to_ready_state = false
+	state_machine.set_value('to_ready_state', to_ready_state)
+	
 	#處理目前等級
 	if !state_machine.get_value('is_pause'):
 		update_level()

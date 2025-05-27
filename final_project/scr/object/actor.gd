@@ -123,7 +123,7 @@ func add_equipment_to_list(equipment_id: int):#將裝備加入擁有清單中
 	equipment_list.append(new_equipment)
 
 func equipment_change(equipment_id: int) -> void:#更換身上裝備
-	var query = "SELECT id, name, attack_defence, magic_defence FROM equipment WHERE id = ?"
+	var query = "SELECT id, name, attack_defence, magic_defence, level FROM equipment WHERE id = ?"
 	db.query_with_bindings(query, [equipment_id])
 
 	if db.query_result.size() == 0:
