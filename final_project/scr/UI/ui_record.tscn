@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcb6isphqlejv"]
+[gd_scene load_steps=14 format=3 uid="uid://bcb6isphqlejv"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_k281g"]
 [ext_resource type="Script" uid="uid://dhjnedpj5s7ve" path="res://scr/UI/ui_record.gd" id="2_7u1ug"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_8oy23"]
 [ext_resource type="Script" uid="uid://sdp20jesbey8" path="res://scr/UI/record_control.gd" id="3_43ihx"]
 [ext_resource type="Script" uid="uid://d01ywivot3mu4" path="res://scr/UI/record_ring.gd" id="4_43ihx"]
+[ext_resource type="Script" uid="uid://bixgtq53f2dcg" path="res://scr/UI/record_skill.gd" id="5_2y1p6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8oy23"]
 font_size = 24
@@ -259,6 +260,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 341)
 layout_mode = 2
 theme_override_constants/margin_top = 100
+script = ExtResource("5_2y1p6")
 
 [node name="skills" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill"]
 layout_mode = 2
@@ -266,6 +268,7 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 50
 
 [node name="skill_choices" type="VBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills"]
+custom_minimum_size = Vector2(366, 241)
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -293,74 +296,26 @@ layout_mode = 2
 text = "技能名稱"
 horizontal_alignment = 1
 
-[node name="skill1" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices"]
+[node name="skill_test" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices"]
 custom_minimum_size = Vector2(0, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill1"]
+[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill1/ring_id"]
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/ring_id"]
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
 
-[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill1"]
+[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill1/ring_name"]
-layout_mode = 2
-text = "技能名稱"
-horizontal_alignment = 1
-
-[node name="skill2" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices"]
-custom_minimum_size = Vector2(0, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 0
-
-[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill2"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill2/ring_id"]
-layout_mode = 2
-text = "2"
-horizontal_alignment = 1
-
-[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill2"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill2/ring_name"]
-layout_mode = 2
-text = "技能名稱"
-horizontal_alignment = 1
-
-[node name="skill3" type="HBoxContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices"]
-custom_minimum_size = Vector2(0, 49)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 0
-
-[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill3"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill3/ring_id"]
-layout_mode = 2
-text = "3"
-horizontal_alignment = 1
-
-[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill3"]
-custom_minimum_size = Vector2(183.75, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill3/ring_name"]
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/ring_name"]
 layout_mode = 2
 text = "技能名稱"
 horizontal_alignment = 1
