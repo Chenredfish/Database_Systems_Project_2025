@@ -55,7 +55,10 @@ func enter(_msg: Dictionary = {}):
 	var available_equipment = fetch_random_equipment(level)
 	print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 	
-	await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
+	if available_equipment:
+		available_equipments.append(available_equipment)
+		new_equipment = available_equipment
+		await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
 	
 	agent.ui_layer.input_show_equipment_data(state_machine.get_value('player'))
 	show_rings_selection()
@@ -94,8 +97,11 @@ func ring_choosen(number:int):
 	print("玩家選擇光環：" + new_ring.name)
 	
 func equipment_choosen(equipments_index:int):
-	new_equipment = available_equipments[equipments_index]
-	print("玩家選擇裝備：" + new_equipment.name)
+	if equipments_index >= 0 and equipments_index < available_equipments.size():
+		new_equipment = available_equipments[equipments_index]
+		print("玩家選擇裝備：" + new_equipment.name)
+	else :
+		print("無效的裝備索引：%d" % equipments_index)
 
 func fetch_random_skills(level: int) -> Array[Skill]:
 	var min_level = max(1, level - 2)
