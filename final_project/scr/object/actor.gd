@@ -88,10 +88,7 @@ func _init(data: Dictionary) -> void:
 
 
 	print("成功建立：%s，Level: %d" % [_name, level])
-<<<<<<< HEAD
-=======
 
->>>>>>> 5e958ff1c791ee3934d6ccf0f80590691ee30bd2
 	open_data()
 
 	if !skill:
@@ -178,12 +175,9 @@ func build_new_ring(ring_id: int):#增加新的狀態
 	var new_ring = Ring.new(row)
 
 	rings.append(new_ring)
-<<<<<<< HEAD
 	print("已新增狀態：", new_ring.name) 
 	health = _get_max_health()
-=======
-	print("已新增狀態：", new_ring.name)
->>>>>>> 5e958ff1c791ee3934d6ccf0f80590691ee30bd2
+
 
 
 func get_element_multiplier_from_db(attacker_element: String, target_element: String) -> float:#屬性判定

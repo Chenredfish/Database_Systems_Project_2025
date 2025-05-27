@@ -11,6 +11,7 @@ var new_ring:Ring
 var new_equipment:Equipment
 
 var is_next_wave:bool = false
+var to_show_ring:bool = false
 
 # 載入 Equipment 類別
 const Equipment = preload("res://scr/object/equipment.gd")
@@ -25,9 +26,6 @@ func enter(_msg: Dictionary = {}):
 
 	var level = state_machine.get_value("level")
 	var player = state_machine.get_value("player")
-	
-	if !state_machine.has_value('is_next_wave'):
-		state_machine.set_value('is_next_wave', false)
 	
 	create_level_enemy(level)
 
@@ -51,14 +49,21 @@ func enter(_msg: Dictionary = {}):
 	if !agent.ui_layer.next_wave.is_connected(next_wave):
 		agent.ui_layer.next_wave.connect(next_wave)
 		
+	if !agent.ui_layer.to_show_ring.is_connected(show_ring):
+		agent.ui_layer.to_show_ring.connect(show_ring)
+		
 	
 	var available_equipment = fetch_random_equipment(level)
 	if available_equipment:
 		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
 		available_equipments.append(available_equipment)
-		new_equipment = available_equipment
-		# 不要在這裡直接加入玩家裝備，等玩家選擇後再加入
 		await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
+		
+	if !state_machine.has_value('is_next_wave'):
+		state_machine.set_value('is_next_wave', false)
+	
+	if !state_machine.has_value('to_show_ring'):
+		state_machine.set_value('to_show_ring', false)
 	
 	# 將 available_equipments 傳給 UI 顯示
 	agent.ui_layer.input_show_equipment_data(available_equipments)
@@ -74,20 +79,36 @@ func update(delta):
 		is_next_wave = state_machine.get_value('is_next_wave')	
 	if is_next_wave:
 		transform_to(StateEnum.GAME_STATE_TYPE.PLAYING)
+		
+	if state_machine.has_value('to_show_ring'):
+		to_show_ring = state_machine.get_value('to_show_ring')	
+	if to_show_ring:
+		transform_to(StateEnum.GAME_STATE_TYPE.SHOW_RING)
 
 func exit():
 	agent.ui_layer.hide_ui_ready()
 	
+	if is_next_wave == true:
+		reset_actor('player')
+	
 	state_machine.set_value('is_next_wave', false)
 	is_next_wave = state_machine.get_value('is_next_wave')
 	
-	reset_actor('player')
+	to_show_ring = false
+	state_machine.set_value('to_show_ring', to_show_ring)
+	agent.ui_layer.to_show_ring.disconnect(show_ring)
+	
 
 func next_wave():
 	if new_equipment and new_ring and new_skill:
 		state_machine.set_value('is_next_wave', true)
 	else :
 		state_machine.set_value('is_next_wave', false)
+		
+func show_ring(aim:String):
+	state_machine.set_value('to_show_ring', true)
+	state_machine.set_value('to_show_aim', aim)
+	state_machine.set_value('from_ready', true)
 
 func skill_choosen(number:int):
 	new_skill = available_skills[number-1]

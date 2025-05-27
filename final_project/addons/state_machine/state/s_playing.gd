@@ -64,6 +64,7 @@ func exit():
 	
 	to_show_ring = false
 	state_machine.set_value('to_show_ring', to_show_ring)
+	agent.ui_layer.to_show_ring.disconnect(show_ring)
 	
 	to_ready_state = false
 	state_machine.set_value('to_ready_state', to_ready_state)
@@ -95,6 +96,7 @@ func exit_playing():
 func show_ring(aim:String):
 	state_machine.set_value('to_show_ring', true)
 	state_machine.set_value('to_show_aim', aim)
+	state_machine.set_value('from_playing', true)
 	pause_battle()
 	
 func create_actor_node():
