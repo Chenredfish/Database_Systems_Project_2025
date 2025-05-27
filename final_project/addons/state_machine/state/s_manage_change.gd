@@ -21,6 +21,8 @@ func enter(_msg:Dictionary = {}):
 			agent.ui_layer.show_ui_manage_equipment()
 		"actor":
 			agent.ui_layer.show_ui_manage_change_actor()
+		"record":
+			agent.ui_layer.show_ui_record()
 
 func update(delta):
 	if state_machine.has_value('to_playing'):
@@ -36,6 +38,7 @@ func exit():
 	agent.ui_layer.hide_ui_manage_change_actor()
 	agent.ui_layer.hide_ui_manage_change_skill()
 	agent.ui_layer.hide_ui_manage_equipment()
+	agent.ui_layer.hide_ui_record()
 	
 func exit_manage_change_something():
 	state_machine.set_value('to_playing', true)

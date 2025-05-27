@@ -4,3 +4,9 @@
 
 [node name="idle_anim" type="Node2D"]
 script = ExtResource("1_kudct")
+animation_base_path = "res://assets/Actor_anim/player_idle"
+subfolder_prefix = "hero"
+subfolder_id_max = 5
+sprite_scale = Vector2(10, 10)
+sprite_position = Vector2(100, 340)
+flip_horizontally = true

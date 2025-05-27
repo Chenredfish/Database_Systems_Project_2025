@@ -5,6 +5,7 @@ signal refresh_database
 
 @onready var db = SQLite.new()
 
+
 @onready var id_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_id/LineEdit
 @onready var name_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_name/LineEdit
 @onready var level_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_level/LineEdit

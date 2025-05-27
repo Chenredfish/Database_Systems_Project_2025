@@ -23,3 +23,6 @@ func _to_manage_equipment_button_pressed():
 
 func _to_manage_actor_button_pressed():
 	to_manage_something.emit('actor')
+
+func _to_manage_record_button_pressed():
+	to_manage_something.emit('record')

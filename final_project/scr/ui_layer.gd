@@ -20,14 +20,18 @@ signal to_manage_ring
 signal to_manage_something(aim:String)
 signal to_show_ring(aim:String)
 signal to_pause
+signal skill_choose(number:int)
+signal ring_choose(number:int)
+signal equipment_choose(equipments_index:int)
+signal next_wave
 
 #輸入資料給show_ring顯示
 func input_show_ring_data(actor:Actor):
 	ui_show_ring.input_show_ring_data(actor)
 	
 #輸入資料給裝備顯示和選擇
-func input_show_equipment_data(actor:Actor):
-	ui_ready.input_show_equipment_data(actor)
+func input_show_equipment_data(equipments:Array):
+	ui_ready.input_show_equipment_data(equipments)
 
 #設定暫停按鈕回到暫停畫面
 func set_pause_btn_to_pause():
@@ -93,6 +97,12 @@ func show_ui_manage_equipment():
 func hide_ui_manage_equipment():
 	ui_manage_equipment.hide()
 
+func show_ui_record():
+	ui_record.show()
+	
+func hide_ui_record():
+	ui_record.hide()
+	
 #管理按鈕按下
 func _on_ui_playing_exit_btn_pressed():
 	exit_playing.emit()
@@ -125,4 +135,19 @@ func _on_ui_manage_change_skill_exit_btn_pressed():
 	exit_manage_change_something.emit()
 
 func _on_ui_manage_equipment_exit_btn_pressed():
+	exit_manage_change_something.emit()
+
+func _on_ui_ready_ring_choose(number: int) -> void:
+	ring_choose.emit(number)
+
+func _on_ui_ready_skill_choose(number: int) -> void:
+	skill_choose.emit(number)
+
+func _on_ui_ready_equipment_choose(equipments_index: int) -> void:
+	equipment_choose.emit(equipments_index)
+
+func _on_ui_ready_next_wave():
+	next_wave.emit()
+
+func _on_ui_record_exit_btn_pressed():
 	exit_manage_change_something.emit()

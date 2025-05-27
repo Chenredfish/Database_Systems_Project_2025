@@ -5,7 +5,12 @@ var db := SQLite.new()
 
 var available_skills:Array[Skill] = []
 var available_rings:Array[Ring] = []
-var available_equipment:Equipment = null
+var available_equipments:Array[Equipment] = []
+var new_skill:Skill
+var new_ring:Ring
+var new_equipment:Equipment
+
+var is_next_wave:bool = false
 
 # 載入 Equipment 類別
 const Equipment = preload("res://scr/object/equipment.gd")
@@ -21,30 +26,83 @@ func enter(_msg: Dictionary = {}):
 	var level = state_machine.get_value("level")
 	var player = state_machine.get_value("player")
 	
-	free_actor("enemy")
-	free_actor("player")
+	if !state_machine.has_value('is_next_wave'):
+		state_machine.set_value('is_next_wave', false)
 	
 	create_level_enemy(level)
 
-
+	# 這裡複製玩家裝備列表，避免直接操作玩家資料
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
+	available_equipments = state_machine.get_value('player').get('equipment_list').duplicate()
+	new_equipment = null
+	new_ring = null
+	new_skill = null
 	
-	for i in range(1, 10):
-		available_equipment = fetch_random_equipment(level)
+	if !agent.ui_layer.ring_choose.is_connected(ring_choosen):
+		agent.ui_layer.ring_choose.connect(ring_choosen)
+	
+	if !agent.ui_layer.skill_choose.is_connected(skill_choosen):
+		agent.ui_layer.skill_choose.connect(skill_choosen)
+		
+	if !agent.ui_layer.equipment_choose.is_connected(equipment_choosen):
+		agent.ui_layer.equipment_choose.connect(equipment_choosen)
+		
+	if !agent.ui_layer.next_wave.is_connected(next_wave):
+		agent.ui_layer.next_wave.connect(next_wave)
+		
+	
+	var available_equipment = fetch_random_equipment(level)
+	if available_equipment:
 		print("隨機刷出裝備：" + str(available_equipment.get('name')) + ", 等級為：" + str(available_equipment.get('level')))
+		available_equipments.append(available_equipment)
+		new_equipment = available_equipment
+		# 不要在這裡直接加入玩家裝備，等玩家選擇後再加入
+		await state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
 	
-		state_machine.get_value('player').add_equipment_to_list(available_equipment.get('id'))
-	
-	agent.ui_layer.input_show_equipment_data(state_machine.get_value('player'))
+	# 將 available_equipments 傳給 UI 顯示
+	agent.ui_layer.input_show_equipment_data(available_equipments)
 	show_rings_selection()
 	show_skills_selection()
+	
+	remove_actor("enemy")
+	remove_actor("player")
 
 func update(delta):
-	pass
+	#開始下一場對戰
+	if state_machine.has_value('is_next_wave'):
+		is_next_wave = state_machine.get_value('is_next_wave')	
+	if is_next_wave:
+		transform_to(StateEnum.GAME_STATE_TYPE.PLAYING)
 
 func exit():
 	agent.ui_layer.hide_ui_ready()
+	
+	state_machine.set_value('is_next_wave', false)
+	is_next_wave = state_machine.get_value('is_next_wave')
+	
+	reset_actor('player')
+
+func next_wave():
+	if new_equipment and new_ring and new_skill:
+		state_machine.set_value('is_next_wave', true)
+	else :
+		state_machine.set_value('is_next_wave', false)
+
+func skill_choosen(number:int):
+	new_skill = available_skills[number-1]
+	print("玩家選擇技能：" + new_skill.name)
+
+func ring_choosen(number:int):
+	new_ring = available_rings[number-1]
+	print("玩家選擇光環：" + new_ring.name)
+	
+func equipment_choosen(equipments_index:int):
+	if equipments_index >= 0 and equipments_index < available_equipments.size():
+		new_equipment = available_equipments[equipments_index]
+		print("玩家選擇裝備：" + new_equipment.name)
+	else :
+		print("無效的裝備索引：%d" % equipments_index)
 
 func fetch_random_skills(level: int) -> Array[Skill]:
 	var min_level = max(1, level - 2)
@@ -73,16 +131,34 @@ func fetch_random_equipment(level: int) -> Equipment:
 	results.shuffle()
 	return Equipment.new(results[0]) if results.size() > 0 else null
 
-func free_actor(aim:String):
+func remove_actor(aim:String):
 	for child in agent.get_children():
 		if child.name == aim:
-			child.queue_free()
+			agent.remove_child(child)
+			
+func reset_actor(aim:String):
+
+	if aim == 'player':
+		await state_machine.get_value(aim).equipment_change(new_equipment.get('id'))
+		await state_machine.get_value(aim).build_new_ring(new_ring.get('id'))
+		await state_machine.get_value(aim).skill_change(new_skill.get('id'))
+		var max_health = state_machine.get_value(aim)._get_max_health()
+		state_machine.get_value(aim).set('health', max_health)
+		
+		print("玩家裝備了" + new_skill.get('name') + new_ring.get('name') + new_equipment.get('name'))
+		
+	else :
+		print("錯誤的節點名稱")
+		return
 		
 func create_level_enemy(level:int):
 	var enemy_data = db.select_rows("actor", "level = " + str(level), ["*"])
 	if enemy_data.size() > 0:
 		var rand_enemy_id:int = randi() % enemy_data.size()
-		state_machine.set_value('enemy', Actor.new(enemy_data[rand_enemy_id]))
+		var rand_enemy:Actor = Actor.new(enemy_data[rand_enemy_id])
+		rand_enemy.set('name', 'enemy')
+		state_machine.set_value('enemy', rand_enemy)
+		
 	else:
 		print("enemy_data 是空的，無法選擇隨機敵人")
 

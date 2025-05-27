@@ -35,7 +35,7 @@ func _page_update():	#刷新頁面
 		_add_ring(count)
 		count += 1
 		
-func _search_ring(keyword):
+func _search_ring(keyword:String):
 	var count = 0
 	var check = true
 	if keyword == "":
