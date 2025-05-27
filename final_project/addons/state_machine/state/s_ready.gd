@@ -145,6 +145,8 @@ func reset_actor(aim:String):
 		var max_health = state_machine.get_value(aim)._get_max_health()
 		state_machine.get_value(aim).set('health', max_health)
 		
+		print("玩家裝備了" + new_skill.get('name') + new_ring.get('name') + new_equipment.get('name'))
+		
 	else :
 		print("錯誤的節點名稱")
 		return
