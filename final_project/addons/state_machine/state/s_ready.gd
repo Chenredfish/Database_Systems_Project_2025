@@ -25,10 +25,11 @@ func enter(_msg: Dictionary = {}):
 	db.open_db()
 
 	var level = state_machine.get_value("level")
-	var player = state_machine.get_value("player")
 	
 	create_level_enemy(level)
-
+	display_next_enemy_element() # 顯示下一關敵人的屬性
+	var player = state_machine.get_value("player")
+	
 	# 這裡複製玩家裝備列表，避免直接操作玩家資料
 	available_skills = fetch_random_skills(level)
 	available_rings = fetch_random_rings(level)
@@ -179,7 +180,6 @@ func create_level_enemy(level:int):
 		var rand_enemy:Actor = Actor.new(enemy_data[rand_enemy_id])
 		rand_enemy.set('name', 'enemy')
 		state_machine.set_value('enemy', rand_enemy)
-		
 	else:
 		print("enemy_data 是空的，無法選擇隨機敵人")
 
@@ -248,3 +248,38 @@ func show_skills_selection():
 		desc_text += "冷卻時間：%ss" % str(skill.get("cooldown"))
 
 		desc_label.text = desc_text.strip_edges()
+
+func display_next_enemy_element():
+	var next_enemy_actor = state_machine.get_value('enemy')
+	var enemy_element_texture_rect = agent.ui_layer.ui_ready.get_node("Show_elements/TextureRect")
+
+	if enemy_element_texture_rect and next_enemy_actor:
+		var enemy_element = next_enemy_actor.get('element') # element從 Actor 物件中獲取
+		var element_icon_path = ""
+
+		match enemy_element:
+			"火":
+				element_icon_path = "res://assets/elements_icon/0.png"
+			"水":
+				element_icon_path = "res://assets/elements_icon/1.png"
+			"草":
+				element_icon_path = "res://assets/elements_icon/2.png"
+			"光":
+				element_icon_path = "res://assets/elements_icon/3.png"
+			"暗":
+				element_icon_path = "res://assets/elements_icon/4.png"
+			_:
+				push_warning("未知的敵人元素屬性: " + str(enemy_element) + " 或未設定對應圖示。")
+				element_icon_path = "" 
+				
+		if !element_icon_path.is_empty():
+			var element_texture = load(element_icon_path)
+			if element_texture:
+				enemy_element_texture_rect.texture = element_texture
+				print("下一關敵人的屬性：" + enemy_element)
+			else:
+				push_warning("無法載入敵人屬性: " + element_icon_path)
+		else:
+			push_warning("未為敵人元素設定圖示路徑。")
+	else:
+		push_warning("無法找到 UI Ready 中的敵人屬性顯示節點 (TextureRect) 或敵人 Actor 物件不存在。")

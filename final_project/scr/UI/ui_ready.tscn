@@ -588,6 +588,7 @@ size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="Show_elements"]
 layout_mode = 2
+stretch_mode = 5
 
 [connection signal="equipment_choose" from="MarginContainer/HBoxContainer/character/character/equipment_list" to="." method="_on_equipment_list_equipment_choose"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]

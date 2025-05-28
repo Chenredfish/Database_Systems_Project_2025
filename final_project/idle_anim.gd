@@ -56,7 +56,7 @@ func setup_animation(path_to_load: String, selected_id: int):
 		if animated_sprite.animation != anim_name or not animated_sprite.is_playing():
 			animated_sprite.play(anim_name)
 		# 打印時使用傳入的 selected_id
-		print("成功載入並播放 '%s' (ID: %d) 的 '%s' 動畫。" % [subfolder_prefix, selected_id, anim_name])
+		print("成功載入並播放 '%s %d' 的動畫。" % [subfolder_prefix, selected_id])
 	else:
 		push_warning("動畫名稱 '" + anim_name + "' 不存在於 SpriteFrames 中。")
 		animated_sprite.sprite_frames = null
