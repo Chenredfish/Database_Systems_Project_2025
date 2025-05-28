@@ -61,6 +61,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/character/character/character_texture/PanelContainer"]
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+flip_h = true
+
 [node name="switch_item_ring" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/character"]
 layout_mode = 2
 theme_override_constants/margin_top = 40
@@ -582,12 +588,14 @@ size_flags_vertical = 8
 theme_override_constants/margin_bottom = 92
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/character_texture"]
+visible = false
 custom_minimum_size = Vector2(263, 368)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(147, 147)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -610,6 +618,18 @@ theme_override_font_sizes/font_size = 36
 text = "下一回合
 敵人屬性"
 horizontal_alignment = 1
+
+[node name="Show_elements" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(147, 147)
+offset_left = 1646.0
+offset_top = 376.0
+offset_right = 1864.0
+offset_bottom = 598.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Show_elements"]
+layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/character/switch_item_ring/HBoxContainer/show_ring/show_ring_btn" to="." method="_on_show_ring_btn_pressed"]
 [connection signal="equipment_choose" from="MarginContainer/HBoxContainer/character/character/equipment_list" to="." method="_on_equipment_list_equipment_choose"]

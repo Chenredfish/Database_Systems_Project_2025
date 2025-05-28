@@ -82,7 +82,7 @@ func update_level():
 	
 	count_next_level += 1
 	
-	if count_next_level >= 5: #打超過五次就 level up !
+	if count_next_level >= 3: #打超過3次就 level up !
 		level += 1
 		count_next_level = 0  # 重置進度
 
