@@ -1,29 +1,40 @@
 extends MarginContainer
 
-@onready var ring_choices: VBoxContainer = $rings/ring_choices
-@onready var ring_test: HBoxContainer = $"../ring/rings/ring_choices/ring_test"
-@onready var ring_chosen: PanelContainer = $rings/ring_chosen
+@onready var skill_choices: VBoxContainer = $skills/skill_choices
+@onready var skill_test: HBoxContainer = $skills/skill_choices/skill_test
+@onready var skill_chosen = $skills/skill_chosen/VBC
 @onready var db = SQLite.new()
-var all_ring_data
+var all_skill_data
 
 func _ready():
 	db.path = "res://data/game.db"
 	db.open_db()
-	all_ring_data = db.select_rows("ring", "id > 0", ["*"])
-	ring_test.hide()
+	all_skill_data = db.select_rows("skill", "id > 0", ["*"])
+	skill_test.hide()
 
-func _ring_page_update(round_data):
-	for child in ring_choices.get_children():
-		if child.name != "ring_test" and child.name != "ring_id_name":
+func _skill_page_update(round_data):
+	for child in skill_choices.get_children():
+		if child.name != "skill_test" and child.name != "skill_id_name":
 			child.queue_free()
 	
-	for new_ring in range(1,4):
-		var new_ring_choice = ring_test.duplicate()
-		new_ring_choice.name = "new_ring_choice" + str(new_ring)
-		ring_choices.add_child(new_ring_choice)
-		new_ring_choice.show()
-		new_ring_choice.get_node("ring_id/Label").text = str(round_data["ring_choice_id_" + str(new_ring)])
-		var sql = "SELECT * FROM ring WHERE id = ?"
-		db.query_with_bindings(sql, [round_data["ring_choice_id_" + str(new_ring)]])
-		var target_ring = db.query_result[0]
-		new_ring_choice.get_node("ring_name/Label").text = target_ring["name"]
+	var sql = "SELECT * FROM skill WHERE id = ?"
+	var target_skill
+	for new_skill in range(1,4):
+		var new_skill_choice = skill_test.duplicate()
+		new_skill_choice.name = "new_skill_choice" + str(new_skill)
+		skill_choices.add_child(new_skill_choice)
+		new_skill_choice.show()
+		new_skill_choice.get_node("skill_id/Label").text = str(round_data["skill_choice_id_" + str(new_skill)])
+		db.query_with_bindings(sql, [round_data["skill_choice_id_" + str(new_skill)]])
+		target_skill = db.query_result[0]
+		new_skill_choice.get_node("skill_name/Label").text = target_skill["name"]
+	
+	db.query_with_bindings(sql, [round_data["player_skill_id"]])
+	target_skill = db.query_result[0]
+	skill_chosen.get_node("skill_name").text = str(target_skill["name"])
+	skill_chosen.get_node("skill_level").text = "技能代號：" + str(target_skill["id"])
+	skill_chosen.get_node("skill_level").text = "技能等級：" + str(target_skill["level"])
+	skill_chosen.get_node("skill_element").text = "屬性：" + str(target_skill["element"])
+	skill_chosen.get_node("skill_is_magic").text = "攻擊類別：" + str(target_skill["is_magic"])
+	skill_chosen.get_node("skill_power").text = "攻擊係數：" + str(target_skill["power"])
+	skill_chosen.get_node("skill_cooldown").text = "技能冷卻：" + str(target_skill["cooldown"])

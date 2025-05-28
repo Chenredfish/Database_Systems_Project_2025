@@ -91,6 +91,14 @@ text = "裂地衝擊"
 label_settings = SubResource("LabelSettings_7qo55")
 horizontal_alignment = 1
 
+[node name="skill_id" type="Label" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "技能代號：0"
+label_settings = SubResource("LabelSettings_nelwc")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="skill_level" type="Label" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2

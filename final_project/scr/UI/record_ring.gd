@@ -32,7 +32,8 @@ func _ring_page_update(round_data):
 	db.query_with_bindings(sql, [round_data["player_ring_id"]])
 	target_ring = db.query_result[0]
 	ring_chosen.get_node("ring_name").text = str(target_ring["name"])
-	ring_chosen.get_node("ring_level").text = "等級：" + str(target_ring["level"])
+	ring_chosen.get_node("ring_id").text = "狀態代號：" + str(target_ring["id"])
+	ring_chosen.get_node("ring_level").text = "狀態等級：" + str(target_ring["level"])
 	ring_chosen.get_node("ring_health").text = "生命值：" + str(target_ring["health"])
 	ring_chosen.get_node("ring_attack_power").text = "物理攻擊：" + str(target_ring["attack_power"])
 	ring_chosen.get_node("ring_magic_power").text = "魔法攻擊：" + str(target_ring["magic_power"])
