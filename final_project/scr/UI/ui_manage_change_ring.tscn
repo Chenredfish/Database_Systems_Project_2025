@@ -84,10 +84,18 @@ text = "天與咒縛"
 label_settings = SubResource("LabelSettings_mylh8")
 horizontal_alignment = 1
 
+[node name="ring_id" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "狀態代號：0"
+label_settings = SubResource("LabelSettings_jauhl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="ring_level" type="Label" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/PC/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
-text = "光環階級：5"
+text = "狀態階級：5"
 label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2

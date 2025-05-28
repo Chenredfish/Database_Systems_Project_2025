@@ -54,6 +54,7 @@ func _add_skill(skill_n):	#顯示每個狀態
 	add_child(new_skill)
 	new_skill.show()
 	new_skill.get_node("PC/VBC/skill_name").text = str(search_skill_data[skill_n]["name"])
+	new_skill.get_node("PC/VBC/skill_id").text = "技能代號：" + str(search_skill_data[skill_n]["id"])
 	new_skill.get_node("PC/VBC/skill_level").text = "技能階級：" + str(search_skill_data[skill_n]["level"])
 	new_skill.get_node("PC/VBC/skill_element").text = "屬性：" + str(search_skill_data[skill_n]["element"])
 	#if str(search_skill_data[skill_n]["element"]) == "草":

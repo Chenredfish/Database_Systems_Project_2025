@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcb6isphqlejv"]
+[gd_scene load_steps=15 format=3 uid="uid://bcb6isphqlejv"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_k281g"]
 [ext_resource type="Script" uid="uid://dhjnedpj5s7ve" path="res://scr/UI/ui_record.gd" id="2_7u1ug"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://sdp20jesbey8" path="res://scr/UI/record_control.gd" id="3_43ihx"]
 [ext_resource type="Script" uid="uid://d01ywivot3mu4" path="res://scr/UI/record_ring.gd" id="4_43ihx"]
 [ext_resource type="Script" uid="uid://bixgtq53f2dcg" path="res://scr/UI/record_skill.gd" id="5_2y1p6"]
+[ext_resource type="Script" uid="uid://bylxum38y7sri" path="res://scr/UI/record_player_and_enemy.gd" id="6_eb322"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8oy23"]
 font_size = 24
@@ -208,10 +209,18 @@ text = "天與咒縛"
 label_settings = SubResource("LabelSettings_8oy23")
 horizontal_alignment = 1
 
+[node name="ring_id" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/rings/ring_chosen/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "狀態代號：0"
+label_settings = SubResource("LabelSettings_7u1ug")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="ring_level" type="Label" parent="MC/VBC/HBC/ring_and_skill/ring/rings/ring_chosen/VBC"]
 custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
-text = "光環階級：5"
+text = "狀態階級：5"
 label_settings = SubResource("LabelSettings_7u1ug")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -302,20 +311,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 0
 
-[node name="ring_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
+[node name="skill_id" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/ring_id"]
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/skill_id"]
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
 
-[node name="ring_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
+[node name="skill_name" type="PanelContainer" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test"]
 custom_minimum_size = Vector2(183.75, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/ring_name"]
+[node name="Label" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_choices/skill_test/skill_name"]
 layout_mode = 2
 text = "技能名稱"
 horizontal_alignment = 1
@@ -333,6 +342,14 @@ layout_mode = 2
 text = "裂地衝擊"
 label_settings = SubResource("LabelSettings_43ihx")
 horizontal_alignment = 1
+
+[node name="skill_id" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_chosen/VBC"]
+custom_minimum_size = Vector2(161, 0)
+layout_mode = 2
+text = "技能代號：5"
+label_settings = SubResource("LabelSettings_2y1p6")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="skill_level" type="Label" parent="MC/VBC/HBC/ring_and_skill/skill/skills/skill_chosen/VBC"]
 custom_minimum_size = Vector2(161, 0)
@@ -378,6 +395,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
+script = ExtResource("6_eb322")
 
 [node name="player_and_enemy" type="VBoxContainer" parent="MC/VBC/HBC/player_and_enemy"]
 layout_mode = 2
