@@ -277,15 +277,15 @@ func display_next_enemy_element():
 
 		match enemy_element:
 			"火":
-				element_icon_path = "res://assets/elements_icon/0.png"
-			"水":
 				element_icon_path = "res://assets/elements_icon/1.png"
-			"草":
+			"水":
 				element_icon_path = "res://assets/elements_icon/2.png"
-			"光":
+			"草":
 				element_icon_path = "res://assets/elements_icon/3.png"
-			"暗":
+			"光":
 				element_icon_path = "res://assets/elements_icon/4.png"
+			"暗":
+				element_icon_path = "res://assets/elements_icon/5.png"
 			_:
 				push_warning("未知的敵人元素屬性: " + str(enemy_element) + " 或未設定對應圖示。")
 				element_icon_path = "" 
