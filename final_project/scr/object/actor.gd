@@ -196,21 +196,21 @@ func get_element_multiplier_from_db(attacker_element: String, target_element: St
 	else:
 		return 1.0
 
-func get_combined_ring_state()->Dictionary:#當前狀態加成
+func get_combined_ring_state() -> Dictionary: # 當前狀態加成
 	var result = {
-		"attack_power" = 0.0,
-		"magic_power" = 0.0,
-		"attack_defence" = 0.0,
-		"magic_defence" = 0.0,
-		"health" = 0.0
+		"attack_power": 0.0,
+		"magic_power": 0.0,
+		"attack_defence": 0.0,
+		"magic_defence": 0.0,
+		"health": 0.0
 	}
 
 	for r in rings:
-		result["attack_power"] += r.attack_power
-		result["magic_power"] += r.magic_power
-		result["attack_defence"] += r.attack_defence
-		result["magic_defence"] += r.magic_defence
-		result["health"] += r.health
+		result["attack_power"] = max(0.0, result["attack_power"] + r.attack_power)
+		result["magic_power"] = max(0.0, result["magic_power"] + r.magic_power)
+		result["attack_defence"] = max(0.0, result["attack_defence"] + r.attack_defence)
+		result["magic_defence"] = max(0.0, result["magic_defence"] + r.magic_defence)
+		result["health"] = max(0.0, result["health"] + r.health)
 
 	return result
 
@@ -272,7 +272,7 @@ func damage_calculate(target:Actor, is_magic: bool = false, is_player: bool = fa
 		target_defence = target._get_attack_defence()
 
 	var final_damage = attacker_damage * element_percent * skill_power
-	var real_damage = final_damage * (1 - target_defence)
+	var real_damage = max (1,final_damage * (1 - target_defence))
 
 	target.health = max(0, target.health - real_damage)
 

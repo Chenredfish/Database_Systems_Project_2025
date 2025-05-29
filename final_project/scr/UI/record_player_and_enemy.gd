@@ -28,7 +28,7 @@ func _actor_page_update(round_data):
 	
 	sql = "SELECT * FROM equipment WHERE id = ?"
 	var target_equipment
-	db.query_with_bindings(sql, [round_data["player_equiment_id"]])
+	db.query_with_bindings(sql, [round_data["player_equpiment_id"]])
 	target_equipment = db.query_result[0]
 	player_and_enemy.get_node("player_equipment_id").text = "裝備代號：" + str(target_equipment["id"])
 	player_and_enemy.get_node("player_equipment_name").text = "裝備名稱：" + target_equipment["name"]
