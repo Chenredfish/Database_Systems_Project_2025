@@ -80,6 +80,8 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/armor"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_xse5h")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(66, 66)
@@ -125,6 +127,11 @@ theme_override_constants/separation = 20
 [node name="armor" type="PanelContainer" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/armor"]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(66, 66)

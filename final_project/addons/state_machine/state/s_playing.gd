@@ -21,6 +21,7 @@ func enter(_msg:Dictionary = {}):
 		state_machine.set_value('is_pause', false)
 	
 	create_actor_node()
+	_display_actor_elements()
 	
 	agent.ui_layer.show_ui_playing()
 	if !agent.ui_layer.exit_playing.is_connected(exit_playing):
@@ -166,3 +167,49 @@ func update_ui_actor_health(aim:String):
 	var value = state_machine.get_value(aim).get('health') 
 	#print("max_value = " + str(max_value))
 	agent.ui_layer.ui_playing_change_health_bar(aim, max_value, value)
+	
+const ELEMENT_ICONS = {
+	"火": "res://assets/elements_icon/1.png", 
+	"水": "res://assets/elements_icon/2.png", 
+	"草": "res://assets/elements_icon/3.png", 
+	"光": "res://assets/elements_icon/4.png", 
+	"暗": "res://assets/elements_icon/5.png", 
+}
+
+func _display_actor_elements():
+	var player_element_texture_rect = agent.ui_layer.ui_playing.get_node("MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/armor/TextureRect")
+	var enemy_element_texture_rect = agent.ui_layer.ui_playing.get_node("MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/armor/TextureRect")
+
+	# 元素
+	var player_actor = state_machine.get_value('player')
+	if player_element_texture_rect and player_actor:
+		var player_element = player_actor.get('element')
+		if ELEMENT_ICONS.has(player_element):
+			var icon_path = ELEMENT_ICONS[player_element]
+			var element_texture = load(icon_path)
+			if element_texture:
+				player_element_texture_rect.texture = element_texture
+				print("玩家屬性icon: " + player_element)
+			else:
+				push_warning("無法載入玩家屬性icon: " + icon_path)
+		else:
+			push_warning("未知玩家屬性: " + str(player_element) + " 或未設定對應icon。")
+	else:
+		push_warning("無法找到 UI Playing 中的玩家元素顯示節點或玩家Actor不存在。")
+		
+	# 顯示敵人元素
+	var enemy_actor = state_machine.get_value('enemy')
+	if enemy_element_texture_rect and enemy_actor:
+		var enemy_element = enemy_actor.get('element')
+		if ELEMENT_ICONS.has(enemy_element):
+			var icon_path = ELEMENT_ICONS[enemy_element]
+			var element_texture = load(icon_path)
+			if element_texture:
+				enemy_element_texture_rect.texture = element_texture
+				print("敵人屬性icon: " + enemy_element)
+			else:
+				push_warning("無法載入敵人屬性icon: " + icon_path)
+		else:
+			push_warning("未知敵人屬性: " + str(enemy_element) + " 或未設定對應圖示。")
+	else:
+		push_warning("無法找到 UI Playing 中的敵人元素顯示節點或敵人Actor不存在。")
