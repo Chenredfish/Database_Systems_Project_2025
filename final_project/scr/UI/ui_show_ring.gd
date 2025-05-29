@@ -4,6 +4,7 @@ signal exit_show_ring
 
 @onready var ring: GridContainer = $MarginContainer/HBoxContainer/ring_list/VBoxContainer/MarginContainer/ring
 
+@onready var actor_name = $MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer/name
 @onready var health = $MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer/health
 @onready var max_health = $MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer/max_health
 @onready var level = $MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer/level
@@ -25,6 +26,7 @@ func delete_show_ring_data():
 	ring.delete_show_ring_data()
 
 func show_actor_data(actor:Actor):
+	actor_name.text = str(actor.get('_name'))
 	health.text = str(actor.get("health"))
 	max_health.text = str(int(actor.get('max_health')))
 	level.text = str(actor.get("level"))

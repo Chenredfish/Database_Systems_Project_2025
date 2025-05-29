@@ -61,6 +61,16 @@ theme_override_constants/h_separation = 71
 theme_override_constants/v_separation = 25
 columns = 2
 
+[node name="Label0" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "名稱"
+
+[node name="name" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "戴佑誠"
+
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
