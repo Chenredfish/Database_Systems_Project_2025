@@ -40,6 +40,12 @@ func show_actor_data(actor:Actor):
 	attack_defence.text = str(actor.get("attack_defence"))
 	magic_defence.text = str(actor.get("magic_defence"))
 	
+	var ring_state = actor.get_combined_ring_state()
+	attack_power.text += " × " + str(1 + ring_state["attack_power"])
+	magic_power.text += " × " + str(1 + ring_state["magic_power"])
+	attack_defence.text += " × " + str(1 + ring_state["attack_defence"])
+	magic_defence.text += " × " + str(1 + ring_state["magic_defence"])
+	max_health.text += " × " + str(1 + ring_state["health"])
 
 
 func _on_previous_page_btn_pressed():

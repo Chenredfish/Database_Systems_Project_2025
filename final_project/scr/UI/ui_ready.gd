@@ -10,6 +10,8 @@ signal to_show_ring(aim:String)
 
 func input_show_equipment_data(equipments:Array):
 	equipment_list.input_show_equipment_data(equipments)
+	
+
 
 func _on_previous_page_btn_pressed():
 	equipment_list._page_change(-1)

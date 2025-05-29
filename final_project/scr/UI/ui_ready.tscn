@@ -57,11 +57,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/character/character/character_texture/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/character_texture/PanelContainer"]
 layout_mode = 2
-expand_mode = 5
-stretch_mode = 5
-flip_h = true
 
 [node name="switch_item_ring" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/character"]
 layout_mode = 2
