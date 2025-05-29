@@ -23,18 +23,8 @@ var equipment_list:Array[Equipment] = []
 var skill: Skill
 var rings: Array[Ring] = []
 
-# 動畫處理
-#var hero_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/hero_picture/hero.png")
-#var enemy_texture = preload("res://assets/2D_Pixel_Dungeon_Asset_Pack/monster_picture/monster.png")
-#var sprite_textures = []
-
-# 移除舊的 Sprite2D 實例，現在由 IdleAnimation 負責
-#var sprite = Sprite2D.new()
-#var sprite2 = Sprite2D.new()
-
 #動畫節點變數
 var character_animation_node: IdleAnimation
-
 
 var player_damage_numbers_origin = Node2D.new()
 var enemy_damege_numbers_origin = Node2D.new()
@@ -52,7 +42,6 @@ func _init(data: Dictionary) -> void:
 	attack_defence = data.get("attack_defence", 0)
 	magic_defence = data.get("magic_defence", 0)
 	level = int(data.get("level", 0))
-
 
 	# 實例化通用的 IdleAnimation 節點
 	character_animation_node = IdleAnimation.new()
@@ -77,8 +66,9 @@ func _init(data: Dictionary) -> void:
 		character_animation_node.name = "PlayerAnimation" 
 		character_animation_node.animation_base_path = "res://assets/Actor_anim/player_idle/"
 		character_animation_node.subfolder_prefix = "hero"
-		character_animation_node.subfolder_id_min = 1
-		character_animation_node.subfolder_id_max = 5
+		#現在是看屬性生角色動畫
+		#character_animation_node.subfolder_id_min = 1
+		#character_animation_node.subfolder_id_max = 5
 		character_animation_node.anim_speed = 6.0 
 		character_animation_node.sprite_scale = Vector2(3.5, 3.5) 
 		character_animation_node.sprite_position = Vector2(630, 480) 
