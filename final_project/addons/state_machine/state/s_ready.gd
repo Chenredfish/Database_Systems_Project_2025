@@ -93,6 +93,7 @@ func exit():
 	
 	if is_next_wave == true:
 		reset_actor('player')
+		reset_actor('enemy')
 	
 	state_machine.set_value('is_next_wave', false)
 	is_next_wave = state_machine.get_value('is_next_wave')
@@ -170,7 +171,22 @@ func reset_actor(aim:String):
 		state_machine.get_value(aim).set('health', max_health)
 		
 		print("玩家裝備了" + new_skill.get('name') + new_ring.get('name') + new_equipment.get('name'))
+	elif aim == 'enemy':
+		var enemy = state_machine.get_value('enemy')
+		var level = enemy.level
+		var enemy_equipment = fetch_random_equipment(level)
+		var rand_ring = null	
+		if enemy_equipment:
+			await enemy.add_equipment_to_list(enemy_equipment.get('id'))
+			await enemy.equipment_change(enemy_equipment.get('id'))
+		var enemy_rings = fetch_random_rings(level)
+		if enemy_rings.size() > 0:
+			rand_ring = enemy_rings[randi() % enemy_rings.size()]
+			await enemy.build_new_ring(rand_ring.get('id'))
+		var max_health = enemy._get_max_health()
+		enemy.set('health', max_health)
 		
+		print("敵人裝備了" + enemy_equipment.get('name') + rand_ring.get('name'))
 	else :
 		print("錯誤的節點名稱")
 		return
