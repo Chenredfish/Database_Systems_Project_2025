@@ -14,4 +14,5 @@
 4. 傷害數字：https://youtu.be/F0DQLSiLkjg?si=408tVtohh0DWB_uz
 5. 攻擊冷卻的寫法：
 https://www.dragonflydb.io/faq/godot-when-to-use-delta
-6.素材網站:https://huaban.com/boards/48648939
+6.boss素材網站:https://huaban.com/boards/48648939
+7.hero素材網站:https://finalfantasy.fandom.com/wiki/Category:Final_Fantasy_Brave_Exvius_Sprite_Images
