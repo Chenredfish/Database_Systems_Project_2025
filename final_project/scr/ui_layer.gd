@@ -66,8 +66,9 @@ func show_ui_playing():
 func hide_ui_playing():
 	ui_playing.hide()
 	
-func show_ui_ready():
+func show_ui_ready(aim:Actor):
 	ui_ready.show()
+	ui_ready.actor_data.show_actor_data(aim)
 	
 func hide_ui_ready():
 	ui_ready.hide()

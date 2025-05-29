@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://m882op0f8k67"]
+[gd_scene load_steps=11 format=3 uid="uid://m882op0f8k67"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_nir4x"]
 [ext_resource type="Script" uid="uid://dgp6oa7erw88k" path="res://scr/UI/ui_show_ring.gd" id="2_xf14j"]
 [ext_resource type="Script" uid="uid://360de8v1myh" path="res://scr/UI/player_ring.gd" id="3_b4pga"]
+[ext_resource type="PackedScene" uid="uid://b58hqaayna508" path="res://scr/UI/ui_actor_data.tscn" id="3_gu38d"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_ms247"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ms247"]
@@ -45,119 +46,8 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 154
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/character_status"]
+[node name="actor_data" parent="MarginContainer/HBoxContainer/character_status" instance=ExtResource("3_gu38d")]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/character_status/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 71
-theme_override_constants/v_separation = 25
-columns = 2
-
-[node name="Label0" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "名稱"
-
-[node name="name" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "戴佑誠"
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "剩餘血量"
-
-[node name="health" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "660"
-horizontal_alignment = 1
-
-[node name="Label1" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "最大血量"
-horizontal_alignment = 1
-
-[node name="max_health" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "1000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "等級"
-horizontal_alignment = 1
-
-[node name="level" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "1"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "屬性"
-horizontal_alignment = 1
-
-[node name="type" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "草"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "物理攻擊"
-horizontal_alignment = 1
-
-[node name="attack_power" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "60"
-horizontal_alignment = 1
-
-[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "魔法攻擊"
-horizontal_alignment = 1
-
-[node name="magic_power" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "60"
-horizontal_alignment = 1
-
-[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "物理防禦"
-horizontal_alignment = 1
-
-[node name="attack_defence" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "60"
-horizontal_alignment = 1
-
-[node name="Label11" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "魔法防禦"
-horizontal_alignment = 1
-
-[node name="magic_defence" type="Label" parent="MarginContainer/HBoxContainer/character_status/PanelContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-text = "60"
-horizontal_alignment = 1
 
 [node name="ring_list" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

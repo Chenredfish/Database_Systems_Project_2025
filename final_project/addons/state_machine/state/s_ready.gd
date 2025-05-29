@@ -19,8 +19,6 @@ const Equipment = preload("res://scr/object/equipment.gd")
 func enter(_msg: Dictionary = {}):
 	print("into state of s_Ready")
 	
-	agent.ui_layer.show_ui_ready()
-	
 	db.path = "res://data/game"
 	db.open_db()
 
@@ -73,6 +71,10 @@ func enter(_msg: Dictionary = {}):
 	
 	remove_actor("enemy")
 	remove_actor("player")
+	
+	var max_health = state_machine.get_value('player')._get_max_health()
+	state_machine.get_value('player').set('health', max_health)
+	agent.ui_layer.show_ui_ready(state_machine.get_value("player"))
 
 func update(delta):
 	#開始下一場對戰

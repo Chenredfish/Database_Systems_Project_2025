@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2cy87pcluu68"]
+[gd_scene load_steps=12 format=3 uid="uid://b2cy87pcluu68"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_b8djm"]
 [ext_resource type="Script" uid="uid://bvpmjjyqpcpv4" path="res://scr/UI/ready_equipment_list.gd" id="2_84ty6"]
 [ext_resource type="Script" uid="uid://pg26bt4yop56" path="res://scr/UI/ui_ready.gd" id="2_621v3"]
+[ext_resource type="PackedScene" uid="uid://b58hqaayna508" path="res://scr/UI/ui_actor_data.tscn" id="3_1stcd"]
 [ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="3_84ty6"]
 [ext_resource type="Script" uid="uid://b05usjfxxjmy2" path="res://scr/UI/ready_ring_list.gd" id="4_7pg34"]
 [ext_resource type="Script" uid="uid://e4mmkdvaymu4" path="res://scr/UI/ready_skill_list.gd" id="5_1stcd"]
@@ -57,7 +58,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/character_texture/PanelContainer"]
+[node name="PanelContainer" parent="MarginContainer/HBoxContainer/character/character/character_texture/PanelContainer" instance=ExtResource("3_1stcd")]
 layout_mode = 2
 
 [node name="switch_item_ring" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/character"]
