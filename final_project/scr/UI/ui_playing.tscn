@@ -41,7 +41,7 @@ grow_vertical = 2
 theme = ExtResource("1_qb54i")
 script = ExtResource("2_s7wuh")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1946.0
 offset_bottom = 1078.0
