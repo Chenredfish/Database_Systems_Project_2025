@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1rxp4v41kbnj"]
+[gd_scene load_steps=14 format=3 uid="uid://d1rxp4v41kbnj"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_qb54i"]
 [ext_resource type="Script" uid="uid://nsw2lol07jrk" path="res://scr/UI/ui_playing.gd" id="2_s7wuh"]
 [ext_resource type="Texture2D" uid="uid://d10e0lotasb1o" path="res://assets/Menu Buttons/Square Buttons/Square Buttons/Info Square Button.png" id="2_xse5h"]
+[ext_resource type="Texture2D" uid="uid://bshs52c13j67s" path="res://assets/hero_icon.png" id="3_u5myt"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_xse5h"]
+[ext_resource type="Texture2D" uid="uid://b353r3tg0gbfo" path="res://assets/boss_icon.png" id="5_rw45l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xse5h"]
 region = Rect2(-0.13314, 16.9343, 15.317, 15.0044)
@@ -84,12 +86,13 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/skill"]
+modulate = Color(0.32, 0.841334, 1, 1)
 layout_mode = 2
+texture = ExtResource("3_u5myt")
 expand_mode = 1
 
 [node name="show_status" type="MarginContainer" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer"]
@@ -135,9 +138,15 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/skill"]
+modulate = Color(1, 0.21, 0.21, 1)
+layout_mode = 2
+texture = ExtResource("5_rw45l")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="show_status" type="MarginContainer" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(66, 66)
