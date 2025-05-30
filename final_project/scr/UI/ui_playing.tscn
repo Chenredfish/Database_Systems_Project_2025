@@ -84,6 +84,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 
@@ -134,6 +135,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="skill" type="PanelContainer" parent="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 
