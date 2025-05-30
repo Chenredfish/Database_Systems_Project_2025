@@ -36,7 +36,7 @@ func _all_data_update():
 	var sql = "SELECT * FROM record WHERE game_id = ? and round_id = ?"
 	db.query_with_bindings(sql, [str(vbc.game_page), str(vbc.round_page)])
 	var round_data = db.query_result[0]
-	print(round_data)
+	#print(round_data)
 	ring._ring_page_update(round_data)
 	skill._skill_page_update(round_data)
 	player_and_enemy._actor_page_update(round_data)

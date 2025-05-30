@@ -92,8 +92,8 @@ func exit():
 	agent.ui_layer.hide_ui_ready()
 	
 	if is_next_wave == true:
-		reset_actor('player')
-		reset_actor('enemy')
+		await reset_actor('player')
+		await reset_actor('enemy')
 	
 	state_machine.set_value('is_next_wave', false)
 	is_next_wave = state_machine.get_value('is_next_wave')
@@ -102,6 +102,7 @@ func exit():
 	state_machine.set_value('to_show_ring', to_show_ring)
 	agent.ui_layer.to_show_ring.disconnect(show_ring)
 	
+	record_round()	
 
 func next_wave():
 	if new_equipment and new_ring and new_skill:
@@ -301,3 +302,36 @@ func display_next_enemy_element():
 			push_warning("未為敵人元素設定圖示路徑。")
 	else:
 		push_warning("無法找到 UI Ready 中的敵人屬性顯示節點 (TextureRect) 或敵人 Actor 物件不存在。")
+
+
+func record_round():
+	var game_id:int = state_machine.get_value('game_id')
+	var round_id:int = state_machine.get_value('round_id')
+	var player_level:int = state_machine.get_value('level')
+	var player_equipment_id:int = new_equipment.get('id')
+	var player_skill_id:int = new_skill.get('id')
+	var skill_choice_id:Array[int] = [available_skills[0].get('id'), available_skills[1].get('id'), available_skills[2].get('id')]
+	var player_ring_id:int = new_ring.get('id')
+	var ring_choice_id:Array[int] = [available_rings[0].get('id'), available_rings[1].get('id'), available_rings[2].get('id')]
+	
+	var enemy:Actor = state_machine.get_value('enemy')
+	var enemy_id:int = enemy.get('id')
+	var enemy_skill_id:int = enemy.get('skill').get('id')
+	var enemy_equipment_id:int = enemy.get('equipment').get('id')
+	var enemy_ring_id:int = enemy.get('rings')[0].get('id')
+	
+	var sql = "INSERT INTO record (game_id, round_id, player_level, player_equipment_id, player_skill_id, skill_choice_id_1, skill_choice_id_2, skill_choice_id_3, player_ring_id, ring_choice_id_1, ring_choice_id_2, ring_choice_id_3, enemy_id, enemy_skill_id, enemy_equipment_id, enemy_ring_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+	var values = [
+		game_id, round_id, player_level, player_equipment_id, player_skill_id,
+		skill_choice_id[0], skill_choice_id[1], skill_choice_id[2],
+		player_ring_id, ring_choice_id[0], ring_choice_id[1], ring_choice_id[2],
+		enemy_id, enemy_skill_id, enemy_equipment_id, enemy_ring_id
+	]
+	print(values)
+	print(db.query_with_bindings(sql, values))
+	
+	
+
+	print("已紀錄本回合資料到資料庫")
+	state_machine.set_value('round_id', round_id+1)
+	

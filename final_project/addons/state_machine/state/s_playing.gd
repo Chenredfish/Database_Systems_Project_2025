@@ -20,6 +20,9 @@ func enter(_msg:Dictionary = {}):
 	if !state_machine.has_value('is_pause'):
 		state_machine.set_value('is_pause', false)
 	
+	is_a_new_game()
+	print("目前是第" + str(state_machine.get_value('game_id')) + "把遊戲的第" + str(state_machine.get_value('round_id')) + "輪")
+	
 	create_actor_node()
 	_display_actor_elements()
 	
@@ -213,3 +216,12 @@ func _display_actor_elements():
 			push_warning("未知敵人屬性: " + str(enemy_element) + " 或未設定對應圖示。")
 	else:
 		push_warning("無法找到 UI Playing 中的敵人元素顯示節點或敵人Actor不存在。")
+
+func is_a_new_game():
+	if !state_machine.has_value('game_id'):
+		var sql = "SELECT MAX(game_id) as max_game_id FROM record"
+		db.query(sql)
+		state_machine.set_value('game_id', db.query_result[0]["max_game_id"] + 1)
+	
+	if !state_machine.has_value('round_id'):
+		state_machine.set_value('round_id', 1)
