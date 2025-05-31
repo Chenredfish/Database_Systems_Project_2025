@@ -928,7 +928,7 @@ layout_mode = 2
 theme_override_constants/separation = 31
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring1/PanelContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.352941)
+self_modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(93, 133)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_cw805")
@@ -972,9 +972,9 @@ layout_mode = 2
 theme_override_constants/separation = 31
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring2/PanelContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.313726)
+self_modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(93, 133)
-scale = Vector2(4, 4)
+scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_njn0q")
 autoplay = "default"
 frame_progress = 0.181186
@@ -1016,7 +1016,7 @@ layout_mode = 2
 theme_override_constants/separation = 31
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/ring_and_skill/ring_list/HBoxContainer/ring3/PanelContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.352941)
+self_modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(93, 139)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_0o2va")
