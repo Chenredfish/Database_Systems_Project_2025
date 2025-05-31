@@ -16,3 +16,5 @@
 https://www.dragonflydb.io/faq/godot-when-to-use-delta
 6.boss素材網站:https://huaban.com/boards/48648939
 7.hero素材網站:https://finalfantasy.fandom.com/wiki/Category:Final_Fantasy_Brave_Exvius_Sprite_Images
+8.素材參考網站:https://duelyst.fandom.com/wiki/Category:Artifact_gifs
+9.素材參考網站:https://tos.fandom.com/zh/wiki/%E5%9C%96%E9%91%92?variant=zh-tw
