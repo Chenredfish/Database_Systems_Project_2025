@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://tpggnfub372y"]
+
+[ext_resource type="Texture2D" uid="uid://bhl5ff1etk313" path="res://assets/background.png" id="1_i3nws"]
+
+[node name="BackgroundLayer" type="CanvasLayer"]
+layer = -1
+
+[node name="background" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.313726)
+texture_filter = 1
+offset_right = 1924.0
+offset_bottom = 1087.0
+texture = ExtResource("1_i3nws")
+expand_mode = 1
+stretch_mode = 6

@@ -5,6 +5,9 @@ var to_manage_main:bool = false
 var to_show_ring:bool = false
 var to_ready_state:bool = false
 
+const BACKGROUND_SCENE = preload("res:///background_layer.tscn")
+
+	
 var db = SQLite.new()
 
 
@@ -14,6 +17,12 @@ func enter(_msg:Dictionary = {}):
 	db.path = "res://data/game"
 	db.open_db()
 	
+	#算是有背景了
+	var background_instance = BACKGROUND_SCENE.instantiate()
+	if state_machine and state_machine.agent and state_machine.agent is Node:
+		state_machine.agent.add_child(background_instance)
+	#
+		
 	if !state_machine.has_value('level'):
 		state_machine.set_value('level', 1)
 	
