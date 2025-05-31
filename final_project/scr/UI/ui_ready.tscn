@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="3_84ty6"]
 [ext_resource type="Script" uid="uid://b05usjfxxjmy2" path="res://scr/UI/ready_ring_list.gd" id="4_7pg34"]
 [ext_resource type="Script" uid="uid://e4mmkdvaymu4" path="res://scr/UI/ready_skill_list.gd" id="5_1stcd"]
-[ext_resource type="Texture2D" uid="uid://donp6hwtyl71n" path="res://assets/ring1.png" id="6_rolwd"]
-[ext_resource type="Texture2D" uid="uid://bg4wrdve566rr" path="res://assets/ring2.png" id="7_xensd"]
-[ext_resource type="Texture2D" uid="uid://tpfswtdw6vyh" path="res://assets/ring3.png" id="8_8paes"]
-[ext_resource type="Texture2D" uid="uid://b8iflw1wmsf44" path="res://assets/equip1.png" id="10_qsnm6"]
-[ext_resource type="Texture2D" uid="uid://cfqxsxrikgixa" path="res://assets/equip2.png" id="11_ooyen"]
-[ext_resource type="Texture2D" uid="uid://i1rqgtlruu2j" path="res://assets/equip3.png" id="12_ptkpo"]
+[ext_resource type="Texture2D" uid="uid://donp6hwtyl71n" path="res://assets/materials/ring1.png" id="6_rolwd"]
+[ext_resource type="Texture2D" uid="uid://bg4wrdve566rr" path="res://assets/materials/ring2.png" id="7_xensd"]
+[ext_resource type="Texture2D" uid="uid://tpfswtdw6vyh" path="res://assets/materials/ring3.png" id="8_8paes"]
+[ext_resource type="Texture2D" uid="uid://b8iflw1wmsf44" path="res://assets/materials/equip1.png" id="10_qsnm6"]
+[ext_resource type="Texture2D" uid="uid://cfqxsxrikgixa" path="res://assets/materials/equip2.png" id="11_ooyen"]
+[ext_resource type="Texture2D" uid="uid://i1rqgtlruu2j" path="res://assets/materials/equip3.png" id="12_ptkpo"]
 
 [sub_resource type="GDScript" id="GDScript_6vf1o"]
 

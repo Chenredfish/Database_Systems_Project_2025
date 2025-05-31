@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://donp6hwtyl71n"
-path="res://.godot/imported/ring1.png-02b7cb7361dfc066deada9c482122f1a.ctex"
+uid="uid://b353r3tg0gbfo"
+path="res://.godot/imported/boss_icon.png-67044a7720b0c6cc0516980b5758671a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ring1.png"
-dest_files=["res://.godot/imported/ring1.png-02b7cb7361dfc066deada9c482122f1a.ctex"]
+source_file="res://assets/materials/boss_icon.png"
+dest_files=["res://.godot/imported/boss_icon.png-67044a7720b0c6cc0516980b5758671a.ctex"]
 
 [params]
 

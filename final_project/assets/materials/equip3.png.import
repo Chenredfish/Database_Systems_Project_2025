@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tpfswtdw6vyh"
-path="res://.godot/imported/ring3.png-6139d0bd57eb4ec6d2e4b37ad52ad085.ctex"
+uid="uid://i1rqgtlruu2j"
+path="res://.godot/imported/equip3.png-fa6940d17a2badbca2ade9a6da5469de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ring3.png"
-dest_files=["res://.godot/imported/ring3.png-6139d0bd57eb4ec6d2e4b37ad52ad085.ctex"]
+source_file="res://assets/materials/equip3.png"
+dest_files=["res://.godot/imported/equip3.png-fa6940d17a2badbca2ade9a6da5469de.ctex"]
 
 [params]
 
