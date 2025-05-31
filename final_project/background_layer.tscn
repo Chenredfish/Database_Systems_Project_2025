@@ -6,7 +6,7 @@
 layer = -1
 
 [node name="background" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.313726)
+self_modulate = Color(1, 1, 1, 0.784314)
 texture_filter = 1
 offset_right = 1924.0
 offset_bottom = 1087.0
