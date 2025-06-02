@@ -17,20 +17,20 @@ func _on_exit_button_pressed():
 	exit_btn_pressed.emit()
 
 func _on_game_previous_page_btn_pressed() -> void:
-	await _all_data_update()
 	vbc._page_change("game", -1)
+	_all_data_update()
 
 func _on_game_next_page_btn_pressed() -> void:
-	await _all_data_update()
 	vbc._page_change("game", 1)
+	_all_data_update()
 
 func _on_round_previous_page_btn_pressed() -> void:
-	await _all_data_update()
 	vbc._page_change("round", -1)
+	_all_data_update()
 
 func _on_round_next_page_btn_pressed() -> void:
-	await _all_data_update()
 	vbc._page_change("round", 1)
+	_all_data_update()
 
 func _all_data_update():
 	var sql = "SELECT * FROM record WHERE game_id = ? and round_id = ?"
