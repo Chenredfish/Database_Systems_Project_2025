@@ -298,6 +298,7 @@ layout_mode = 2
 text = "新增 / 編輯裝備"
 
 [connection signal="pressed" from="MC/VBC/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="show_alert" from="MC/VBC/equipment_list/equipment_list" to="." method="_on_equipment_list_show_alert"]
 [connection signal="pressed" from="MC/VBC/switch_pages/HBC/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MC/VBC/switch_pages/HBC/equipment_search/equipment_search" to="." method="_on_equipment_search_text_submitted"]
 [connection signal="pressed" from="MC/VBC/switch_pages/HBC/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]

@@ -14,16 +14,17 @@ func _ready():
 	db.open_db()
 	
 func _on_equipment_manage_btn_pressed() -> void:
-	var sql = "SELECT * FROM equipment WHERE id = ?"
-	db.query_with_bindings(sql,[str(equipment_id.text)])
-	var add_or_change = db.query_result
-	print(add_or_change)
-	if add_or_change.size() > 0:
-		print("change")
-		skill_change()
-	else:
-		print("add")
-		skill_add()
+	pass
+	#var sql = "SELECT * FROM equipment WHERE id = ?"
+	#db.query_with_bindings(sql,[str(equipment_id.text)])
+	#var add_or_change = db.query_result
+	#print(add_or_change)
+	#if add_or_change.size() > 0:
+		#print("change")
+		#skill_change()
+	#else:
+		#print("add")
+		#skill_add()
 
 func skill_change():
 	var data = {

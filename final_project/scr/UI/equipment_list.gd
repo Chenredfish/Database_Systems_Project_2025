@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+signal show_alert(msg:String)
+
 @onready var equipment_test = $equipment_test
 @onready var equipment_page = 0
 @onready var all_equipment_data = equipment_test.db.select_rows("equipment", "id > 0", ["*"])
@@ -58,6 +60,18 @@ func _add_ring(equipment_n):	#顯示每個狀態
 	new_equipment.get_node("HBC/equipment_delete/equipment_delete_btn").pressed.connect(Callable(self, "_on_equipment_delete_pressed").bind(str(search_equipment_data[equipment_n]["id"])))
 
 func _on_equipment_delete_pressed(equipment_id):
+	# 查詢該 ring 的 level
+	var equipment_data = equipment_test.db.select_rows("equipment", "id = " + str(equipment_id), ["level"])
+	if equipment_data.size() == 0:
+		return
+	var level = equipment_data[0]["level"]
+	# 查詢該 level 有幾筆資料
+	var level_count = equipment_test.db.select_rows("ring", "level = " + str(level), ["id"])
+	if level_count.size() <= 1:
+		# 呼叫 ui_manage_change_ring 的 show_alert
+		show_alert.emit("❌ 不可把一個等級的裝備刪除至低於1個")
+		return
+	# 正常刪除
 	print("deleted")
 	object_delete._object_delete(equipment_test.db, "equipment", str(equipment_id))
 	search_equipment_data = object_delete._refresh_database(equipment_test.db, "equipment")
@@ -66,4 +80,5 @@ func _on_equipment_delete_pressed(equipment_id):
 func _refresh_db():
 	print("refreshed")
 	search_equipment_data = equipment_test.db.select_rows("equipment", "id > 0", ["*"])
+	equipment_page = 0 #以防我不知道的神奇地超出畫面
 	_page_update()

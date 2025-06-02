@@ -36,6 +36,7 @@ func _on_equipment_search_text_submitted(new_text: String) -> void:
 	equipment_list._search_ring(equipment_search.text)
 
 func show_alert(msg: String):
+	await get_tree().process_frame
 	var dialog = AcceptDialog.new()
 	dialog.dialog_text = msg
 	add_child(dialog)
@@ -43,48 +44,78 @@ func show_alert(msg: String):
 
 
 func _on_apply_pressed():
-	# 取得欄位值並去除前後空格
 	var id = id_input.text.strip_edges()
 	var name = name_input.text.strip_edges()
 	var level = level_input.text.strip_edges()
 	var attack_defence = attack_defence_input.text.strip_edges()
 	var magic_defence = magic_defence_input.text.strip_edges()
 
-	for field in [id, name, level, attack_defence, magic_defence]:
-		if field.strip_edges() == "" or field.strip_edges().is_empty():
-			show_alert("❗請勿留空或只輸入空格")
-			return
-
-	if not level.is_valid_int() or not attack_defence.is_valid_int() or not magic_defence.is_valid_int():
-		show_alert("⚠️ level、attack_defence、magic_defence 必須為整數")
+	# 檢查所有欄位
+	if [id, name, level, attack_defence, magic_defence].has(""):
+		await show_alert("❗請填寫所有欄位")
 		return
 
+	# ID 必須為正整數
+	if not id.is_valid_int():
+		await show_alert("⚠️ ID 必須為整數")
+		return
+	var id_val = int(id)
+	if id_val <= 0:
+		await show_alert("⚠️ ID 必須大於 0")
+		return
+
+	# level 必須為非負整數
+	if not level.is_valid_int():
+		await show_alert("⚠️ level 必須為整數")
+		return
 	var lv = int(level)
-	var ad = int(attack_defence)
-	var md = int(magic_defence)
-
 	if lv < 0:
-		show_alert("⚠️ level 必須為非負整數")
-		return
-	if ad <= 0 or md <= 0:
-		show_alert("⚠️ 防禦力需為正整數")
+		await show_alert("⚠️ level 必須為非負整數")
 		return
 
-	db.query("SELECT COUNT(*) as count FROM equipment WHERE id = '" + id + "'")
-	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
-		show_alert("❌ ID 已存在")
+	# attack_defence 必須為正整數
+	if not attack_defence.is_valid_int():
+		await show_alert("⚠️ attack_defence 必須為整數")
+		return
+	var ad = int(attack_defence)
+	if ad <= 0:
+		await show_alert("⚠️ 物理防禦需為正整數")
 		return
 
-	db.query("SELECT COUNT(*) as count FROM equipment WHERE name = '" + name + "'")
-	if db.query_result.size() > 0 and db.query_result[0].has("count") and db.query_result[0]["count"] > 0:
-		show_alert("❌ 名稱已存在")
+	# magic_defence 必須為正整數
+	if not magic_defence.is_valid_int():
+		await show_alert("⚠️ magic_defence 必須為整數")
+		return
+	var md = int(magic_defence)
+	if md <= 0:
+		await show_alert("⚠️ 魔法防禦需為正整數")
 		return
 
-	db.query("INSERT INTO equipment (id, name, level, attack_defence, magic_defence) VALUES ('" + id + "', '" + name + "', " + str(lv) + ", " + str(ad) + ", " + str(md) + ")")
+	# 名稱不可重複（排除自己）
+	db.query("SELECT COUNT(*) as count FROM equipment WHERE name = '" + name + "' AND id != " + str(id_val))
+	var result = db.query_result
+	if result.size() > 0 and result[0].has("count") and int(result[0]["count"]) > 0:
+		await show_alert("❌ 名稱已存在")
+		return
+
+	# ID 是否已存在
+	db.query("SELECT COUNT(*) as count FROM equipment WHERE id = " + str(id_val))
+	result = db.query_result
+	if result.size() > 0 and result[0].has("count") and int(result[0]["count"]) > 0:
+		# ID 已存在，執行 UPDATE
+		db.query("UPDATE equipment SET name = '" + name + "', level = " + str(lv) + ", attack_defence = " + str(ad) + ", magic_defence = " + str(md) + " WHERE id = " + str(id_val))
+	else:
+		# ID 不存在，執行 INSERT
+		db.query("INSERT INTO equipment (id, name, level, attack_defence, magic_defence) VALUES (" + str(id_val) + ", '" + name + "', " + str(lv) + ", " + str(ad) + ", " + str(md) + ")")
 
 	refresh_database.emit()
-	show_alert("✅ 資料已儲存")
+	await show_alert("✅ 資料已儲存")
+	equipment_list._refresh_db()
 
 func _on_equipment_manage_btn_pressed() -> void:
 	_on_apply_pressed()
  
+
+
+func _on_equipment_list_show_alert(msg):
+	show_alert(msg)

@@ -83,9 +83,9 @@ func _on_skill_delete_pressed(skill_id):
 	var level = skill_data[0]["level"]
 	# 查詢該 level 有幾筆資料
 	var level_count = skill_test.db.select_rows("skill", "level = " + str(level), ["id"])
-	if level_count.size() <= 1:
+	if level_count.size() <= 3:
 		# 呼叫 ui_manage_change_actor 的 show_alert
-		show_alert.emit("❌ 不可把一個等級的角色刪除至低於1個")
+		show_alert.emit("❌ 不可把一個等級的角色刪除至低於3個")
 		return
 	# 正常刪除
 	object_delete._object_delete(skill_test.db, "skill", str(skill_id))
