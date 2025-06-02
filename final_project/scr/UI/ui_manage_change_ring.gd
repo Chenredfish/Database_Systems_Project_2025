@@ -7,7 +7,7 @@ signal next_page_pressed
 @onready var db = SQLite.new()
 
 @onready var id_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_id/LineEdit
-@onready var name_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_name/LineEdit
+@onready var ring_name_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_name/LineEdit
 @onready var level_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_level/LineEdit
 @onready var health_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_health/LineEdit
 @onready var attack_power_input = $MarginContainer/VBoxContainer/ring_manage/ring_status/HBoxContainer/ring_attack_power/LineEdit
@@ -51,7 +51,7 @@ func check_float_range(value_str: String, label: String) -> Variant:
 
 func _on_apply_pressed():
 	var id = id_input.text.strip_edges()
-	var name = name_input.text.strip_edges()
+	var ring_name = ring_name_input.text.strip_edges()
 	var level = level_input.text.strip_edges()
 	var health = health_input.text.strip_edges()
 	var attack_power = attack_power_input.text.strip_edges()
@@ -59,7 +59,7 @@ func _on_apply_pressed():
 	var attack_defence = attack_defence_input.text.strip_edges()
 	var magic_defence = magic_defence_input.text.strip_edges()
 
-	if id == "" or name == "" or level == "" or health == "" or attack_power == "" or magic_power == "" or attack_defence == "" or magic_defence == "":
+	if id == "" or ring_name == "" or level == "" or health == "" or attack_power == "" or magic_power == "" or attack_defence == "" or magic_defence == "":
 		show_alert("❗請填寫所有欄位")
 		return
 
@@ -75,8 +75,8 @@ func _on_apply_pressed():
 		show_alert("⚠️ 等級必須為整數")
 		return
 	var lv = int(level)
-	if lv <= 0:
-		show_alert("⚠️ 等級需為正整數")
+	if lv < 0:
+		show_alert("⚠️ 等級不可為負數")
 		return
 
 	var h = check_float_range(health, "血量加成")
@@ -88,24 +88,29 @@ func _on_apply_pressed():
 	if h == null or ap == null or mp == null or ad == null or md == null:
 		return
 
-	db.query("SELECT COUNT(*) as count FROM ring WHERE id = " + str(id_val))
+	# 檢查名稱是否重複（排除自己）
+	db.query("SELECT COUNT(*) as count FROM ring WHERE name = '" + ring_name + "' AND id != " + str(id_val))
 	var result = db.query_result
-	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
-		show_alert("❌ ID 已存在")
-		return
-
-	db.query("SELECT COUNT(*) as count FROM ring WHERE name = '" + name + "'")
-	result = db.query_result
 	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
 		show_alert("❌ 名稱已存在")
 		return
 
-	db.query("INSERT INTO ring (id, name, level, health, attack_power, magic_power, attack_defence, magic_defence) VALUES (" +
-		str(id_val) + ", '" + name + "', " + str(lv) + ", " + str(h) + ", " + str(ap) + ", " + str(mp) + ", " + str(ad) + ", " + str(md) + ")")
+	# 檢查ID是否存在
+	db.query("SELECT COUNT(*) as count FROM ring WHERE id = " + str(id_val))
+	result = db.query_result
+	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
+		# ID已存在，執行更新
+		db.query("UPDATE ring SET name = '" + ring_name + "', level = " + str(lv) + ", health = " + str(h) + ", attack_power = " + str(ap) + ", magic_power = " + str(mp) + ", attack_defence = " + str(ad) + ", magic_defence = " + str(md) + " WHERE id = " + str(id_val))
+		show_alert("✅ 資料已更新")
+	else:
+		# ID不存在，執行新增
+		db.query("INSERT INTO ring (id, name, level, health, attack_power, magic_power, attack_defence, magic_defence) VALUES (" +
+			str(id_val) + ", '" + ring_name + "', " + str(lv) + ", " + str(h) + ", " + str(ap) + ", " + str(mp) + ", " + str(ad) + ", " + str(md) + ")")
+		show_alert("✅ 資料已儲存")
 
 	emit_signal("next_page_pressed")
 	refresh_database.emit()
-	show_alert("✅ 資料已儲存")
+	list.refresh()
 
 func show_alert(msg: String):
 	await get_tree().process_frame  # 確保 UI 準備好再顯示
@@ -118,3 +123,7 @@ func show_alert(msg: String):
 func _on_ring_manage_btn_pressed() -> void:
 	_on_apply_pressed()
  
+
+
+func _on_list_show_alert(msg):
+	show_alert(msg)

@@ -2,6 +2,7 @@ extends GridContainer
 
 signal next_page_pressed
 signal previous_page_pressed
+signal show_alert(msg:String)
 
 @onready var ring_test = $ring_test
 @onready var ring_page = 0
@@ -21,6 +22,12 @@ func _page_update():	#刷新頁面
 	while count < ring_page * 6 + 6 and count < search_ring_data.size():
 		_add_ring(count)
 		count += 1
+
+func refresh():
+	all_ring_data = ring_test.db.select_rows("ring", "id > 0", ["*"])
+	search_ring_data = all_ring_data
+	ring_page = 0# 可選，刷新時回到第一頁
+	_page_update()
 		
 func _search_ring(keyword):
 	var count = 0
@@ -64,6 +71,18 @@ func _add_ring(ring_n):	#顯示每個狀態
 	new_ring.get_node("ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
 
 func _on_ring_delete_pressed(ring_id):
+	# 查詢該 ring 的 level
+	var ring_data = ring_test.db.select_rows("ring", "id = " + str(ring_id), ["level"])
+	if ring_data.size() == 0:
+		return
+	var level = ring_data[0]["level"]
+	# 查詢該 level 有幾筆資料
+	var level_count = ring_test.db.select_rows("ring", "level = " + str(level), ["id"])
+	if level_count.size() <= 1:
+		# 呼叫 ui_manage_change_ring 的 show_alert
+		show_alert.emit("❌ 不可刪除該等級最後一筆資料")
+		return
+	# 正常刪除
 	print("deleted")
 	object_delete._object_delete(ring_test.db, "ring", str(ring_id))
 	search_ring_data = object_delete._refresh_database(ring_test.db, "ring")

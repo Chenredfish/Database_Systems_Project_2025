@@ -303,6 +303,7 @@ layout_mode = 2
 text = "新增 / 編輯狀態"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="show_alert" from="MarginContainer/VBoxContainer/ring_list/list" to="." method="_on_list_show_alert"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search/ring_search" to="." method="_on_ring_search_text_submitted"]
