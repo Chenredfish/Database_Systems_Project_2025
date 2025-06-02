@@ -59,31 +59,35 @@ func _on_apply_pressed():
 	var attack_defence = attack_defence_input.text.strip_edges()
 	var magic_defence = magic_defence_input.text.strip_edges()
 
-	if id == "" or ring_name == "" or level == "" or health == "" or attack_power == "" or magic_power == "" or attack_defence == "" or magic_defence == "":
-		show_alert("❗請填寫所有欄位")
+	# 檢查所有欄位是否填寫
+	if [id, ring_name, level, health, attack_power, magic_power, attack_defence, magic_defence].has(""):
+		await show_alert("❗請填寫所有欄位")
 		return
 
+	# 檢查ID
 	if not id.is_valid_int():
-		show_alert("⚠️ ID 必須為整數")
+		await show_alert("⚠️ ID 必須為整數")
 		return
 	var id_val = int(id)
 	if id_val <= 0:
-		show_alert("⚠️ ID 必須大於 0")
+		await show_alert("⚠️ ID 必須大於 0")
 		return
 
+	# 檢查等級
 	if not level.is_valid_int():
-		show_alert("⚠️ 等級必須為整數")
+		await show_alert("⚠️ 等級必須為整數")
 		return
 	var lv = int(level)
 	if lv < 0:
-		show_alert("⚠️ 等級不可為負數")
+		await show_alert("⚠️ 等級不可為負數")
 		return
 
-	var h = check_float_range(health, "血量加成")
-	var ap = check_float_range(attack_power, "物理攻擊加成")
-	var mp = check_float_range(magic_power, "魔法攻擊加成")
-	var ad = check_float_range(attack_defence, "物理防禦加成")
-	var md = check_float_range(magic_defence, "魔法防禦加成")
+	# 檢查加成欄位
+	var h = await check_float_range_async(health, "血量加成")
+	var ap = await check_float_range_async(attack_power, "物理攻擊加成")
+	var mp = await check_float_range_async(magic_power, "魔法攻擊加成")
+	var ad = await check_float_range_async(attack_defence, "物理防禦加成")
+	var md = await check_float_range_async(magic_defence, "魔法防禦加成")
 
 	if h == null or ap == null or mp == null or ad == null or md == null:
 		return
@@ -91,26 +95,39 @@ func _on_apply_pressed():
 	# 檢查名稱是否重複（排除自己）
 	db.query("SELECT COUNT(*) as count FROM ring WHERE name = '" + ring_name + "' AND id != " + str(id_val))
 	var result = db.query_result
-	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
-		show_alert("❌ 名稱已存在")
+	if result.size() > 0 and result[0].has("count") and int(result[0]["count"]) > 0:
+		await show_alert("❌ 名稱已存在")
 		return
 
 	# 檢查ID是否存在
 	db.query("SELECT COUNT(*) as count FROM ring WHERE id = " + str(id_val))
 	result = db.query_result
-	if result.size() > 0 and result[0].has("count") and result[0]["count"] > 0:
+	if result.size() > 0 and result[0].has("count") and int(result[0]["count"]) > 0:
 		# ID已存在，執行更新
 		db.query("UPDATE ring SET name = '" + ring_name + "', level = " + str(lv) + ", health = " + str(h) + ", attack_power = " + str(ap) + ", magic_power = " + str(mp) + ", attack_defence = " + str(ad) + ", magic_defence = " + str(md) + " WHERE id = " + str(id_val))
-		show_alert("✅ 資料已更新")
+		await show_alert("✅ 資料已更新")
 	else:
 		# ID不存在，執行新增
 		db.query("INSERT INTO ring (id, name, level, health, attack_power, magic_power, attack_defence, magic_defence) VALUES (" +
 			str(id_val) + ", '" + ring_name + "', " + str(lv) + ", " + str(h) + ", " + str(ap) + ", " + str(mp) + ", " + str(ad) + ", " + str(md) + ")")
-		show_alert("✅ 資料已儲存")
+		await show_alert("✅ 資料已儲存")
 
 	emit_signal("next_page_pressed")
 	refresh_database.emit()
 	list.refresh()
+
+func check_float_range_async(value_str: String, label: String) -> Variant:
+	if value_str.strip_edges() == "":
+		await show_alert("❗請填寫所有欄位")
+		return null
+	if not value_str.is_valid_float():
+		await show_alert("⚠️ " + label + " 必須為小數")
+		return null
+	var v = float(value_str)
+	if v < -1.0 or v > 1.0:
+		await show_alert("⚠️ " + label + " 必須介於 -1 到 1 之間")
+		return null
+	return v
 
 func show_alert(msg: String):
 	await get_tree().process_frame  # 確保 UI 準備好再顯示
