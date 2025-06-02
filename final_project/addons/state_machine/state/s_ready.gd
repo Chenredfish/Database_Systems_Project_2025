@@ -339,12 +339,14 @@ func record_round():
 
 func show_end_game():
 	var you_win_label = Label.new()
-	you_win_label.text = "遊戲結束，恭喜勝利！"
+	you_win_label.text = "遊戲結束，恭喜通關！"
 	you_win_label.add_theme_color_override("font_color", Color.AQUA)
-	you_win_label.set_anchors_and_margins_preset(Control.PRESET_CENTER)
+	#you_win_label.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 	you_win_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	you_win_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	you_win_label.set_size(Vector2(400, 100))
 	#位置設定在畫面正中央
-	you_win_label.set_position(Vector2(0, 0))
+	you_win_label.set_position(Vector2(-400 + 1920/2, -100 + 1080/2))
+	you_win_label.scale = Vector2(2, 2)
 	agent.ui_layer.ui_ready.add_child(you_win_label)
+	print("顯示失敗畫面")

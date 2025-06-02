@@ -232,19 +232,22 @@ func is_a_new_game():
 		var sql = "SELECT MAX(game_id) as max_game_id FROM record"
 		db.query(sql)
 		state_machine.set_value('game_id', db.query_result[0]["max_game_id"] + 1)
+		if state_machine.get_value('game_id') == null:
+			state_machine.set_value('game_id', 1)
 	
 	if !state_machine.has_value('round_id'):
 		state_machine.set_value('round_id', 1)
 
 func show_game_over():
-	var you_win_label = Label.new()
-	you_win_label.text = "遊戲結束，你失敗了！"
-	you_win_label.add_theme_color_override("font_color", Color.AQUA)
-	you_win_label.set_anchors_and_margins_preset(Control.PRESET_CENTER)
-	you_win_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	you_win_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	you_win_label.set_size(Vector2(400, 100))
+	var you_lose_label = Label.new()
+	you_lose_label.text = "遊戲結束，你失敗了！"
+	you_lose_label.add_theme_color_override("font_color", Color.AQUA)
+	#you_lose_label.set_anchors_and_margins_preset(Control.PRESET_CENTER)
+	you_lose_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	you_lose_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	you_lose_label.set_size(Vector2(400, 100))
 	#位置設定在畫面正中央
-	you_win_label.set_position(Vector2(0, 0))
-	agent.ui_layer.ui_ready.add_child(you_win_label)
-	
+	you_lose_label.set_position(Vector2(-400 + 1920/2, -100 + 1080/2))
+	you_lose_label.scale = Vector2(2, 2)
+	agent.ui_layer.ui_playing.add_child(you_lose_label)
+	print("顯示失敗畫面")
