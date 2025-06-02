@@ -449,6 +449,34 @@ text = "敵人技能名稱："
 label_settings = SubResource("LabelSettings_eb322")
 horizontal_alignment = 1
 
+[node name="enemy_equipment_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/player_and_enemy"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人裝備代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_equipment_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/player_and_enemy"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人裝備名稱："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_ring_id" type="Label" parent="MC/VBC/HBC/player_and_enemy/player_and_enemy"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人狀態代號："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
+[node name="enemy_ring_name" type="Label" parent="MC/VBC/HBC/player_and_enemy/player_and_enemy"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敵人狀態："
+label_settings = SubResource("LabelSettings_eb322")
+horizontal_alignment = 1
+
 [node name="Exit" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(162, 142)
 layout_mode = 2

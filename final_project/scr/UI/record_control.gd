@@ -14,18 +14,24 @@ var round_max: Array = [1]
 @onready var round_page = 1
 
 func _ready():
-	db.path = "res://data/game.db"
-	db.open_db()
-	record_data = db.select_rows("record", "game_id > 0", ["*"])
+	_refresh_data()
 	_game_count_max()
 	_round_count_max()
 	
+func _refresh_data():
+	db.path = "res://data/game.db"
+	db.open_db()
+	record_data = db.select_rows("record", "game_id > 0", ["*"])
+	
 func _game_count_max():
+	_refresh_data()
 	for game in record_data:
 		if int(game["game_id"]) > game_max:
 			game_max = game["game_id"]
 
 func _round_count_max():
+	_refresh_data()
+	round_max = [1]
 	for game in range(1, game_max+1):
 		var sql = "SELECT * FROM record WHERE game_id = ?"
 		db.query_with_bindings(sql, [str(game)])

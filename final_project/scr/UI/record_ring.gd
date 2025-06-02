@@ -5,6 +5,14 @@ extends MarginContainer
 @onready var ring_chosen = $rings/ring_chosen/VBC
 @onready var db = SQLite.new()
 var all_ring_data
+var check_deleted = {"id": "已刪除",
+ "name": "已刪除",
+ "level": "已刪除", 
+"health": "已刪除", 
+"attack_power": "已刪除",
+"magic_power": "已刪除",
+"attack_defence": "已刪除",
+"magic_defence": "已刪除"}
 
 func _ready():
 	db.path = "res://data/game.db"
@@ -26,11 +34,14 @@ func _ring_page_update(round_data):
 		new_ring_choice.show()
 		new_ring_choice.get_node("ring_id/Label").text = str(round_data["ring_choice_id_" + str(new_ring)])
 		db.query_with_bindings(sql, [round_data["ring_choice_id_" + str(new_ring)]])
-		target_ring = db.query_result[0]
+		target_ring = _check_delete(db.query_result)
 		new_ring_choice.get_node("ring_name/Label").text = target_ring["name"]
 	
 	db.query_with_bindings(sql, [round_data["player_ring_id"]])
-	target_ring = db.query_result[0]
+	target_ring = _check_delete(db.query_result)
+	_set_full_ring(target_ring)	
+
+func _set_full_ring(target_ring):
 	ring_chosen.get_node("ring_name").text = str(target_ring["name"])
 	ring_chosen.get_node("ring_id").text = "狀態代號：" + str(target_ring["id"])
 	ring_chosen.get_node("ring_level").text = "狀態等級：" + str(target_ring["level"])
@@ -39,3 +50,10 @@ func _ring_page_update(round_data):
 	ring_chosen.get_node("ring_magic_power").text = "魔法攻擊：" + str(target_ring["magic_power"])
 	ring_chosen.get_node("ring_attack_defence").text = "物理防禦：" + str(target_ring["attack_defence"])
 	ring_chosen.get_node("ring_magic_defence").text = "魔法防禦：" + str(target_ring["magic_defence"])
+
+func _check_delete(target : Array):
+	print(target)
+	if target == []:
+		return check_deleted
+	else:
+		return target[0]
