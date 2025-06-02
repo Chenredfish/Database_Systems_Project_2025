@@ -201,6 +201,7 @@ func create_level_enemy(level:int):
 		state_machine.set_value('enemy', rand_enemy)
 	else:
 		print("enemy_data 是空的，無法選擇隨機敵人")
+		show_end_game()
 
 func show_rings_selection():
 	var ring_nodes = [
@@ -335,3 +336,15 @@ func record_round():
 	print("已紀錄本回合資料到資料庫")
 	state_machine.set_value('round_id', round_id+1)
 	
+
+func show_end_game():
+	var you_win_label = Label.new()
+	you_win_label.text = "遊戲結束，恭喜勝利！"
+	you_win_label.add_theme_color_override("font_color", Color.AQUA)
+	you_win_label.set_anchors_and_margins_preset(Control.PRESET_CENTER)
+	you_win_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	you_win_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	you_win_label.set_size(Vector2(400, 100))
+	#位置設定在畫面正中央
+	you_win_label.set_position(Vector2(0, 0))
+	agent.ui_layer.ui_ready.add_child(you_win_label)
