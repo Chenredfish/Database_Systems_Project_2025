@@ -77,9 +77,9 @@ func _on_actor_delete_pressed(actor_id):
 	var level = actor_data[0]["level"]
 	# 查詢該 level 有幾筆資料
 	var level_count = actor_test.db.select_rows("actor", "level = " + str(level), ["id"])
-	if level_count.size() <= 1:
+	if level_count.size() <= 3:
 		# 呼叫 ui_manage_change_actor 的 show_alert
-		show_alert.emit("❌ 不可把一個等級的角色刪除至低於1個")
+		show_alert.emit("❌ 不可把一個等級的角色刪除至低於3個")
 		return
 	# 正常刪除
 	print("deleted")

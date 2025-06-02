@@ -17,16 +17,17 @@ func _ready():
 	db.open_db()
 
 func _on_actor_manage_btn_pressed() -> void:
-	var sql = "SELECT * FROM ring WHERE id = ?"
-	db.query_with_bindings(sql,[str(actor_id.text)])
-	var add_or_change = db.query_result
-	print(add_or_change)
-	if add_or_change.size() > 0:
-		print("change")
-		actor_change()
-	else:
-		print("add")
-		actor_add()
+	pass
+	#var sql = "SELECT * FROM ring WHERE id = ?"
+	#db.query_with_bindings(sql,[str(actor_id.text)])
+	#var add_or_change = db.query_result
+	#print(add_or_change)
+	#if add_or_change.size() > 0:
+		#print("change")
+		#actor_change()
+	#else:
+		#print("add")
+		#actor_add()
 
 func actor_change():
 	var data = {

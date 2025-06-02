@@ -15,16 +15,17 @@ func _ready():
 	db.open_db()
 	
 func _on_ring_manage_btn_pressed():
-	var sql = "SELECT * FROM ring WHERE id = ?"
-	db.query_with_bindings(sql,[str(ring_id.text)])
-	var add_or_change = db.query_result
-	print(add_or_change)
-	if add_or_change.size() > 0:
-		print("change")
-		ring_change()
-	else:
-		print("add")
-		ring_add()
+	pass
+	#var sql = "SELECT * FROM ring WHERE id = ?"
+	#db.query_with_bindings(sql,[str(ring_id.text)])
+	#var add_or_change = db.query_result
+	#print(add_or_change)
+	#if add_or_change.size() > 0:
+		#print("change")
+		#ring_change()
+	#else:
+		#print("add")
+		#ring_add()
 
 func ring_change():
 	var data = {

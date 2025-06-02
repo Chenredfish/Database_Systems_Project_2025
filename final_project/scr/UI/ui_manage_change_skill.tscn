@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlehlyeyqhfv6"]
+[gd_scene load_steps=11 format=3 uid="uid://dlehlyeyqhfv6"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_lpdlg"]
 [ext_resource type="Script" uid="uid://jbimh8xkaq5m" path="res://scr/UI/ui_manage_change_skill.gd" id="2_omd2g"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_d8xsi"]
 [ext_resource type="Script" uid="uid://bud2kmpri38r0" path="res://scr/UI/skill_list.gd" id="4_omd2g"]
 [ext_resource type="Script" uid="uid://b54f6grn5n57y" path="res://scr/UI/skill_test.gd" id="4_qnok6"]
-[ext_resource type="Texture2D" uid="uid://bvt1s332kbvk2" path="res://assets/2D_Pixel_Dungeon_Asset_Pack/Element_icon.png" id="5_3ihih"]
 [ext_resource type="Script" uid="uid://dikx02s47qj4o" path="res://scr/UI/skill_manage.gd" id="7_d8xsi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m56eh"]
@@ -15,10 +14,6 @@ region_rect = Rect2(818.133, 833.217, 201.254, 200.868)
 
 [sub_resource type="Theme" id="Theme_rfjj3"]
 Button/styles/normal = SubResource("StyleBoxTexture_m56eh")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wd306"]
-atlas = ExtResource("5_3ihih")
-region = Rect2(416, 404.5, 179, 205)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7qo55"]
 font_size = 24
@@ -74,12 +69,6 @@ script = ExtResource("4_qnok6")
 [node name="PC" type="PanelContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test"]
 custom_minimum_size = Vector2(193, 241)
 layout_mode = 2
-
-[node name="skill_element_texture" type="TextureRect" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/PC"]
-modulate = Color(0.501407, 0.501406, 0.501406, 1)
-layout_mode = 2
-texture = SubResource("AtlasTexture_wd306")
-expand_mode = 1
 
 [node name="VBC" type="VBoxContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/PC"]
 layout_mode = 2
@@ -291,6 +280,7 @@ layout_mode = 2
 text = "新增 / 編輯技能"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="show_alert" from="MarginContainer/VBoxContainer/skill_list/skill_list" to="." method="_on_skill_list_show_alert"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search" to="." method="_on_skill_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]
