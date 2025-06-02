@@ -99,6 +99,7 @@ func hide_ui_manage_equipment():
 	ui_manage_equipment.hide()
 
 func show_ui_record():
+	await ui_record._all_data_update()
 	ui_record.show()
 	
 func hide_ui_record():

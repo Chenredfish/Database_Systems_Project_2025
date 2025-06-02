@@ -30,11 +30,11 @@ func _round_count_max():
 		var sql = "SELECT * FROM record WHERE game_id = ?"
 		db.query_with_bindings(sql, [str(game)])
 		var rounds_in_game = db.query_result
-		var max = 0
-		for round in rounds_in_game:
-			if int(round["round_id"]) > max:
-				max = int(round["round_id"])
-		round_max.append(max)
+		var max_var = 0
+		for round_i in rounds_in_game:
+			if int(round_i["round_id"]) > max_var:
+				max_var = int(round_i["round_id"])
+		round_max.append(max_var)
 	print(round_max)
 	
 	
