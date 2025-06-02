@@ -6,6 +6,8 @@ extends VBoxContainer
 @onready var search_actor_data = actor_test.db.select_rows("actor", "id > 0", ["*"])
 var object_delete = load("res://scr/UI/object_delete.gd").new()
 
+signal show_alert(msg:String)
+
 func _ready():
 	actor_test.hide()
 	_page_update()
@@ -18,6 +20,12 @@ func _page_update():	#刷新頁面
 	while count < actor_page * 6 + 6 and count < search_actor_data.size():
 		_add_ring(count)
 		count += 1
+		
+func refresh():
+	all_actor_data = actor_test.db.select_rows("actor", "id > 0", ["*"])
+	search_actor_data = all_actor_data
+	actor_page = 0# 可選，刷新時回到第一頁
+	_page_update()
 		
 func _search_ring(keyword):
 	var count = 0
@@ -62,6 +70,18 @@ func _add_ring(actor_n):	#顯示每個狀態
 	new_actor.get_node("HBC/actor_delete/actor_delete_btn").pressed.connect(Callable(self, "_on_actor_delete_pressed").bind(str(search_actor_data[actor_n]["id"])))
 
 func _on_actor_delete_pressed(actor_id):
+	# 查詢該 actor 的 level
+	var actor_data = actor_test.db.select_rows("actor", "id = " + str(actor_id), ["level"])
+	if actor_data.size() == 0:
+		return
+	var level = actor_data[0]["level"]
+	# 查詢該 level 有幾筆資料
+	var level_count = actor_test.db.select_rows("actor", "level = " + str(level), ["id"])
+	if level_count.size() <= 1:
+		# 呼叫 ui_manage_change_actor 的 show_alert
+		show_alert.emit("❌ 不可把一個等級的角色刪除至低於1個")
+		return
+	# 正常刪除
 	print("deleted")
 	object_delete._object_delete(actor_test.db, "actor", str(actor_id))
 	search_actor_data = object_delete._refresh_database(actor_test.db, "actor")

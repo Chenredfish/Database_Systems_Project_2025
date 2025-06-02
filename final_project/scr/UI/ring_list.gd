@@ -80,7 +80,7 @@ func _on_ring_delete_pressed(ring_id):
 	var level_count = ring_test.db.select_rows("ring", "level = " + str(level), ["id"])
 	if level_count.size() <= 1:
 		# 呼叫 ui_manage_change_ring 的 show_alert
-		show_alert.emit("❌ 不可刪除該等級最後一筆資料")
+		show_alert.emit("❌ 不可把一個等級的光環刪除至低於3個")
 		return
 	# 正常刪除
 	print("deleted")
