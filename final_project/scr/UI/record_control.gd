@@ -39,6 +39,7 @@ func _round_count_max():
 	
 	
 func _page_change(type, n):
+	record_data = db.select_rows("record", "game_id > 0", ["*"])
 	var reset_round = false
 	var type_max
 	if type == "game":
