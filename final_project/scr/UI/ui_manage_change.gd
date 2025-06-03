@@ -20,9 +20,20 @@ signal exit_btn_pressed
 @onready var actor_search = $MC/VBC/switch_pages/HBC/actor_search/actor_search
 
 func _ready():
- db.path = "res://data/game.db"
- db.open_db()
- #refresh_database.connect(actor_list._refresh_database)
+	var db_dir = "user://data"
+	var db_path = db_dir + "/game.db"
+	# 確保 user://data 資料夾存在
+	if not DirAccess.dir_exists_absolute(db_dir):
+		DirAccess.make_dir_recursive_absolute(db_dir)
+	# 如果 user://data/game.db 不存在，從 res://data/game.db 複製過去
+	if not FileAccess.file_exists(db_path):
+		var src = FileAccess.open("res://data/game.db", FileAccess.READ)
+		var dst = FileAccess.open(db_path, FileAccess.WRITE)
+		dst.store_buffer(src.get_buffer(src.get_length()))
+		src.close()
+		dst.close()
+	db.path = db_path
+	db.open_db()
 
 func _on_exit_button_pressed():
  exit_btn_pressed.emit()
