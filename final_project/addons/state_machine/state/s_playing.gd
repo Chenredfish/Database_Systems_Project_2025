@@ -95,7 +95,7 @@ func update_level():
 	
 	count_next_level += 1
 	
-	if count_next_level >= 3: #打超過3次就 level up !
+	if count_next_level >= 5: #打超過3次就 level up !
 		level += 1
 		count_next_level = 0  # 重置進度
 
@@ -230,8 +230,11 @@ func _display_actor_elements():
 func is_a_new_game():
 	if !state_machine.has_value('game_id'):
 		var sql = "SELECT MAX(game_id) as max_game_id FROM record"
+		var game_id:int = 0
 		db.query(sql)
-		state_machine.set_value('game_id', db.query_result[0]["max_game_id"] + 1)
+		if db.query_result[0]["max_game_id"]:
+			game_id = db.query_result[0]["max_game_id"]
+		state_machine.set_value('game_id',  game_id + 1)
 		if state_machine.get_value('game_id') == null:
 			state_machine.set_value('game_id', 1)
 	
