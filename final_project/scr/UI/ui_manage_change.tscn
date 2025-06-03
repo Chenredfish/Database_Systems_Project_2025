@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3e4f0c3gm3fr"]
+[gd_scene load_steps=6 format=3 uid="uid://b3e4f0c3gm3fr"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_jl0x0"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="2_k5p3l"]
-[ext_resource type="Script" uid="uid://e5gix08vcf5x" path="res://scr/UI/ui_manage_change.gd" id="2_lm8j4"]
-[ext_resource type="Script" uid="uid://jbimh8xkaq5m" path="res://scr/UI/ui_manage_change_skill.gd" id="4_k5p3l"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jl0x0"]
 texture = ExtResource("2_k5p3l")
@@ -23,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jl0x0")
-script = ExtResource("2_lm8j4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -290,7 +287,6 @@ expand_to_text_length = true
 custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 19
-script = ExtResource("4_k5p3l")
 
 [node name="equipment_manage_btn" type="Button" parent="MarginContainer/VBoxContainer/equipment_manage/HBoxContainer/equipment_manage"]
 custom_minimum_size = Vector2(225, 49)
