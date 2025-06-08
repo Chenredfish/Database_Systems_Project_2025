@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1rxp4v41kbnj"]
+[gd_scene load_steps=30 format=3 uid="uid://d1rxp4v41kbnj"]
 
 [ext_resource type="Theme" uid="uid://clhad2uurm8i7" path="res://assets/UI_Theme.tres" id="1_qb54i"]
 [ext_resource type="Script" uid="uid://nsw2lol07jrk" path="res://scr/UI/ui_playing.gd" id="2_s7wuh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bshs52c13j67s" path="res://assets/materials/hero_icon.png" id="3_u5myt"]
 [ext_resource type="Texture2D" uid="uid://ek5yx2s3pa8c" path="res://assets/Menu Buttons/Menu Buttons sprite (BnW).png" id="3_xse5h"]
 [ext_resource type="Texture2D" uid="uid://b353r3tg0gbfo" path="res://assets/materials/boss_icon.png" id="5_rw45l"]
+[ext_resource type="Texture2D" uid="uid://dq5dtjx16o7po" path="res://hero0.png" id="7_rw45l"]
+[ext_resource type="Texture2D" uid="uid://byd72fgcmyxri" path="res://boss0.png" id="8_44yk2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xse5h"]
 region = Rect2(-0.13314, 16.9343, 15.317, 15.0044)
@@ -29,6 +31,106 @@ region_rect = Rect2(2035.57, 0.355537, 201.653, 200.827)
 
 [sub_resource type="Theme" id="Theme_u5myt"]
 Button/styles/normal = SubResource("StyleBoxTexture_ec4lx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44yk2"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(0, 0, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krh0k"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(102, 0, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buw8h"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(204, 0, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fom4n"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(0, 113, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u81fl"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(102, 113, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm4mo"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(204, 113, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1e1w"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(0, 226, 102, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s62mm"]
+atlas = ExtResource("7_rw45l")
+region = Rect2(102, 226, 102, 113)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmwj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44yk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krh0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buw8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fom4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u81fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm4mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1e1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s62mm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmwj0"]
+atlas = ExtResource("8_44yk2")
+region = Rect2(0, 0, 123, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rebe"]
+atlas = ExtResource("8_44yk2")
+region = Rect2(123, 0, 123, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbhnb"]
+atlas = ExtResource("8_44yk2")
+region = Rect2(246, 0, 123, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yacj"]
+atlas = ExtResource("8_44yk2")
+region = Rect2(0, 86, 123, 86)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1ie8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmwj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rebe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbhnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yacj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="UiPlaying" type="Control"]
 layout_mode = 3
@@ -187,6 +289,21 @@ theme_override_constants/margin_right = 60
 layout_mode = 2
 theme = SubResource("Theme_u5myt")
 theme_override_font_sizes/font_size = 36
+
+[node name="hero0" type="AnimatedSprite2D" parent="."]
+position = Vector2(608, 522)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_vmwj0")
+autoplay = "default"
+frame_progress = 0.856288
+flip_h = true
+
+[node name="boss0" type="AnimatedSprite2D" parent="."]
+position = Vector2(1373, 454)
+scale = Vector2(4.5, 5.143)
+sprite_frames = SubResource("SpriteFrames_q1ie8")
+autoplay = "default"
+frame_progress = 0.436258
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/character/VBoxContainer/HBoxContainer/show_status/player_data_Button" to="." method="_on_player_data_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/enemy/VBoxContainer/HBoxContainer/show_status/enemy_data_Button" to="." method="_on_enemy_data_button_pressed"]

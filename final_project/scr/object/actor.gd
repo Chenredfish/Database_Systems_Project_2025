@@ -51,7 +51,7 @@ func _init(data: Dictionary) -> void:
 	if level != 0:
 		# 這是敵人 (level 不為 0)
 		character_animation_node.name = "EnemyAnimation" 
-		character_animation_node.animation_base_path = "res://assets/Actor_anim/enemy_idle/"
+		#character_animation_node.animation_base_path = "res://assets/Actor_anim/enemy_idle/"
 		character_animation_node.subfolder_prefix = "boss"
 		character_animation_node.subfolder_id_min = 1
 		character_animation_node.subfolder_id_max = 15
@@ -64,7 +64,7 @@ func _init(data: Dictionary) -> void:
 	else:
 		# 這是玩家 (level 為 0)
 		character_animation_node.name = "PlayerAnimation" 
-		character_animation_node.animation_base_path = "res://assets/Actor_anim/player_idle/"
+		#character_animation_node.animation_base_path = "res://assets/Actor_anim/player_idle/"
 		character_animation_node.subfolder_prefix = "hero"
 		#現在是看屬性生角色動畫
 		#character_animation_node.subfolder_id_min = 1
