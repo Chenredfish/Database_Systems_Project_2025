@@ -3,6 +3,7 @@ extends GridContainer
 signal next_page_pressed
 signal previous_page_pressed
 signal show_alert(msg:String)
+signal skill_edit(skill)
 
 @onready var skill_test = $skill_test
 @onready var skill_page = 0
@@ -73,7 +74,8 @@ func _add_skill(skill_n):	#顯示每個狀態
 		new_skill.get_node("PC/VBC/skill_is_magic").text = "攻擊類別：物理"
 	new_skill.get_node("PC/VBC/skill_power").text = "攻擊係數：" + str(search_skill_data[skill_n]["power"])
 	new_skill.get_node("PC/VBC/skill_cooldown").text = "技能冷卻：" + str(search_skill_data[skill_n]["cooldown"])
-	new_skill.get_node("skill_del/Button").pressed.connect(Callable(self, "_on_skill_delete_pressed").bind(str(search_skill_data[skill_n]["id"])))
+	new_skill.get_node("HBC/skill_del/Button").pressed.connect(Callable(self, "_on_skill_delete_pressed").bind(str(search_skill_data[skill_n]["id"])))
+	new_skill.get_node("HBC/skill_edit/Button").pressed.connect(Callable(self, "_on_skill_edit_pressed").bind(search_skill_data[skill_n]))
 
 func _on_skill_delete_pressed(skill_id):
 	# 查詢該 actor 的 level
@@ -91,3 +93,6 @@ func _on_skill_delete_pressed(skill_id):
 	object_delete._object_delete(skill_test.db, "skill", str(skill_id))
 	search_skill_data = object_delete._refresh_database(skill_test.db, "skill")
 	_page_update()
+
+func _on_skill_edit_pressed(target_skill):
+	skill_edit.emit(target_skill)

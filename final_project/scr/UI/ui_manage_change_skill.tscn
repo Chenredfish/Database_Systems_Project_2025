@@ -128,14 +128,27 @@ label_settings = SubResource("LabelSettings_nelwc")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="skill_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test"]
+[node name="HBC" type="HBoxContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test"]
+layout_mode = 2
+theme_override_constants/separation = 33
+
+[node name="skill_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/HBC"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/skill_del"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/HBC/skill_del"]
 layout_mode = 2
 text = "刪除"
+
+[node name="skill_edit" type="MarginContainer" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/HBC"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/skill_list/skill_list/skill_test/HBC/skill_edit"]
+layout_mode = 2
+text = "編輯"
 
 [node name="switch_pages" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -225,16 +238,21 @@ alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="skill_element" type="MarginContainer" parent="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer"]
+[node name="skill_element" type="OptionButton" parent="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_element"]
-layout_mode = 2
-placeholder_text = "屬性"
 alignment = 1
-keep_editing_on_text_submit = true
-expand_to_text_length = true
+item_count = 5
+popup/item_0/text = "火"
+popup/item_0/id = 0
+popup/item_1/text = "水"
+popup/item_1/id = 1
+popup/item_2/text = "草"
+popup/item_2/id = 2
+popup/item_3/text = "光"
+popup/item_3/id = 3
+popup/item_4/text = "按"
+popup/item_4/id = 4
 
 [node name="skill_is_magic" type="MarginContainer" parent="MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)

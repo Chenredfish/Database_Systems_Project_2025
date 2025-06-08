@@ -4,7 +4,7 @@ signal refresh_database
 @onready var actor_id = $HBC/actor_id/LineEdit
 @onready var actor_name = $HBC/actor_name/LineEdit
 @onready var actor_level = $HBC/actor_level/LineEdit
-@onready var actor_element = $HBC/actor_element/LineEdit
+@onready var actor_element = $HBC/actor_element
 @onready var actor_health = $HBC/actor_health/LineEdit
 @onready var actor_attack_point = $HBC/actor_attack_point/LineEdit
 @onready var actor_magic_point = $HBC/actor_magic_point/LineEdit
@@ -12,6 +12,7 @@ signal refresh_database
 @onready var actor_magic_defence = $HBC/actor_magic_defence/LineEdit
 @onready var db = SQLite.new()
 @onready var actor_list = $"../actor_list/actor_list"
+var element_id_array = ["火", "水", "草", "光", "暗"]
 
 func _ready():
 	actor_list.actor_edit.connect(actor_set)
@@ -47,7 +48,7 @@ func actor_change():
 	var data = {
 		"name":actor_name.text,
 		"level":actor_level.text,
-		"element":actor_element.text,
+		"element":actor_element.get_item_text(actor_element.get_selected_id()),
 		"health":actor_health.text,
 		"attack_point":actor_attack_point.text,
 		"magic_point":actor_magic_point.text,
@@ -62,7 +63,7 @@ func actor_add():
 		"id":actor_id.text,
 		"name":actor_name.text,
 		"level":actor_level.text,
-		"element":actor_element.text,
+		"element":actor_element.get_item_text(actor_element.get_selected_id()),
 		"health":actor_health.text,
 		"attack_point":actor_attack_point.text,
 		"magic_point":actor_magic_point.text,
@@ -76,7 +77,9 @@ func actor_set(actor_data:Dictionary):
 	actor_id.text = str(actor_data["id"])
 	actor_name.text = str(actor_data["name"])
 	actor_level.text = str(actor_data["level"])
-	actor_element.text = str(actor_data["element"])
+	for id in range(element_id_array):
+		if element_id_array[id] == str(actor_data["element"]):
+			actor_element.select(id)
 	actor_health.text = str(actor_data["health"])
 	actor_attack_point.text = str(actor_data["attack_point"])
 	actor_magic_point.text = str(actor_data["magic_point"])

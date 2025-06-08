@@ -353,16 +353,21 @@ alignment = 1
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="actor_element" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
+[node name="actor_element" type="OptionButton" parent="MC/VBC/actor_manage/HBC"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="MC/VBC/actor_manage/HBC/actor_element"]
-layout_mode = 2
-placeholder_text = "角色屬性"
 alignment = 1
-keep_editing_on_text_submit = true
-expand_to_text_length = true
+item_count = 5
+popup/item_0/text = "火"
+popup/item_0/id = 0
+popup/item_1/text = "水"
+popup/item_1/id = 1
+popup/item_2/text = "草"
+popup/item_2/id = 2
+popup/item_3/text = "光"
+popup/item_3/id = 3
+popup/item_4/text = "按"
+popup/item_4/id = 4
 
 [node name="actor_health" type="MarginContainer" parent="MC/VBC/actor_manage/HBC"]
 custom_minimum_size = Vector2(150, 0)
