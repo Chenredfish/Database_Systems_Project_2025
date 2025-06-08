@@ -11,8 +11,10 @@ signal refresh_database
 @onready var actor_attack_defence = $HBC/actor_attack_defence/LineEdit
 @onready var actor_magic_defence = $HBC/actor_magic_defence/LineEdit
 @onready var db = SQLite.new()
+@onready var actor_list = $"../actor_list/actor_list"
 
 func _ready():
+	actor_list.actor_edit.connect(actor_set)
 	var db_dir = "user://data"
 	var db_path = db_dir + "/game.db"
 	# 確保 user://data 資料夾存在
@@ -69,3 +71,14 @@ func actor_add():
 	}
 	db.insert_row("actor", data)
 	refresh_database.emit()
+
+func actor_set(actor_data:Dictionary):
+	actor_id.text = str(actor_data["id"])
+	actor_name.text = str(actor_data["name"])
+	actor_level.text = str(actor_data["level"])
+	actor_element.text = str(actor_data["element"])
+	actor_health.text = str(actor_data["health"])
+	actor_attack_point.text = str(actor_data["attack_point"])
+	actor_magic_point.text = str(actor_data["magic_point"])
+	actor_attack_defence.text = str(actor_data["attack_defence"])
+	actor_magic_defence.text = str(actor_data["magic_defence"])

@@ -157,6 +157,7 @@ script = ExtResource("3_aleoa")
 
 [node name="actor_test" type="MarginContainer" parent="MC/VBC/actor_list/actor_list"]
 layout_mode = 2
+theme_override_constants/margin_left = 100
 script = ExtResource("5_3vl2d")
 
 [node name="HBC" type="HBoxContainer" parent="MC/VBC/actor_list/actor_list/actor_test"]
@@ -250,6 +251,17 @@ layout_mode = 2
 theme_override_constants/margin_left = 20
 
 [node name="actor_delete_btn" type="Button" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_delete"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "刪除"
+
+[node name="actor_edit" type="MarginContainer" parent="MC/VBC/actor_list/actor_list/actor_test/HBC"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="actor_edit_btn" type="Button" parent="MC/VBC/actor_list/actor_list/actor_test/HBC/actor_edit"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24

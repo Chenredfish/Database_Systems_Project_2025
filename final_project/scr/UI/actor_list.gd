@@ -7,6 +7,7 @@ extends VBoxContainer
 var object_delete = load("res://scr/UI/object_delete.gd").new()
 
 signal show_alert(msg:String)
+signal actor_edit(actor_target)
 
 func _ready():
 	actor_test.hide()
@@ -68,6 +69,7 @@ func _add_ring(actor_n):	#顯示每個狀態
 	new_actor.get_node("HBC/actor_attack_defence/Label").text = str(search_actor_data[actor_n]["attack_defence"])
 	new_actor.get_node("HBC/actor_magic_defence/Label").text = str(search_actor_data[actor_n]["magic_defence"])
 	new_actor.get_node("HBC/actor_delete/actor_delete_btn").pressed.connect(Callable(self, "_on_actor_delete_pressed").bind(str(search_actor_data[actor_n]["id"])))
+	new_actor.get_node("HBC/actor_edit/actor_edit_btn").pressed.connect(Callable(self, "_on_actor_edit_pressed").bind(search_actor_data[actor_n]))
 
 func _on_actor_delete_pressed(actor_id):
 	# 查詢該 actor 的 level
@@ -91,3 +93,6 @@ func _refresh_database():
 	print("refreshed")
 	search_actor_data = object_delete._refresh_database(actor_test.db, "actor")
 	_page_update()
+
+func _on_actor_edit_pressed(actor_target):
+	actor_edit.emit(actor_target)
