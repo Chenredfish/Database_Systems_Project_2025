@@ -8,13 +8,13 @@ signal exit_btn_pressed
 @onready var id_input = $MC/VBC/actor_manage/HBC/actor_id/LineEdit
 @onready var name_input = $MC/VBC/actor_manage/HBC/actor_name/LineEdit
 @onready var level_input = $MC/VBC/actor_manage/HBC/actor_level/LineEdit
-@onready var element_input = $MC/VBC/actor_manage/HBC/actor_element/LineEdit
 @onready var health_input = $MC/VBC/actor_manage/HBC/actor_health/LineEdit
 @onready var attack_point_input = $MC/VBC/actor_manage/HBC/actor_attack_point/LineEdit
 @onready var magic_point_input = $MC/VBC/actor_manage/HBC/actor_magic_point/LineEdit
 @onready var attack_defence_input = $MC/VBC/actor_manage/HBC/actor_attack_defence/LineEdit
 @onready var magic_defence_input = $MC/VBC/actor_manage/HBC/actor_magic_defence/LineEdit
 @onready var apply_button = $MC/VBC/actor_manage/HBC/actor_manage/actor_manage_btn
+@onready var actor_element = $MC/VBC/actor_manage/HBC/actor_element
 
 @onready var actor_list = $MC/VBC/actor_list/actor_list
 @onready var actor_search = $MC/VBC/switch_pages/HBC/actor_search/actor_search
@@ -53,7 +53,8 @@ func _on_apply_pressed():
 	var id = id_input.text.strip_edges()
 	var actor_name = name_input.text.strip_edges()
 	var level = level_input.text.strip_edges()
-	var element = element_input.text.strip_edges()
+	var selected_element_index = actor_element.get_selected()  # 取得選擇的索引
+	var element = actor_element.get_item_text(selected_element_index)
 	var health = health_input.text.strip_edges()
 	var attack_point = attack_point_input.text.strip_edges()
 	var magic_point = magic_point_input.text.strip_edges()

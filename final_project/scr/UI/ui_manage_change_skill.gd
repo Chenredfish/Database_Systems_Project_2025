@@ -9,11 +9,12 @@ signal refresh_database
 @onready var id_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_id/LineEdit
 @onready var name_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_name/LineEdit
 @onready var level_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_level/LineEdit
-@onready var element_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_element/LineEdit
 @onready var is_magic_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_is_magic/LineEdit
 @onready var power_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_power/LineEdit
 @onready var cooldown_input = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_cooldown/LineEdit
 @onready var apply_button = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_manage/skill_manage_btn
+@onready var skill_element = $MarginContainer/VBoxContainer/skill_manage/skill_status/HBoxContainer/skill_element
+
 
 @onready var skill_list = $MarginContainer/VBoxContainer/skill_list/skill_list
 @onready var skill_search = $MarginContainer/VBoxContainer/switch_pages/HBoxContainer/skill_search/skill_search
@@ -50,7 +51,9 @@ func _on_skill_search_text_submitted() -> void:
 	var id = id_input.text.strip_edges()
 	var skill_name = name_input.text.strip_edges()
 	var level = level_input.text.strip_edges()
-	var element = element_input.text.strip_edges()
+	var selected_element_index = skill_element.get_selected()  # 取得選擇的索引
+	var element = skill_element.get_item_text(selected_element_index)
+	#var element = element_input.text.strip_edges()
 	var is_magic = is_magic_input.text.strip_edges()
 	if is_magic == "魔法":
 		is_magic = "1"
@@ -103,11 +106,11 @@ func _on_skill_search_text_submitted() -> void:
 	if magic != 0 and magic != 1:
 		await show_alert("⚠️ is_magic 必須是 物理(0) 或 魔法(1)")
 		return
-	if cd <= 1.0:
-		await show_alert("⚠️ cooldown 必須為大於 1 的小數")
+	if cd < 1.0:
+		await show_alert("⚠️ cooldown 必須為大於等於 1 的小數")
 		return
-	if pw <= 1.0:
-		await show_alert("⚠️ power 必須為大於 1 的小數")
+	if pw < 1.0:
+		await show_alert("⚠️ power 必須為大於等於 1 的小數")
 		return
 
 	# 名稱唯一性檢查（排除自己）

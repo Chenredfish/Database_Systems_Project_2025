@@ -66,7 +66,7 @@ func skill_add():
 		"element":skill_element.get_item_text(skill_element.get_selected_id()),
 		"is_magic":skill_is_magic.text,
 		"power":skill_power.text,
-		"cooldown":skill_cooldown.text,
+		"cooldown":float(skill_cooldown.text),
 	}
 	db.insert_row("skill", data)
 	refresh_database.emit()
@@ -78,6 +78,9 @@ func skill_set(skill_data:Dictionary):
 	for id in range(element_id_array.size()):
 		if element_id_array[id] == str(skill_data["element"]):
 			skill_element.select(id)
-	skill_is_magic.text = str(skill_data["is_magic"])
+	if skill_data["is_magic"] == 0:
+		skill_is_magic.text = "物理"
+	elif  skill_data["is_magic"] == 1:
+		skill_is_magic.text = "魔法"
 	skill_power.text = str(skill_data["power"])
 	skill_cooldown.text = str(skill_data["cooldown"])
