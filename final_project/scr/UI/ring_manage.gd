@@ -1,4 +1,5 @@
 extends MarginContainer
+signal ring_edit(ring_target)
 
 @onready var ring_id = $ring_status/HBoxContainer/ring_id/LineEdit
 @onready var ring_name = $ring_status/HBoxContainer/ring_name/LineEdit
@@ -11,6 +12,7 @@ extends MarginContainer
 @onready var db = SQLite.new()
 
 func _ready():
+	ring_edit.connect(ring_set)
 	var db_dir = "user://data"
 	var db_path = db_dir + "/game.db"
 	# 確保 user://data 資料夾存在
@@ -63,3 +65,13 @@ func ring_add():
 		"magic_defence":ring_magic_defence.text
 	}
 	db.insert_row("ring", data)
+
+func ring_set(ring_data):
+	ring_id.text = ring_data["id"]
+	ring_name.text = ring_data["name"]
+	ring_level.text = ring_data["level"]
+	ring_health.text = ring_data["health"]
+	ring_attack_power.text = ring_data["attack_power"]
+	ring_magic_power.text = ring_data["magic_power"]
+	ring_attack_defence.text = ring_data["attack_defence"]
+	ring_magic_defence.text = ring_data["magic_defence"]

@@ -3,6 +3,7 @@ extends GridContainer
 signal next_page_pressed
 signal previous_page_pressed
 signal show_alert(msg:String)
+signal ring_edit(ring_target)
 
 @onready var ring_test = $ring_test
 @onready var ring_page = 0
@@ -68,7 +69,8 @@ func _add_ring(ring_n):	#顯示每個狀態
 	new_ring.get_node("PC/VBC/ring_magic_power").text = "魔法攻擊：" + str(search_ring_data[ring_n]["magic_power"])
 	new_ring.get_node("PC/VBC/ring_attack_defence").text = "物理防禦：" + str(search_ring_data[ring_n]["attack_defence"])
 	new_ring.get_node("PC/VBC/ring_magic_defence").text = "魔法防禦：" + str(search_ring_data[ring_n]["magic_defence"])
-	new_ring.get_node("ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
+	new_ring.get_node("ring_test/HBC/ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
+	new_ring.get_node("$ring_test/HBC/ring_edit/Button").pressed.connect(Callable(self, "_on_ring_edit_pressed").bind(str(search_ring_data[ring_n])))
 
 func _on_ring_delete_pressed(ring_id):
 	# 查詢該 ring 的 level
@@ -87,3 +89,6 @@ func _on_ring_delete_pressed(ring_id):
 	object_delete._object_delete(ring_test.db, "ring", str(ring_id))
 	search_ring_data = object_delete._refresh_database(ring_test.db, "ring")
 	_page_update()
+
+func _on_ring_edit_pressed(ring_target):
+	ring_edit.emit(ring_target)

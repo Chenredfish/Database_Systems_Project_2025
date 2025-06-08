@@ -7,7 +7,7 @@ signal first_data
 
 @onready var db = SQLite.new()
 
-var record_data
+var record_data = db.select_rows("record", "game_id > 0", ["*"])
 var game_max = 1
 var round_max: Array = [1]
 @onready var game_page = 1

@@ -140,14 +140,27 @@ label_settings = SubResource("LabelSettings_jauhl")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ring_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test"]
+[node name="HBC" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test"]
+layout_mode = 2
+theme_override_constants/separation = 33
+
+[node name="ring_del" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC"]
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC/ring_del"]
 layout_mode = 2
 text = "刪除"
+
+[node name="ring_edit" type="MarginContainer" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC"]
+custom_minimum_size = Vector2(80, 49)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC/ring_edit"]
+layout_mode = 2
+text = "編輯"
 
 [node name="switch_pages" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -304,7 +317,8 @@ text = "新增 / 編輯狀態"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit/Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="show_alert" from="MarginContainer/VBoxContainer/ring_list/list" to="." method="_on_list_show_alert"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC/ring_del/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ring_list/list/ring_test/HBC/ring_edit/Button" to="MarginContainer/VBoxContainer/ring_list" method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/previous_page/previous_page_btn" to="." method="_on_previous_page_btn_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/ring_search/ring_search" to="." method="_on_ring_search_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/switch_pages/HBoxContainer/next_page/next_page_btn" to="." method="_on_next_page_btn_pressed"]

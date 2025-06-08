@@ -3,6 +3,7 @@ extends Control
 signal refresh_database
 signal exit_btn_pressed
 signal next_page_pressed
+signal ring_edit(ring_target)
 
 @onready var db = SQLite.new()
 
