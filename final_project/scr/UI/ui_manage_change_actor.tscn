@@ -265,7 +265,7 @@ theme_override_constants/margin_left = 20
 custom_minimum_size = Vector2(80, 49)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "刪除"
+text = "編輯"
 
 [node name="switch_pages" type="MarginContainer" parent="MC/VBC"]
 layout_mode = 2

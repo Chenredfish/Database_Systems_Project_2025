@@ -75,7 +75,7 @@ func skill_set(skill_data:Dictionary):
 	skill_id.text = str(skill_data["id"])
 	skill_name.text = str(skill_data["name"])
 	skill_level.text = str(skill_data["level"])
-	for id in range(element_id_array):
+	for id in range(element_id_array.size()):
 		if element_id_array[id] == str(skill_data["element"]):
 			skill_element.select(id)
 	skill_is_magic.text = str(skill_data["is_magic"])

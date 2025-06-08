@@ -77,7 +77,7 @@ func actor_set(actor_data:Dictionary):
 	actor_id.text = str(actor_data["id"])
 	actor_name.text = str(actor_data["name"])
 	actor_level.text = str(actor_data["level"])
-	for id in range(element_id_array):
+	for id in range(element_id_array.size()):
 		if element_id_array[id] == str(actor_data["element"]):
 			actor_element.select(id)
 	actor_health.text = str(actor_data["health"])
