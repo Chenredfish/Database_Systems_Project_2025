@@ -7,7 +7,7 @@ signal first_data
 
 @onready var db = SQLite.new()
 
-var record_data = db.select_rows("record", "game_id > 0", ["*"])
+var record_data
 var game_max = 1
 var round_max: Array = [1]
 @onready var game_page = 1
@@ -21,6 +21,7 @@ func _ready():
 func _refresh_data():
 	var db_dir = "user://data"
 	var db_path = db_dir + "/game.db"
+	record_data = db.select_rows("record", "game_id > 0", ["*"])
 	# 確保 user://data 資料夾存在
 	if not DirAccess.dir_exists_absolute(db_dir):
 		DirAccess.make_dir_recursive_absolute(db_dir)

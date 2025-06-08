@@ -69,8 +69,8 @@ func _add_ring(ring_n):	#顯示每個狀態
 	new_ring.get_node("PC/VBC/ring_magic_power").text = "魔法攻擊：" + str(search_ring_data[ring_n]["magic_power"])
 	new_ring.get_node("PC/VBC/ring_attack_defence").text = "物理防禦：" + str(search_ring_data[ring_n]["attack_defence"])
 	new_ring.get_node("PC/VBC/ring_magic_defence").text = "魔法防禦：" + str(search_ring_data[ring_n]["magic_defence"])
-	new_ring.get_node("ring_test/HBC/ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
-	new_ring.get_node("$ring_test/HBC/ring_edit/Button").pressed.connect(Callable(self, "_on_ring_edit_pressed").bind(str(search_ring_data[ring_n])))
+	new_ring.get_node("HBC/ring_del/Button").pressed.connect(Callable(self, "_on_ring_delete_pressed").bind(str(search_ring_data[ring_n]["id"])))
+	new_ring.get_node("HBC/ring_edit/Button").pressed.connect(Callable(self, "_on_ring_edit_pressed").bind(search_ring_data[ring_n]))
 
 func _on_ring_delete_pressed(ring_id):
 	# 查詢該 ring 的 level
